@@ -10,7 +10,7 @@ public class RhythmGameManager : MonoBehaviour
 {
     public Canvas rhythmGameCanvas;
     public AudioSource src;
-    public AudioClip debugSound;
+    public string debugSound;
 
 
     bool gameActive = false;
@@ -18,7 +18,7 @@ public class RhythmGameManager : MonoBehaviour
     float timePerNote;
     float pitchOffset;
     List<int> parsedRhythm;
-    AudioClip sound;
+    string sound;
 
     float timeCountUp;
     int index;
@@ -53,14 +53,14 @@ public class RhythmGameManager : MonoBehaviour
         }
     }
 
-    private void PlayNote(int note)
+    void PlayNote(int note)
     {
         src.volume = 1;
         src.pitch = pitchOffset * Mathf.Pow(2, (note - 1) / 12f);
         print(src.pitch);
         if (note == 0)
             src.volume = 0f;
-        src.PlayOneShot(sound);
+        AudioController.PlaySoundCustom(sound, src);
     }
 
     public void StartRhythmGame(Frog f)
@@ -90,7 +90,7 @@ public class RhythmGameManager : MonoBehaviour
         index = 0;
     }
 
-    public float ConvertTempo(int ogTempo, Subdivision sub)
+    float ConvertTempo(int ogTempo, Subdivision sub)
     {
         Mathf.Clamp(ogTempo, 40, 250);
         float time = 60f / ogTempo;
@@ -103,7 +103,7 @@ public class RhythmGameManager : MonoBehaviour
         return time;
     }
 
-    public bool ParseRhythm(string rhythm)
+    bool ParseRhythm(string rhythm)
     {
         parsedRhythm = new List<int>();
 
@@ -150,11 +150,11 @@ public class RhythmGameManager : MonoBehaviour
     public void DebugStart()
     {
         StopRhythmGame();
-        StartRhythmGame(GameObject.Find("DebugFrog"));
+        StartRhythmGame(GameObject.Find("DebugFrog").GetComponent<Frog>());
     }
 
 
-    public float CalcLowestNote(LowestNote n)
+    float CalcLowestNote(LowestNote n)
     {
         float pitch = Mathf.Pow(Mathf.Pow(2, 1f / 12f), n.noteOffset + (n.octave - 4) * 12);
         return pitch;
