@@ -63,10 +63,10 @@ public class RhythmGameManager : MonoBehaviour
         src.PlayOneShot(sound);
     }
 
-    public void StartRhythmGame(GameObject f)
+    public void StartRhythmGame(Frog f)
     {
-        Rhythm r = f.GetComponent<Rhythm>();
-        //sound = f.sound;
+        Rhythm r = f.rhythm;
+        sound = f.sound;
         timePerNote = ConvertTempo(r.tempo, r.subdivision);
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))

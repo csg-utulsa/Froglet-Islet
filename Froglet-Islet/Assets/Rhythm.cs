@@ -14,7 +14,8 @@ public class LowestNote
 }
 public enum Subdivision { Quarter, Eighth, Sixteenth, Triplet }
 
-public class Rhythm : MonoBehaviour
+[System.Serializable]
+public class Rhythm
 {
     [Range(40, 250)]
     public int tempo;
