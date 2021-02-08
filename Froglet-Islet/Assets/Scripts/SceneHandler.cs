@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 /*
  * Author: Chase Clawson
  * Date Created: 02/03/2021
- * Last Modified Date: 02/03/2021
- * Last Modified By: 02/03/2021
+ * Last Modified Date: 02/08/2021
+ * Last Modified By: Chase Clawson
  * Description: Wrapper over Unity's SceneManager to allow easy transitions
  */
 
