@@ -5,14 +5,17 @@ using UnityEngine;
 /*
  * Author: Chase Clawson
  * Date Created: 02/03/2021
- * Last Modified Date: 02/03/2021
- * Last Modified By: 02/03/2021
+ * Last Modified Date: 02/08/2021
+ * Last Modified By: Chase Clawson
  * Description: Data storage for saved player data
  */
 
-public class PlayerPrefs : MonoBehaviour
+public static class PlayerPrefs
 {
-    public List<string> CaughtFrogs = new List<string>();
-    public List<string> AvailableActions = new List<string>();
-    public List<string> Items = new List<string>();
+    //List of frog names marked as caught
+    public static List<string> CaughtFrogs = new List<string>();
+    //List of actions the player has available (mostly determined by tools and similar items)
+    public static List<string> AvailableActions = new List<string>();
+    //List of items in the player's inventory
+    public static List<string> Items = new List<string>();
 }
