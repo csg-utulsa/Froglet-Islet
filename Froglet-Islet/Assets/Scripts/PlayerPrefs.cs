@@ -13,7 +13,7 @@ using UnityEngine;
 public static class PlayerPrefs
 {
     //List of frog names marked as caught
-    public static List<string> CaughtFrogs = new List<string>();
+    public static List<Frog> CaughtFrogs = new List<Frog>();
     //List of actions the player has available (mostly determined by tools and similar items)
     public static List<string> AvailableActions = new List<string>();
     //List of items in the player's inventory

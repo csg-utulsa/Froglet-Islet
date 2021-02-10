@@ -48,7 +48,13 @@ public class AudioControllerScript : MonoBehaviour
 			Debug.Log("ERROR! INVALID STRING FOR PLAYSOUND()!!!");
 	}
 
-	public void PlaySoundCustom(string requestedString, AudioSource aSource) // allows for the utilization of a custom audio source, usually for the sake of physical distance drop off
+	public void PlaySound(AudioSource requestedSource) // WARNING! THERE IS CURRENTLY NO PREVENTITIVE THINGS IMPLEMENTED TO PREVENT MULTIPLE SOUNDS BEING PLAYED ON THE SAME FRAME AND AUDIO SOURCE
+	{ 
+		requestedSource.volume = sfxVolume; 
+		requestedSource.PlayOneShot(requestedSource.clip); 
+	}
+
+	public void PlaySound(string requestedString, AudioSource aSource) // allows for the utilization of a custom audio source, usually for the sake of physical distance drop off
 	{
 		bool found = false;
 		for (int i = 0; i < audioClipNames.Length; i++)

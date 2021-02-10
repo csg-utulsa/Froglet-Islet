@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Frog", menuName = "Frog")]
-public class Frog : ScriptableObject
+public class Frog : MonoBehaviour
 {
     //Assigned to Logan Edmund
     //Last updated 2/8/21
@@ -25,7 +24,7 @@ public class Frog : ScriptableObject
     //Keeps track of wether or not the frog species has been collected by the player
     public int frogCollected;
 
-    //public Rhythm frogMelody;
+    public Rhythm frogMelody;
     public AudioClip frogCry;
 
     void Start()

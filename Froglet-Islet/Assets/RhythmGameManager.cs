@@ -10,7 +10,7 @@ public class RhythmGameManager : MonoBehaviour
 {
     public Canvas rhythmGameCanvas;
     public AudioSource src;
-    public string debugSound;
+    public AudioClip debugSound;
 
 
     bool gameActive = false;
@@ -18,12 +18,12 @@ public class RhythmGameManager : MonoBehaviour
     float timePerNote;
     float pitchOffset;
     List<int> parsedRhythm;
-    string sound;
+    AudioClip sound;
 
     float timeCountUp;
     int index;
 
-
+    AudioControllerScript audioController;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,8 @@ public class RhythmGameManager : MonoBehaviour
         if(src == null)
             src = GetComponent<AudioSource>();
         sound = debugSound;
+
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
     }
 
     // Update is called once per frame
@@ -60,13 +62,14 @@ public class RhythmGameManager : MonoBehaviour
         print(src.pitch);
         if (note == 0)
             src.volume = 0f;
-        AudioController.PlaySoundCustom(sound, src);
+        audioController.PlaySound(src);
     }
 
     public void StartRhythmGame(Frog f)
     {
-        Rhythm r = f.rhythm;
-        sound = f.sound;
+        Rhythm r = f.frogMelody;
+        sound = f.frogCry;
+        src.clip = sound;
         timePerNote = ConvertTempo(r.tempo, r.subdivision);
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))
