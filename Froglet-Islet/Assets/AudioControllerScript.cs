@@ -17,6 +17,8 @@ public class AudioControllerScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		musicVolume = 1f;
+		sfxVolume = 1f;
 		foreach (AudioClip ac in audioClips) // fills audioClipPlayed with same number of values as audioClipNames and audioClips
 			audioClipPlayed.Add(ac); //
 	}
