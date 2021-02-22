@@ -18,7 +18,7 @@ public enum Subdivision { Quarter, Eighth, Sixteenth, Triplet }
 public class Rhythm
 {
     [Range(40, 250)]
-    public int tempo;
+    public int tempo = 120;
     public Subdivision subdivision;
     public LowestNote lowestNote;
     public string rhythm;

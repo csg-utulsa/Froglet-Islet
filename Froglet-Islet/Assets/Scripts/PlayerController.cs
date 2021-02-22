@@ -51,10 +51,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateMouseLook();
-        UpdateMovement();
-        ApplyGravity();
-        CanInteract();
+        if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
+        {
+            UpdateMouseLook();
+            UpdateMovement();
+            ApplyGravity();
+            CanInteract();
+        }
     }
 
     void UpdateMouseLook(){

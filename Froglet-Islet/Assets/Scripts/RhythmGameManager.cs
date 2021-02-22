@@ -5,20 +5,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
 {
     public Canvas rhythmGameCanvas;
     public AudioSource src;
     public AudioClip debugSound;
+    public List<Button> buttonList;
 
 
-    bool gameActive = false;
+    public bool gameActive = false;
     bool listening = false;
+    bool attempting = false;
+    bool didItCorrectly;
     float timePerNote;
     float pitchOffset;
     List<int> parsedRhythm;
     AudioClip sound;
+    Text infoText;
 
     float timeCountUp;
     int index;
@@ -32,6 +37,9 @@ public class RhythmGameManager : MonoBehaviour
             src = GetComponent<AudioSource>();
 
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
+
+
+        infoText = rhythmGameCanvas.transform.Find("InfoText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -41,6 +49,7 @@ public class RhythmGameManager : MonoBehaviour
         {
             if (listening)
             {
+                infoText.text = "Listening";
                 timeCountUp += Time.deltaTime;
                 if (timeCountUp >= timePerNote)
                 {
@@ -48,7 +57,30 @@ public class RhythmGameManager : MonoBehaviour
                     PlayNote(parsedRhythm[index]);
                     index++;
                     if (index >= parsedRhythm.Count)
+                    {
+                        foreach (Button b in buttonList)
+                            b.interactable = true;
                         listening = false;
+                        attempting = true;
+                        didItCorrectly = true;
+                        infoText.text = "Go!";
+                        index = 0;
+                    }
+                }
+            } else if (attempting)
+            {
+                timeCountUp += Time.deltaTime;
+                if (index >= parsedRhythm.Count)
+                {
+                    foreach (Button b in buttonList)
+                        b.interactable = false;
+                    if (timeCountUp >= timePerNote)
+                    {
+                        if (didItCorrectly)
+                            StopRhythmGame();
+                        else
+                            Listen();
+                    }
                 }
             }
         }
@@ -56,16 +88,17 @@ public class RhythmGameManager : MonoBehaviour
 
     void PlayNote(int note)
     {
-        src.volume = 1;
-        src.pitch = pitchOffset * Mathf.Pow(2, (note - 1) / 12f);
-        print(src.pitch);
-        if (note == 0)
-            src.volume = 0f;
-        audioController.PlaySound(src);
+        if (note != 0)
+        {
+            src.volume = 1;
+            src.pitch = pitchOffset * Mathf.Pow(2, (note - 1) / 12f);
+            audioController.PlaySound(src);
+        }
     }
 
     public void StartRhythmGame(Frog f)
     {
+        rhythmGameCanvas.gameObject.SetActive(true);
         Rhythm r = f.frogMelody;
         sound = f.frogCry;
         if (sound == null)
@@ -82,13 +115,16 @@ public class RhythmGameManager : MonoBehaviour
 
     public void StopRhythmGame()
     {
+        rhythmGameCanvas.gameObject.SetActive(false);
         listening = false;
+        attempting = false;
         gameActive = false;
     }
 
 
     public void Listen()
     {
+        attempting = false;
         listening = true;
         timeCountUp = 0;
         index = 0;
@@ -163,4 +199,45 @@ public class RhythmGameManager : MonoBehaviour
         float pitch = Mathf.Pow(Mathf.Pow(2, 1f / 12f), n.noteOffset + (n.octave - 4) * 12);
         return pitch;
     }
+
+    public void ClickNote(int note)
+    {
+        PlayNote(note);
+        if (!CheckIfCorrect(note))
+            didItCorrectly = false;
+        timeCountUp = 0;
+        index++;
+    }
+
+    bool CheckIfCorrect(int note)
+    {
+        float offBy = timePerNote;
+        while (parsedRhythm[index] == 0)
+        {
+            index++;
+            offBy += timePerNote;
+        }
+        if (parsedRhythm[index] != note)
+        {
+            infoText.text = "Wrong Note!";
+            return false;
+        }
+        if (index == 0)
+            offBy = 0;
+        else
+            offBy -= timeCountUp;
+        Debug.Log(offBy);
+        if (Mathf.Abs(offBy) > 0.1f)
+        {
+            if (offBy > 0)
+                infoText.text = "Too Early!";
+            else
+                infoText.text = "Too Late!";
+            return false;
+        }
+        infoText.text = "Good Job!";
+        return true;
+
+    }
+
 }
