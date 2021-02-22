@@ -90,8 +90,7 @@ public class PlayerController : MonoBehaviour
     }   
 
     public void CanInteract(){
-
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if(Physics.Raycast(ray, out hit, interactDist)){
