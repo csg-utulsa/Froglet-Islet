@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frog : MonoBehaviour
+public class Frog : MonoBehaviour, IInteractable
 {
     //Assigned to Logan Edmund
     //Last updated 2/8/21
@@ -27,10 +27,18 @@ public class Frog : MonoBehaviour
     public Rhythm frogMelody;
     public AudioClip frogCry;
 
+    public bool canInteract = true;
+
     void Start()
     {
         //
 
+    }
+    
+    public void OnInteract(){
+        if(canInteract){
+            //Call Rhythm Controller from here
+        }
     }
 
 

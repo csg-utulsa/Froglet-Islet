@@ -1,7 +1,7 @@
 ﻿/* 
     Author: Jacob Regan
     Data Created: 1/30/21
-    Last Modified Data: 2/3/21
+    Last Modified Data: 2/20/21
     Last Modified By: Jacob Regan
     Description:  PlayerController for movement and player interactions.
 
@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 {
 
     private Transform playerCamera = null;
+    [SerializeField]private float interactDist = 3f;
+
     [SerializeField] float mouseSensitivity = 3.0f;
 
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
@@ -35,7 +37,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 camPosition;
 
     private Quaternion camRotation;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -84,4 +87,20 @@ public class PlayerController : MonoBehaviour
         }
         velocityY += gravity * Time.deltaTime;
     }   
+
+    public void CanInteract(){
+
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray, out hit, interactDist)){
+            if(hit.collider.CompareTag("Interactable")){
+                // Debug.Log("Do you want to interact?");
+                if(Input.GetButtonDown("Fire1")){
+                    hit.collider.gameObject.SendMessage("OnInteract");
+                }
+                
+            }
+        }
+    }
 }
