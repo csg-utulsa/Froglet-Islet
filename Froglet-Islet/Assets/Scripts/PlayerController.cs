@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         UpdateMouseLook();
         UpdateMovement();
         ApplyGravity();
+        CanInteract();
     }
 
     void UpdateMouseLook(){

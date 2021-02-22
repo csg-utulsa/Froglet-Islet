@@ -7,6 +7,7 @@ TagManager:
   - LineArea
   - Note
   - AudioController
+  - Interactable
   layers:
   - Default
   - TransparentFX

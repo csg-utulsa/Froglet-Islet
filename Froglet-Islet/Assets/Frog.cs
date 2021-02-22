@@ -29,15 +29,16 @@ public class Frog : MonoBehaviour, IInteractable
 
     public bool canInteract = true;
 
+    private RhythmGameManager rhythmGameManager;
+
     void Start()
     {
-        //
-
+        rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
     }
     
     public void OnInteract(){
         if(canInteract){
-            //Call Rhythm Controller from here
+            rhythmGameManager.StartRhythmGame(this);
         }
     }
 
