@@ -30,7 +30,6 @@ public class RhythmGameManager : MonoBehaviour
     {
         if(src == null)
             src = GetComponent<AudioSource>();
-        sound = debugSound;
 
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
     }
@@ -69,6 +68,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         Rhythm r = f.frogMelody;
         sound = f.frogCry;
+        if (sound == null)
+            sound = debugSound;
         src.clip = sound;
         timePerNote = ConvertTempo(r.tempo, r.subdivision);
         pitchOffset = CalcLowestNote(r.lowestNote);
