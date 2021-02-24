@@ -5,7 +5,7 @@ public class UIController : Singleton<UIController>
     public PauseScreen pauseScreen;
     public GameScreen gameScreen;
     public FinishScreen finishScreen;
-    public JournalScreen journalScreen;// made for journal
+    public JournalScreen journalScreen;
     public InventoryScreen InventoryScreen;
 
     void Awake()

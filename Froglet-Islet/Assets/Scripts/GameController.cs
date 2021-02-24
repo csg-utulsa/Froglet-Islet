@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    protected static GameController instance;
-
     public static UnityEvent gameStateChanged = new UnityEvent();
     public static GameStates gameState = GameStates.Game;
 
