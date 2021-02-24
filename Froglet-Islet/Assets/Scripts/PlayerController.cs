@@ -52,19 +52,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
             UpdateMouseLook();
             UpdateMovement();
             ApplyGravity();
             CanInteract();
-=======
-        UpdateMouseLook();
-        UpdateMovement();
-        ApplyGravity();
-        CanInteract();
-        CheckForMenuButtons();
+            CheckForMenuButtons();
+        }
     }
 
     private void CheckForMenuButtons()
@@ -76,7 +71,6 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButton("Inventory"))
         {
             GameController.Instance.gameState = GameController.GameStates.Inventory;
->>>>>>> Stashed changes
         }
     }
 
