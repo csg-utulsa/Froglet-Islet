@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
                 {
                     Debug.LogWarning("An instance of " + typeof(GameController) + " is needed in the scene, but there is none.");
                 }
+
+                instance.gameState = GameStates.Game;
             }
             return instance;
         }

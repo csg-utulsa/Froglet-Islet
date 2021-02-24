@@ -6,6 +6,7 @@
     Description:  PlayerController for movement and player interactions.
 
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,12 +52,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
             UpdateMouseLook();
             UpdateMovement();
             ApplyGravity();
             CanInteract();
+=======
+        UpdateMouseLook();
+        UpdateMovement();
+        ApplyGravity();
+        CanInteract();
+        CheckForMenuButtons();
+    }
+
+    private void CheckForMenuButtons()
+    {
+        if (Input.GetButton("Pause"))
+        {
+            GameController.Instance.gameState = GameController.GameStates.Pause;
+        }
+        else if (Input.GetButton("Inventory"))
+        {
+            GameController.Instance.gameState = GameController.GameStates.Inventory;
+>>>>>>> Stashed changes
         }
     }
 
