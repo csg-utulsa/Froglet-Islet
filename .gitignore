@@ -9,10 +9,6 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
-SampleScene.unity
-SampleScene.unity.meta
-TestScenes/
-TestScenes.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -25,7 +21,7 @@ TestScenes.meta
 
 # Visual Studio cache directory
 .vs/
-.vscode/
+
 # Gradle cache directory
 .gradle/
 
@@ -61,3 +57,4 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
