@@ -16,7 +16,7 @@ public class InventoryController : Singleton<InventoryController>
 
     void Update()
     {
-        if (GameController.Instance.gameState == GameController.GameStates.Game)
+        if (GameController.gameState == GameController.GameStates.Game)
         {
             if (InputController.Item1) UseItem(0);
             if (InputController.Item2) UseItem(1);

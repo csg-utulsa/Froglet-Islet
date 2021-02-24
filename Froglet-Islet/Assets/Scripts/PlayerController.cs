@@ -66,11 +66,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Pause"))
         {
-            GameController.Instance.gameState = GameController.GameStates.Pause;
+            GameController.gameState = GameController.GameStates.Pause;
         }
         else if (Input.GetButton("Inventory"))
         {
-            GameController.Instance.gameState = GameController.GameStates.Inventory;
+            GameController.gameState = GameController.GameStates.Inventory;
         }
     }
 

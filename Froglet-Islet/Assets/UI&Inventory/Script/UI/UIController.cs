@@ -11,12 +11,12 @@ public class UIController : Singleton<UIController>
     void Awake()
     {
         //wait for actual game controller
-        GameController.Instance.gameStateChanged.AddListener(OnGameStateChanged);
+        GameController.gameStateChanged.AddListener(OnGameStateChanged);
     }
 
     void OnGameStateChanged()
     {
-        if (GameController.Instance.gameState == GameController.GameStates.Game)
+        if (GameController.gameState == GameController.GameStates.Game)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -26,11 +26,11 @@ public class UIController : Singleton<UIController>
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        pauseScreen.SetState(GameController.Instance.gameState == GameController.GameStates.Pause);
-        gameScreen.SetState(GameController.Instance.gameState == GameController.GameStates.Game || GameController.Instance.gameState == GameController.GameStates.Inventory);
-        finishScreen.SetState(GameController.Instance.gameState == GameController.GameStates.Finish);
-        journalScreen.SetState(GameController.Instance.gameState == GameController.GameStates.Dialog);
-        InventoryScreen.SetState(GameController.Instance.gameState == GameController.GameStates.Inventory);
+        pauseScreen.SetState(GameController.gameState == GameController.GameStates.Pause);
+        gameScreen.SetState(GameController.gameState == GameController.GameStates.Game || GameController.gameState == GameController.GameStates.Inventory);
+        finishScreen.SetState(GameController.gameState == GameController.GameStates.Finish);
+        journalScreen.SetState(GameController.gameState == GameController.GameStates.Dialog);
+        InventoryScreen.SetState(GameController.gameState == GameController.GameStates.Inventory);
     }
 
     public void ShowError(string error)

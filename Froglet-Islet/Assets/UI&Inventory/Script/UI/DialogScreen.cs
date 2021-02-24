@@ -17,7 +17,7 @@ public class JournalScreen : Form
             index++;
             if (index >= dialog.dialogItems.Count)
             {
-                GameController.Instance.gameState = GameController.GameStates.Game;
+                GameController.gameState = GameController.GameStates.Game;
             }
             else
             {
@@ -30,7 +30,7 @@ public class JournalScreen : Form
     {
         if (dialog == null || dialog.dialogItems.Count == 0)
         {
-            GameController.Instance.gameState = GameController.GameStates.Game;
+            GameController.gameState = GameController.GameStates.Game;
             return;
         }
         this.dialog = dialog;
