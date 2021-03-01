@@ -17,6 +17,8 @@ public class AudioControllerScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		musicVolume = 1f;
+		sfxVolume = 1f;
 		foreach (AudioClip ac in audioClips) // fills audioClipPlayed with same number of values as audioClipNames and audioClips
 			audioClipPlayed.Add(ac); //
 	}
@@ -40,21 +42,21 @@ public class AudioControllerScript : MonoBehaviour
 			{
 				sfxSource.PlayOneShot(audioClips[i]);
 				audioClipPlayed[i] = true;
+				break;
 			}
 			found = true;
-			break;
 		}
 		if (!found)
 			Debug.Log("ERROR! INVALID STRING FOR PLAYSOUND()!!!");
 	}
 
 	public void PlaySound(AudioSource requestedSource) // WARNING! THERE IS CURRENTLY NO PREVENTITIVE THINGS IMPLEMENTED TO PREVENT MULTIPLE SOUNDS BEING PLAYED ON THE SAME FRAME AND AUDIO SOURCE
-	{
-		requestedSource.volume = sfxVolume;
-		requestedSource.PlayOneShot(requestedSource.clip);
+	{ 
+		requestedSource.volume = sfxVolume; 
+		requestedSource.PlayOneShot(requestedSource.clip); 
 	}
 
-	public void PlaySoundCustom(string requestedString, AudioSource aSource) // allows for the utilization of a custom audio source, usually for the sake of physical distance drop off
+	public void PlaySound(string requestedString, AudioSource aSource) // allows for the utilization of a custom audio source, usually for the sake of physical distance drop off
 	{
 		bool found = false;
 		for (int i = 0; i < audioClipNames.Length; i++)
@@ -63,9 +65,9 @@ public class AudioControllerScript : MonoBehaviour
 			{
 				aSource.volume = sfxVolume;
 				aSource.PlayOneShot(audioClips[i]);
+				break;
 			}
 			found = true;
-			break;
 		}
 		if (!found)
 			Debug.Log("ERROR! INVALID STRING FOR PLAYSOUNDCUSTOM()!!!");

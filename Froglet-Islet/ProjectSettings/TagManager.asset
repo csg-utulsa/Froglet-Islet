@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LineArea
+  - Note
+  - AudioController
+  - Interactable
   layers:
   - Default
   - TransparentFX

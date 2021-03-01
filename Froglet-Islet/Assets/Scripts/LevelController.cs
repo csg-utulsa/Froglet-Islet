@@ -5,7 +5,6 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     List<Frog> frogList = new List<Frog>();
-    public PlayerPrefs pPrefs; // NEEDS TO BE SET IN UNITY EDITOR
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +20,10 @@ public class LevelController : MonoBehaviour
 
     public void CullFrogList()
     {
-        List<Frog> removeFrogs = pPrefs.GetCaughtFrogs();
+        List<Frog> removeFrogs = PlayerPrefs.CaughtFrogs;
         foreach (Frog f in removeFrogs)
         {
-            f.Disable();
+            f.gameObject.SetActive(false);
             frogList.Remove(f);
         }
     }
