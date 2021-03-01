@@ -1,152 +1,384 @@
 fileFormatVersion: 2
 guid: 72d1e176a6aa6e44a983da62730a50ab
-timeCreated: 1485524195
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: group3
-    100002: group3_pCube52
-    100004: //RootNode
-    100006: pCube52
-    100008: pCube53
-    100010: pCube54
-    100012: pCube55
-    100014: pCube56
-    100016: pCube57
-    100018: pCube58
-    100020: pCube59
-    100022: pCube60
-    100024: pCube61
-    100026: pCube62
-    100028: pCube63
-    100030: pCube64
-    100032: pCube65
-    100034: pCube66
-    100036: pCube67
-    100038: pCube68
-    100040: pCube69
-    100042: pCube70
-    100044: pCube71
-    100046: pCube72
-    100048: pCube73
-    100050: pCube74
-    100052: pCube75
-    100054: transform1
-    100056: transform10
-    100058: transform11
-    100060: transform12
-    100062: transform13
-    100064: transform14
-    100066: transform15
-    100068: transform16
-    100070: transform17
-    100072: transform18
-    100074: transform19
-    100076: transform2
-    100078: transform20
-    100080: transform21
-    100082: transform22
-    100084: transform23
-    100086: transform24
-    100088: transform3
-    100090: transform4
-    100092: transform5
-    100094: transform6
-    100096: transform7
-    100098: transform8
-    100100: transform9
-    400000: group3
-    400002: group3_pCube52
-    400004: //RootNode
-    400006: pCube52
-    400008: pCube53
-    400010: pCube54
-    400012: pCube55
-    400014: pCube56
-    400016: pCube57
-    400018: pCube58
-    400020: pCube59
-    400022: pCube60
-    400024: pCube61
-    400026: pCube62
-    400028: pCube63
-    400030: pCube64
-    400032: pCube65
-    400034: pCube66
-    400036: pCube67
-    400038: pCube68
-    400040: pCube69
-    400042: pCube70
-    400044: pCube71
-    400046: pCube72
-    400048: pCube73
-    400050: pCube74
-    400052: pCube75
-    400054: transform1
-    400056: transform10
-    400058: transform11
-    400060: transform12
-    400062: transform13
-    400064: transform14
-    400066: transform15
-    400068: transform16
-    400070: transform17
-    400072: transform18
-    400074: transform19
-    400076: transform2
-    400078: transform20
-    400080: transform21
-    400082: transform22
-    400084: transform23
-    400086: transform24
-    400088: transform3
-    400090: transform4
-    400092: transform5
-    400094: transform6
-    400096: transform7
-    400098: transform8
-    400100: transform9
-    2300000: group3_pCube52
-    2300002: //RootNode
-    3300000: group3_pCube52
-    3300002: //RootNode
-    4300000: group3_pCube52
-    4300002: Palmtree1
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: group3
+  - first:
+      1: 100002
+    second: group3_pCube52
+  - first:
+      1: 100004
+    second: //RootNode
+  - first:
+      1: 100006
+    second: pCube52
+  - first:
+      1: 100008
+    second: pCube53
+  - first:
+      1: 100010
+    second: pCube54
+  - first:
+      1: 100012
+    second: pCube55
+  - first:
+      1: 100014
+    second: pCube56
+  - first:
+      1: 100016
+    second: pCube57
+  - first:
+      1: 100018
+    second: pCube58
+  - first:
+      1: 100020
+    second: pCube59
+  - first:
+      1: 100022
+    second: pCube60
+  - first:
+      1: 100024
+    second: pCube61
+  - first:
+      1: 100026
+    second: pCube62
+  - first:
+      1: 100028
+    second: pCube63
+  - first:
+      1: 100030
+    second: pCube64
+  - first:
+      1: 100032
+    second: pCube65
+  - first:
+      1: 100034
+    second: pCube66
+  - first:
+      1: 100036
+    second: pCube67
+  - first:
+      1: 100038
+    second: pCube68
+  - first:
+      1: 100040
+    second: pCube69
+  - first:
+      1: 100042
+    second: pCube70
+  - first:
+      1: 100044
+    second: pCube71
+  - first:
+      1: 100046
+    second: pCube72
+  - first:
+      1: 100048
+    second: pCube73
+  - first:
+      1: 100050
+    second: pCube74
+  - first:
+      1: 100052
+    second: pCube75
+  - first:
+      1: 100054
+    second: transform1
+  - first:
+      1: 100056
+    second: transform10
+  - first:
+      1: 100058
+    second: transform11
+  - first:
+      1: 100060
+    second: transform12
+  - first:
+      1: 100062
+    second: transform13
+  - first:
+      1: 100064
+    second: transform14
+  - first:
+      1: 100066
+    second: transform15
+  - first:
+      1: 100068
+    second: transform16
+  - first:
+      1: 100070
+    second: transform17
+  - first:
+      1: 100072
+    second: transform18
+  - first:
+      1: 100074
+    second: transform19
+  - first:
+      1: 100076
+    second: transform2
+  - first:
+      1: 100078
+    second: transform20
+  - first:
+      1: 100080
+    second: transform21
+  - first:
+      1: 100082
+    second: transform22
+  - first:
+      1: 100084
+    second: transform23
+  - first:
+      1: 100086
+    second: transform24
+  - first:
+      1: 100088
+    second: transform3
+  - first:
+      1: 100090
+    second: transform4
+  - first:
+      1: 100092
+    second: transform5
+  - first:
+      1: 100094
+    second: transform6
+  - first:
+      1: 100096
+    second: transform7
+  - first:
+      1: 100098
+    second: transform8
+  - first:
+      1: 100100
+    second: transform9
+  - first:
+      4: 400000
+    second: group3
+  - first:
+      4: 400002
+    second: group3_pCube52
+  - first:
+      4: 400004
+    second: //RootNode
+  - first:
+      4: 400006
+    second: pCube52
+  - first:
+      4: 400008
+    second: pCube53
+  - first:
+      4: 400010
+    second: pCube54
+  - first:
+      4: 400012
+    second: pCube55
+  - first:
+      4: 400014
+    second: pCube56
+  - first:
+      4: 400016
+    second: pCube57
+  - first:
+      4: 400018
+    second: pCube58
+  - first:
+      4: 400020
+    second: pCube59
+  - first:
+      4: 400022
+    second: pCube60
+  - first:
+      4: 400024
+    second: pCube61
+  - first:
+      4: 400026
+    second: pCube62
+  - first:
+      4: 400028
+    second: pCube63
+  - first:
+      4: 400030
+    second: pCube64
+  - first:
+      4: 400032
+    second: pCube65
+  - first:
+      4: 400034
+    second: pCube66
+  - first:
+      4: 400036
+    second: pCube67
+  - first:
+      4: 400038
+    second: pCube68
+  - first:
+      4: 400040
+    second: pCube69
+  - first:
+      4: 400042
+    second: pCube70
+  - first:
+      4: 400044
+    second: pCube71
+  - first:
+      4: 400046
+    second: pCube72
+  - first:
+      4: 400048
+    second: pCube73
+  - first:
+      4: 400050
+    second: pCube74
+  - first:
+      4: 400052
+    second: pCube75
+  - first:
+      4: 400054
+    second: transform1
+  - first:
+      4: 400056
+    second: transform10
+  - first:
+      4: 400058
+    second: transform11
+  - first:
+      4: 400060
+    second: transform12
+  - first:
+      4: 400062
+    second: transform13
+  - first:
+      4: 400064
+    second: transform14
+  - first:
+      4: 400066
+    second: transform15
+  - first:
+      4: 400068
+    second: transform16
+  - first:
+      4: 400070
+    second: transform17
+  - first:
+      4: 400072
+    second: transform18
+  - first:
+      4: 400074
+    second: transform19
+  - first:
+      4: 400076
+    second: transform2
+  - first:
+      4: 400078
+    second: transform20
+  - first:
+      4: 400080
+    second: transform21
+  - first:
+      4: 400082
+    second: transform22
+  - first:
+      4: 400084
+    second: transform23
+  - first:
+      4: 400086
+    second: transform24
+  - first:
+      4: 400088
+    second: transform3
+  - first:
+      4: 400090
+    second: transform4
+  - first:
+      4: 400092
+    second: transform5
+  - first:
+      4: 400094
+    second: transform6
+  - first:
+      4: 400096
+    second: transform7
+  - first:
+      4: 400098
+    second: transform8
+  - first:
+      4: 400100
+    second: transform9
+  - first:
+      23: 2300000
+    second: group3_pCube52
+  - first:
+      23: 2300002
+    second: //RootNode
+  - first:
+      33: 3300000
+    second: group3_pCube52
+  - first:
+      33: 3300002
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: group3_pCube52
+  - first:
+      43: 4300002
+    second: Palmtree1
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 25
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -156,9 +388,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -168,11 +405,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.25
     rootMotionBoneName: 
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

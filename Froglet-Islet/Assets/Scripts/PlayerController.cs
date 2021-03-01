@@ -6,6 +6,7 @@
     Description:  PlayerController for movement and player interactions.
 
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,21 @@ public class PlayerController : MonoBehaviour
             UpdateMovement();
             ApplyGravity();
             CanInteract();
+            CheckForMenuButtons();
+        }
+    }
+
+    private void CheckForMenuButtons()
+    {
+        if (Input.GetButton("Pause"))
+        {
+            GameController.gameState = GameController.GameStates.Pause;
+            GameController.gameStateChanged.Invoke();
+        }
+        else if (Input.GetButton("Inventory"))
+        {
+            GameController.gameState = GameController.GameStates.Inventory;
+            GameController.gameStateChanged.Invoke();
         }
     }
 
