@@ -21,7 +21,7 @@ public class RhythmGameManager : MonoBehaviour
 
     Image frogImage, bubbleImage, noteImage, fluteImage;
     Text infoText;
-    bool listening, attempting, didItCorrectly;
+    bool listening, attempting, hasFluteOut, didItCorrectly;
     float timePerNote;
     float pitchOffset;
     List<int> parsedRhythm;
@@ -52,6 +52,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         if (gameActive)
         {
+            if (hasFluteOut)
+                fluteImage.gameObject.SetActive(true);
             if (listening)
             {
                 foreach (Button b in buttonList)
@@ -83,22 +85,26 @@ public class RhythmGameManager : MonoBehaviour
             {
                 bubbleImage.transform.localScale = Vector3.zero;
                 timeCountUp += Time.deltaTime;
-
-                KeyboardHandler();
-                if (index >= parsedRhythm.Count)
+                if (hasFluteOut)
                 {
-                    foreach (Button b in buttonList)
-                        b.interactable = false;
-                    if (timeCountUp >= timePerNote)
+                    KeyboardHandler();
+                    if (index >= parsedRhythm.Count)
                     {
-                        if (didItCorrectly)
-                            StopRhythmGame();
-                        else
-                            Listen();
+                        foreach (Button b in buttonList)
+                            b.interactable = false;
+                        if (timeCountUp >= timePerNote)
+                        {
+                            if (didItCorrectly)
+                                StopRhythmGame(true);
+                            else
+                                Listen();
+                        }
                     }
                 }
-                else if (timeCountUp >= timePerNote * 8)
+                if (timeCountUp >= timePerNote * 8)
+                {
                     Listen();
+                }
             }
         }
     }
@@ -123,6 +129,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void StartRhythmGame(Frog f)
     {
+        hasFluteOut = false;
         rhythmGameCanvas.gameObject.SetActive(true);
         bubbleImage.transform.localScale = Vector3.zero;
         SetButtonColors();
@@ -136,14 +143,18 @@ public class RhythmGameManager : MonoBehaviour
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))
         {
+            hasFluteOut = true; ////////////////////////////////////THIS IS TEMPORARY!!!    bool should be set when you select from inventory
             gameActive = true;
             Listen();
         }
     }
 
-    public void StopRhythmGame()
+    public void StopRhythmGame(bool didCorrect)
     {
+        if (didCorrect) { } ////////////////////////////////////THIS IS TEMPORARY!!!    this is where youll call things like adding frog to journal
+
         rhythmGameCanvas.gameObject.SetActive(false);
+        hasFluteOut = false;
         listening = false;
         attempting = false;
         gameActive = false;
@@ -217,7 +228,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void DebugStart()
     {
-        StopRhythmGame();
+        StopRhythmGame(false);
         StartRhythmGame(GameObject.Find("DebugFrog").GetComponent<Frog>());
     }
 
