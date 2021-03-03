@@ -1,5 +1,8 @@
 ﻿//made by Sam Locicero
 
+//Last Modified by Logan Edmund on 2/3/21
+//  - Added basic debug functionality to StopRhythmGame
+
 
 using System;
 using System.Collections;
@@ -18,6 +21,7 @@ public class RhythmGameManager : MonoBehaviour
     public List<Sprite> noteList;
     public bool gameActive = false;
 
+    Frog observedFrog;
 
     Image frogImage, bubbleImage, noteImage, fluteImage;
     Text infoText;
@@ -129,12 +133,15 @@ public class RhythmGameManager : MonoBehaviour
 
     public void StartRhythmGame(Frog f)
     {
+        observedFrog = f;
+
+
         hasFluteOut = false;
         rhythmGameCanvas.gameObject.SetActive(true);
         bubbleImage.transform.localScale = Vector3.zero;
         SetButtonColors();
-        Rhythm r = f.frogMelody;
-        sound = f.frogCry;
+        Rhythm r = f.frogData.frogMelody;
+        sound = f.frogData.frogCry;
         //frogImage.sprite = f.sprite;
         if (sound == null)
             sound = debugSound;
@@ -151,8 +158,25 @@ public class RhythmGameManager : MonoBehaviour
 
     public void StopRhythmGame(bool didCorrect)
     {
-        if (didCorrect) { } ////////////////////////////////////THIS IS TEMPORARY!!!    this is where youll call things like adding frog to journal
+        if (didCorrect) 
+        {
+            Debug.Log("Rhythm game completed successfully. Sending frogdata to relevant area:");
+            if (observedFrog.frogData == null)
+            {
+                Debug.LogError("ERROR: Frogdata cannot be retreived from observedFrog");
+            }
+            else
+            {
+                Debug.Log("Completed Frog's name from frogData: " + observedFrog.frogData.frogName);
+            }
+        }
+        else if (!didCorrect)
+        {
+            Debug.Log("You failed, try harder scrub");
+        }
 
+        //Set the observedFrog to null to avoid potential conflicts
+        observedFrog = null;
         rhythmGameCanvas.gameObject.SetActive(false);
         hasFluteOut = false;
         listening = false;

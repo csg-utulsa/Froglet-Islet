@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Assigned to Logan Edmund
+//Last updated by Logan Edmund on 3/3/21
+//  -Fully Implemented FrogData class
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,4 +23,14 @@ public class FrogData
     public Material frogMaterial;
     //frogModel keeps track of which model (and possibly animation sets) will be used for the frog
     public GameObject frogModel;
+    //Keeps track of whether or not the frog species has been collected by the player
+    public bool frogCollected;
+    //The melody accessed by the rhythm game that determines what the rhythm game is
+    public Rhythm frogMelody;
+    //Sound that the frog makes at some point lol I dunno
+    public AudioClip frogCry;
+
+    //Stores information about what items the frog can potentially give the player after completion of the Rhythm Githem
+    //public Item[] itemDrop;
+
 }

@@ -1,26 +1,29 @@
-﻿using System.Collections;
+﻿//Assigned to Logan Edmund
+//Last updated by Logan Edmund on 3/3/21
+//  -Changed Start() to Awake() and added ability to assign material to model at appropriate time
+//  -Moved all variables that are frog-specific into the FrogData class
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Frog : MonoBehaviour, IInteractable
 {
-    //Assigned to Logan Edmund
-    //Last updated 2/8/21
+    
 
     public FrogData frogData;
-    //Keeps track of wether or not the frog species has been collected by the player
-    public int frogCollected;
 
-    public Rhythm frogMelody;
-    public AudioClip frogCry;
+    
 
     public bool canInteract = true;
 
     private RhythmGameManager rhythmGameManager;
 
-    void Start()
+
+    void Awake()
     {
         rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
+        gameObject.GetComponent<MeshRenderer>().material = frogData.frogMaterial;
     }
     
     public void OnInteract(){
