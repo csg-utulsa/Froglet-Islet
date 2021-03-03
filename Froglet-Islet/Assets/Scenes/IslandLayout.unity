@@ -3740,13 +3740,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f3686c8d5394c47a559a2daff5bcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogData:
-    frogName: 
-    frogSpecies: 
-    frogGenus: 
-    frogID: 0
-    frogMaterial: {fileID: 0}
-    frogModel: {fileID: 0}
+  frogName: RealFrog
+  frogSpecies: ActualFrogs
+  frogGenus: FrogusRealitus
+  frogID: 0
+  frogMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  frogModel: {fileID: 1959918797}
   frogCollected: 0
   frogMelody:
     tempo: 120
@@ -3825,7 +3824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515386116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.76, y: 1.39, z: 6.74}
+  m_LocalPosition: {x: 3.75, y: 1.39, z: 3.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
