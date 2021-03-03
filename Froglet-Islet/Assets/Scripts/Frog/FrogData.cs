@@ -19,6 +19,8 @@ public class FrogData
     public string frogGenus;
     //FrogID is a numeric value that can give all frogs a quick reference from the game controller
     public int frogID;
+    //frogSprite is the 2D sprite associated with the frog when displayed in a 2D environment such as the journal
+    public Sprite frogSprite;
     //frogMaterial is a material assigned that will give the frog it's unique texture
     public Material frogMaterial;
     //frogModel keeps track of which model (and possibly animation sets) will be used for the frog
