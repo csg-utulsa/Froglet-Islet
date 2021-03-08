@@ -3744,7 +3744,7 @@ MonoBehaviour:
   frogSpecies: ActualFrogs
   frogGenus: FrogusRealitus
   frogID: 0
-  frogMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  frogMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 3}
   frogModel: {fileID: 1959918797}
   frogCollected: 0
   frogMelody:
