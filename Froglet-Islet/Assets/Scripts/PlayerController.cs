@@ -10,9 +10,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 movement;
+    NavMeshAgent agent;
 
     private Transform playerCamera = null;
     [SerializeField]private float interactDist = 3f;
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
         camPosition = playerCamera.localPosition;
         camRotation = playerCamera.localRotation;
         playerCamera.SetParent(gameObject.transform);
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -54,13 +58,26 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
-            UpdateMouseLook();
-            UpdateMovement();
+            // UpdateMouseLook();
+            // UpdateMovement();
+            UpdateNavMesh();
             ApplyGravity();
             CanInteract();
             CheckForMenuButtons();
         }
     }
+
+
+
+    void UpdateNavMesh() {
+            if (Input.GetMouseButtonDown(0)) {
+                RaycastHit hit;
+                
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+                    agent.destination = hit.point;
+                }
+            }
+        }
 
     private void CheckForMenuButtons()
     {
