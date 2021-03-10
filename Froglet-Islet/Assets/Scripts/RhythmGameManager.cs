@@ -140,9 +140,10 @@ public class RhythmGameManager : MonoBehaviour
         rhythmGameCanvas.gameObject.SetActive(true);
         bubbleImage.transform.localScale = Vector3.zero;
         SetButtonColors();
-        Rhythm r = f.frogData.frogMelody;
-        sound = f.frogData.frogCry;
-        //frogImage.sprite = f.sprite;
+        Rhythm r = observedFrog.frogData.frogMelody;
+        sound = observedFrog.frogData.frogCry;
+        if (observedFrog.frogData.frogSprite !=null)
+            frogImage.sprite = observedFrog.frogData.frogSprite;
         if (sound == null)
             sound = debugSound;
         src.clip = sound;
