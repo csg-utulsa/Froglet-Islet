@@ -3740,21 +3740,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f3686c8d5394c47a559a2daff5bcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogName: RealFrog
-  frogSpecies: ActualFrogs
-  frogGenus: FrogusRealitus
-  frogID: 0
-  frogMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
-  frogModel: {fileID: 1959918797}
-  frogCollected: 0
-  frogMelody:
-    tempo: 120
-    subdivision: 0
-    lowestNote:
-      noteOffset: 0
-      octave: 4
-    rhythm: 1313
-  frogCry: {fileID: 8300000, guid: 8ca9a6e8519ff9b4eb5df3723d5edba2, type: 3}
+  frogData:
+    frogName: Testy the Frog
+    frogSpecies: Testicus
+    frogGenus: Maximus
+    frogID: -1
+    frogMaterial: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
+    frogModel: {fileID: 0}
+    frogCollected: 0
+    frogMelody:
+      tempo: 120
+      subdivision: 0
+      lowestNote:
+        noteOffset: 0
+        octave: 4
+      rhythm: 1313
+    frogCry: {fileID: 8300000, guid: 8ca9a6e8519ff9b4eb5df3723d5edba2, type: 3}
   canInteract: 1
 --- !u!65 &1515386119
 BoxCollider:
