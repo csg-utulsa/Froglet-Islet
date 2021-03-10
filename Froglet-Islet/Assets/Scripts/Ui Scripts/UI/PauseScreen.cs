@@ -16,7 +16,7 @@ public class PauseScreen : Form
 
     private void OnClickContinue()
     {
-        GameController.Instance.GameState = GameStates.Game;
+        GameController.gameState = GameController.GameStates.Game;
     }
 
     private void OnClickRestart()

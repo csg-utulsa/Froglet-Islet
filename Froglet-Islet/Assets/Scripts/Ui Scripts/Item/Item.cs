@@ -6,10 +6,10 @@ public class Item
     public enum ItemTypes
     {
         Quest = 0, // Quest items
-        //Potion = 1,
-        //WeaponMelee = 2,
+        Potion = 1,
+        WeaponMelee = 2,
         Staff = 3,
-        //Wearable = 4
+        Wearable = 4
     }
 
     public string id;
