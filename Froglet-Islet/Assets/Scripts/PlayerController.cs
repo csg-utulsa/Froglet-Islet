@@ -10,8 +10,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+//Song: change the class to Singleton class
+public class PlayerController : Singleton<PlayerController>
 {
 
     private Transform playerCamera = null;
@@ -38,7 +38,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 camPosition;
 
     private Quaternion camRotation;
-
+    // Song: set interactive object for D
+    public IInteractive InteractiveObject { get; private set; }
 
     void Start()
     {
@@ -52,6 +53,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Song: change the gamestates
+        if (GameController.Instance.GameState != GameStates.Game) return;
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
             UpdateMouseLook();
@@ -59,20 +62,33 @@ public class PlayerController : MonoBehaviour
             ApplyGravity();
             CanInteract();
             CheckForMenuButtons();
+            
+        }
+        // Search for interactive objects
+        InteractiveObject = null;
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.position, playerCamera.TransformDirection(Vector3.forward), out hit, 4))
+        {
+            InteractiveObject = hit.collider.gameObject.GetComponent(typeof(IInteractive)) as IInteractive;
+            if (InteractiveObject != null && InteractiveObject.IsActive == false) InteractiveObject = null;
+        }
+        if ((InteractiveObject != null) && (InputController.Use))
+        {
+            InteractiveObject.Use();
         }
     }
-
     private void CheckForMenuButtons()
     {
         if (Input.GetButton("Pause"))
         {
-            GameController.gameState = GameController.GameStates.Pause;
-            GameController.gameStateChanged.Invoke();
+            //Song: change gamestates
+            GameController.Instance.GameState = GameStates.Pause;
+            //GameController.gameStateChanged.Invoke();
         }
         else if (Input.GetButton("Inventory"))
         {
-            GameController.gameState = GameController.GameStates.Inventory;
-            GameController.gameStateChanged.Invoke();
+            GameController.Instance.GameState = GameStates.Inventory;
+            //GameController.gameStateChanged.Invoke();
         }
     }
 
@@ -109,17 +125,32 @@ public class PlayerController : MonoBehaviour
     }   
 
     public void CanInteract(){
+
+        InteractiveObject = null;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if(Physics.Raycast(ray, out hit, interactDist)){
-            if(hit.collider.CompareTag("Interactable")){
+            
+            if (hit.collider.CompareTag("Interactable")){
                 // Debug.Log("Do you want to interact?");
                 if(Input.GetButtonDown("Fire1")){
                     hit.collider.gameObject.SendMessage("OnInteract");
                 }
                 
             }
+
+            // Song: Just add two lines for checking dialog items
+            InteractiveObject = hit.collider.gameObject.GetComponent(typeof(IInteractive)) as IInteractive;
+            if (InteractiveObject != null && InteractiveObject.IsActive == false) InteractiveObject = null;
         }
+        
+        //Song: active the item
+        if ((InteractiveObject != null) && (InputController.Use))
+        {
+            InteractiveObject.Use();
+        }
+
     }
 }

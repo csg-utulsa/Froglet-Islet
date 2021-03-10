@@ -3,17 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameController : MonoBehaviour
+public enum GameStates
 {
-    public static UnityEvent gameStateChanged = new UnityEvent();
+    //Song: set layers for game states
+    Game,
+    Inventory,
+    Pause,
+    Finish,
+    Dialog
+}
+public class GameController : Singleton<GameController>
+{
+    //public static UnityEvent gameStateChanged = new UnityEvent();
     public static GameStates gameState = GameStates.Game;
+    public event System.Action<GameStates> onStateChanged;
 
-    public enum GameStates
+    
+
+    public GameStates GameState
     {
-        Game,
-        Pause,
-        Inventory,
-        Dialog,
-        Finish
+        get { return gameState; }
+        set
+        {
+            if (value == gameState) return;
+            gameState = value;
+            if (onStateChanged != null) onStateChanged(gameState);
+        }
     }
+
+    void Awake()
+    {
+        onStateChanged += OnStateChanged;
+    }
+
+    void Start()
+    {
+        GameState = GameStates.Pause;
+    }
+
+    private void OnStateChanged(GameStates state)
+    {
+        Time.timeScale = state == GameStates.Pause || state == GameStates.Inventory ? 0 : 1;
+    }
+
+    
 }
