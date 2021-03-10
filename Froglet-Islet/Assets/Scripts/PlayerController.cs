@@ -10,24 +10,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 movement;
+    NavMeshAgent agent;
 
     private Transform playerCamera = null;
     [SerializeField]private float interactDist = 3f;
 
     [SerializeField] float mouseSensitivity = 3.0f;
 
-    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
-    [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
-    public float walkSpeed = 6.0f;
 
-    public float pushPower = 2.0f;
-    [SerializeField] float gravity = -13.0f;
-
-    float cameraPitch = 0f;
-    float velocityY = 0.0f;
     CharacterController controller = null;
     private Vector2 currentDir = Vector2.zero;
     private Vector2 currentDirVelocity = Vector2.zero;
@@ -39,14 +34,27 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion camRotation;
 
+    public GameObject markerPrefab;
+    //The checkmarker exists for when a new marker may need to be made, but that depends on
+    private enum MarkerState{
+        NoMarker,
+        AddMarker,
+        HasMarker
+    }
+
+    private MarkerState m_markerState;
+
+    private GameObject markerInstance;
+    private Vector3 markerPosition;
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         playerCamera = Camera.main.transform;
-        camPosition = playerCamera.localPosition;
-        camRotation = playerCamera.localRotation;
         playerCamera.SetParent(gameObject.transform);
+        agent = GetComponent<NavMeshAgent>();
+        m_markerState = MarkerState.NoMarker;
     }
 
     // Update is called once per frame
@@ -54,12 +62,57 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
-            UpdateMouseLook();
-            UpdateMovement();
-            ApplyGravity();
+            UpdateNavMesh();
             CanInteract();
             CheckForMenuButtons();
+            CreateMarker();
         }
+    }
+
+    void CreateMarker(){
+        if(m_markerState == MarkerState.HasMarker){
+            return;
+        } else if(m_markerState == MarkerState.AddMarker){
+            if(markerPosition != agent.destination){
+                markerPosition = agent.destination;
+                markerInstance = Instantiate(markerPrefab,markerPosition,Quaternion.Euler(new Vector3(-90,0,0)));
+                m_markerState = MarkerState.HasMarker;
+            }
+            
+        } else if(markerInstance == null){
+            m_markerState = MarkerState.NoMarker;
+        }
+        
+    }
+
+    //I am putting this in player for now, but we may want to move it.
+
+
+    void UpdateNavMesh() {
+        if (Input.GetMouseButtonDown(0)) {
+            RaycastHit hit;
+            
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+                agent.destination = hit.point;
+                if(markerInstance != null){
+                    markerInstance.GetComponent<Marker>().RemoveMarker();
+                    markerInstance = null;
+                }
+                m_markerState = MarkerState.AddMarker;
+                
+            }
+        }
+    }
+
+
+
+    private bool ArrivedAtPosition(){
+        if(!agent.pathPending){
+            if(agent.remainingDistance <= agent.stoppingDistance){
+                if(!agent.hasPath || agent.velocity.sqrMagnitude == 0f) return true;
+            }
+        }
+        return false;
     }
 
     private void CheckForMenuButtons()
@@ -75,38 +128,6 @@ public class PlayerController : MonoBehaviour
             GameController.gameStateChanged.Invoke();
         }
     }
-
-    void UpdateMouseLook(){
-        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
-        
-        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
-
-        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 30f);
-
-        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
-    }
-
-    void UpdateMovement(){
-        Vector2 targetDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        targetDirection.Normalize();
-
-        currentDir = Vector2.SmoothDamp(currentDir, targetDirection, ref currentDirVelocity, moveSmoothTime);
-
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x ) * walkSpeed + Vector3.up * velocityY;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    void ApplyGravity(){
-        if(controller.isGrounded){
-            velocityY = 0.0f;
-        }
-        velocityY += gravity * Time.deltaTime;
-    }   
 
     public void CanInteract(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
