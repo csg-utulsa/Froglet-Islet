@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
-            UpdateNavMesh();
-            CanInteract();
+            if(!CanInteract())
+                UpdateNavMesh();
             CheckForMenuButtons();
             CreateMarker();
         }
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void CanInteract(){
+    public bool CanInteract(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -138,9 +138,11 @@ public class PlayerController : MonoBehaviour
                 // Debug.Log("Do you want to interact?");
                 if(Input.GetButtonDown("Fire1")){
                     hit.collider.gameObject.SendMessage("OnInteract");
+                    return true;
                 }
                 
             }
         }
+        return false;
     }
 }
