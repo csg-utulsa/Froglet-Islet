@@ -7998,7 +7998,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Move towards the frog and click on it to begin rhythm game!
+  m_Text: Point and click to move towards the frog, and click on it to begin rhythm
+    game!
 --- !u!222 &1843033897
 CanvasRenderer:
   m_ObjectHideFlags: 0
