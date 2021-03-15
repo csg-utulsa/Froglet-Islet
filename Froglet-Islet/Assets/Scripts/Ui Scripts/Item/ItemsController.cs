@@ -24,11 +24,11 @@ public class ItemsController : Singleton<ItemsController>
 
     public void AddItem(Item.ItemTypes type)
     {
-        if (type == Item.ItemTypes.Quest) things.Add(new ItemQuest());
+        if (type == Item.ItemTypes.Tool) things.Add(new ItemQuest());
     }
 
     public void RemoveItem(Item item)
     {
-        if (item.itemType == Item.ItemTypes.Quest) things.Remove((ItemQuest)item);
+        if (item.itemType == Item.ItemTypes.Tool) things.Remove((ItemQuest)item);
     }
 }

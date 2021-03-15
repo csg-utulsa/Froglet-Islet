@@ -22,15 +22,11 @@ public class InventoryScreen : Form
 
         foreach (ItemSlot itemSlot in slots)
         {
-            itemSlot.onDblClick += OnSlotDblClick;
             itemSlot.onHover += OnSlotHover;
-            itemSlot.onDrag += OnSlotDrag;
         }
         foreach (ItemSlot itemSlot in UIController.Instance.gameScreen.slots)
         {
-            itemSlot.onDblClick += OnSlotDblClick;
             itemSlot.onHover += OnSlotHover;
-            itemSlot.onDrag += OnSlotDrag;
         }
     }
 
@@ -63,20 +59,6 @@ public class InventoryScreen : Form
         dragIcon.gameObject.SetActive(false);
     }
 
-   /*
-    * If we need a button on inventory screen 
-    private void OnClick()
-    {
-
-    }
-    */
-
-    private void OnSlotDblClick(ItemSlot slot)
-    {
-        //if we need to use the consumables
-        //InventoryController.Instance.UseItem(slot.id);
-    }
-
     private void OnSlotHover(ItemSlot slot, bool state)
     {
         if (state == true)
@@ -88,29 +70,6 @@ public class InventoryScreen : Form
         {
             hoveredSlot = null;
             hintText.text = "";
-        }
-    }
-
-    private void OnSlotDrag(ItemSlot slot, bool state)
-    {
-        if (state == true)
-        {
-            if (slot.ItemInSlot != null)
-            {
-                dragIcon.gameObject.SetActive(true);
-                dragIcon.sprite = slot.ItemInSlot.icon;
-            }
-        }
-        else
-        {
-            if (slot.ItemInSlot != null && hoveredSlot != null)
-            {
-                if (hoveredSlot.slotType == ItemSlot.SlotTypes.Backpack)
-                {
-                    InventoryController.Instance.Move(slot.id, hoveredSlot.id);
-                }
-            }
-            dragIcon.gameObject.SetActive(false);
         }
     }
 }

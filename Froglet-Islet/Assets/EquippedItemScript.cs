@@ -14,12 +14,6 @@ public class EquippedItemScript : MonoBehaviour
         lc = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void EquipItem(int ci) // should be called by inventory system
     {
         currentItem = ci;
@@ -42,8 +36,8 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.GetType() == 0)
-                EnableInteractable();
+            if (f.frogID == 0)
+                f.gameObject.SetActive(true);
         }
     }
 
