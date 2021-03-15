@@ -42,8 +42,8 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.GetType() == 0)
-                EnableInteractable();
+            if (f.frogData.frogSpecies == "tomato")
+                f.canInteract = true;
         }
     }
 
