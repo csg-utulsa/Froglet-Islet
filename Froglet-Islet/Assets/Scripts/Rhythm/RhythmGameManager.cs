@@ -1,7 +1,5 @@
 ﻿//made by Sam Locicero
 
-//Last Modified by Logan Edmund on 2/3/21
-//  - Added basic debug functionality to StopRhythmGame
 
 
 using System;
