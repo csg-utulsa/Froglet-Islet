@@ -6,12 +6,13 @@ public class InventoryController : Singleton<InventoryController>
 
     private List<Item> items;
 
-    public int slotsCount = 23;
+    public int slotsCount = 13;
     public List<Item> Items { get { return items; } }
 
     void Awake()
     {
         items = new List<Item>(new Item[slotsCount]);
+        items.Add(new Flute());
     }
 
     void Update()
@@ -38,11 +39,9 @@ public class InventoryController : Singleton<InventoryController>
 
     public void UseItem(int slotId)
     {
-        if (slotId < 0 || slotId > items.Count - 1) return;
+        if (slotId < 0 || slotId > items.Count - 1 || items[slotId] == null) return;
         Item item = items[slotId];
-        if (item == null || item.itemType == Item.ItemTypes.Quest) return;
-        items[slotId] = null;
-        item.Activate();
+        item.OnInteract();
     }
 
     public bool FindAndUseItem(string itemId)
@@ -54,14 +53,6 @@ public class InventoryController : Singleton<InventoryController>
             return true;
         }
         return false;
-    }
-
-    public void Move(int firstSlot, int secondSlot)
-    {
-        if (firstSlot >= Items.Count || secondSlot >= Items.Count || firstSlot < 0 || secondSlot < 0) return;
-        Item item = items[firstSlot];
-        items[firstSlot] = items[secondSlot];
-        items[secondSlot] = item;
     }
 }
 
