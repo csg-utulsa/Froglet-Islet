@@ -73,9 +73,9 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("tomato"))
+            if (f.frogData.frogSpecies == "tomato")
                 f.canInteract = true;
-            if (f.frogData.frogSpecies.CompareTag("flower"))
+            if (f.frogData.frogSpecies == "flower")
                 f.canInteract = true;
         }
     }
@@ -84,7 +84,7 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("storm"))
+            if (f.frogData.frogSpecies == "storm")
                 f.canInteract = true;
         }
     }
@@ -93,7 +93,7 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("flying"))
+            if (f.frogData.frogSpecies == "flying")
                 f.canInteract = true;
         }
     }
@@ -102,7 +102,7 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("giant"))
+            if (f.frogData.frogSpecies == "giant")
                 f.canInteract = true;
         }
     }
@@ -111,12 +111,12 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("bubble"))
+            if (f.frogData.frogSpecies == "bubble")
                 f.canInteract = true;
         }
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("siren"))
+            if (f.frogData.frogSpecies == "siren")
                 f.canInteract = true;
         }
     }
@@ -125,13 +125,13 @@ public class EquippedItemScript : MonoBehaviour
     {
         bool found = false;
         foreach (Frog f in PlayerPrefs.CaughtFrogs)
-            if (f.frogSpecies == "Firefly")
+            if (f.frogData.frogSpecies == "Firefly")
                 found = true;
         if (found)
         {
             foreach (Frog f in lc.GetFrogList())
             {
-                if (f.frogData.frogSpecies.CompareTag("slime"))
+                if (f.frogData.frogSpecies == "slime")
                     f.canInteract = true;
             }
         }
@@ -141,36 +141,36 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("firefly"))
+            if (f.frogData.frogSpecies == "firefly")
                 f.canInteract = true;
         }
-        ic.RemoveItem(Item.fluteLevel1);
-        ic.AddItem(Item.fluteLevel2);
+        InventoryController.Instance.RemoveItem("Flute");
+        InventoryController.Instance.AddItem(new FluteLevel2());
     }
 
     private void ActivateLantern()
     {
         bool found = false;
         foreach (Frog f in PlayerPrefs.CaughtFrogs)
-            if (f.frogSpecies == "BubbleFrog")
+            if (f.frogData.frogSpecies == "BubbleFrog")
                 found = true;
         if (found)
         {
             foreach (Frog f in lc.GetFrogList())
             {
-                if (f.frogData.frogSpecies.CompareTag("slime"))
+                if (f.frogData.frogSpecies == "slime")
                     f.canInteract = true;
             }
         }
 
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("crystal"))
+            if (f.frogData.frogSpecies == "crystal")
                 f.canInteract = true;
         }
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("ancient"))
+            if (f.frogData.frogSpecies == "ancient")
                 f.canInteract = true;
         }
     }
@@ -184,12 +184,12 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("treasure"))
+            if (f.frogData.frogSpecies == "treasure")
                 f.canInteract = true;
         }
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogData.frogSpecies.CompareTag("ceramic"))
+            if (f.frogData.frogSpecies == "ceramic")
                 f.canInteract = true;
         }
     }
@@ -199,33 +199,36 @@ public class EquippedItemScript : MonoBehaviour
         switch (f)
         {
             case "seeds":
-                foreach (Frog f in lc.GetFrogList())
+                InventoryController.Instance.RemoveItem("Seeds");
+                foreach (Frog fro in lc.GetFrogList())
                 {
-                    if (f.frogData.frogSpecies.CompareTag("flower"))
-                        f.canInteract = true;
+                    if (fro.frogData.frogSpecies == "flower")
+                        fro.canInteract = true;
                 }
-                foreach (Frog f in lc.GetFrogList())
+                foreach (Frog fro in lc.GetFrogList())
                 {
-                    if (f.frogData.frogSpecies.CompareTag("tomato"))
-                        f.canInteract = true;
+                    if (fro.frogData.frogSpecies == "tomato")
+                        fro.canInteract = true;
                 }
                 break;
             case "food":
-                foreach (Frog f in lc.GetFrogList())
+                InventoryController.Instance.RemoveItem("Food");
+                foreach (Frog fro in lc.GetFrogList())
                 {
-                    if (f.frogData.frogSpecies.CompareTag("storm"))
-                        f.canInteract = true;
+                    if (fro.frogData.frogSpecies == "storm")
+                        fro.canInteract = true;
                 }
                 break;
             case "blossom":
-                foreach (Frog f in lc.GetFrogList())
+                InventoryController.Instance.RemoveItem("Blossom");
+                foreach (Frog fro in lc.GetFrogList())
                 {
-                    if (f.frogData.frogSpecies.CompareTag("flying"))
-                        f.canInteract = true;
+                    if (fro.frogData.frogSpecies == "flying")
+                        fro.canInteract = true;
                 }
                 break;
             case "potion":
-                ic.RemoveItem(Item.Potion);
+                InventoryController.Instance.RemoveItem("Potion");
                 break;
             default:
                 print("non-consumable used");
