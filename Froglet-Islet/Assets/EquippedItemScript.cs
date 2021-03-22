@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EquippedItemScript : MonoBehaviour
 {
 
-    private int currentItem;
+    private string currentItem;
     LevelController lc;
     ItemsController ic;
 
@@ -23,43 +22,48 @@ public class EquippedItemScript : MonoBehaviour
         
     }
 
-    public void EquipItem(int ci) // should be called by inventory system
+    public void EquipItem(string ci) // should be called by inventory system
     {
         currentItem = ci;
+    }
+
+    public string GetEquippedItem()
+    {
+        return currentItem;
     }
 
     public void ActivateItem() // should be called by UI button
     {
         switch (currentItem)
         {
-            case 0:
+            case "Seeds":
                 ActivateSeeds();
                 break;
-            case 1:
+            case "Tomato":
                 ActivateTomato();
                 break;
-            case 2:
+            case "Blossom":
                 ActivateBlossom();
                 break;
-            case 3:
+            case "Rainstick":
                 ActivateRainstick();
                 break;
-            case 4:
+            case "FishingRod":
                 ActivateFishingRod();
                 break;
-            case 5:
+            case "Bottle":
                 ActivateBottle();
                 break;
-            case 6:
+            case "FluteUpgrade":
                 ActivateFluteUpgrade();
                 break;
-            case 7:
+            case "Lantern":
                 ActivateLantern();
                 break;
-            case 8:
+            case "Potion":
                 ActivatePotion();
                 break;
-            case 9:
+            case "Key":
                 ActivateKey();
                 break;
             default:
@@ -123,17 +127,11 @@ public class EquippedItemScript : MonoBehaviour
 
     private void ActivateBottle()
     {
-        bool found = false;
-        foreach (Frog f in PlayerPrefs.CaughtFrogs)
-            if (f.frogData.frogSpecies == "Firefly")
-                found = true;
-        if (found)
+
+        foreach (Frog f in lc.GetFrogList())
         {
-            foreach (Frog f in lc.GetFrogList())
-            {
-                if (f.frogData.frogSpecies == "slime")
-                    f.canInteract = true;
-            }
+            if (f.frogData.frogSpecies == "slime")
+                f.canInteract = true;
         }
     }
 
@@ -150,20 +148,9 @@ public class EquippedItemScript : MonoBehaviour
 
     private void ActivateLantern()
     {
-        bool found = false;
-        foreach (Frog f in PlayerPrefs.CaughtFrogs)
-            if (f.frogData.frogSpecies == "BubbleFrog")
-                found = true;
-        if (found)
-        {
-            foreach (Frog f in lc.GetFrogList())
-            {
-                if (f.frogData.frogSpecies == "slime")
-                    f.canInteract = true;
-            }
-        }
+        GameObject.Find("Lantern").GetComponent<LanternScript>().Activate();
 
-        foreach (Frog f in lc.GetFrogList())
+        /*foreach (Frog f in lc.GetFrogList())
         {
             if (f.frogData.frogSpecies == "crystal")
                 f.canInteract = true;
@@ -172,7 +159,7 @@ public class EquippedItemScript : MonoBehaviour
         {
             if (f.frogData.frogSpecies == "ancient")
                 f.canInteract = true;
-        }
+        }*/
     }
 
     private void ActivatePotion()
