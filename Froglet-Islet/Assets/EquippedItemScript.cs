@@ -32,6 +32,49 @@ public class EquippedItemScript : MonoBehaviour
         return currentItem;
     }
 
+    public void CheckConsumable(string f)
+    {
+        switch (f)
+        {
+            case "seeds":
+                InventoryController.Instance.RemoveItem("Seeds");
+                foreach (Frog fro in lc.GetFrogList())
+                {
+                    if (fro.frogData.frogSpecies == "flower")
+                        fro.canInteract = true;
+                }
+                foreach (Frog fro in lc.GetFrogList())
+                {
+                    if (fro.frogData.frogSpecies == "tomato")
+                        fro.canInteract = true;
+                }
+                break;
+            case "food":
+                InventoryController.Instance.RemoveItem("Food");
+                foreach (Frog fro in lc.GetFrogList())
+                {
+                    if (fro.frogData.frogSpecies == "storm")
+                        fro.canInteract = true;
+                }
+                break;
+            case "blossom":
+                InventoryController.Instance.RemoveItem("Blossom");
+                foreach (Frog fro in lc.GetFrogList())
+                {
+                    if (fro.frogData.frogSpecies == "flying")
+                        fro.canInteract = true;
+                }
+                break;
+            case "potion":
+                InventoryController.Instance.RemoveItem("Potion");
+                break;
+            default:
+                print("non-consumable used");
+                break;
+        }
+    }
+
+    /*
     public void ActivateItem() // should be called by UI button
     {
         switch (currentItem)
@@ -149,77 +192,37 @@ public class EquippedItemScript : MonoBehaviour
     private void ActivateLantern()
     {
         GameObject.Find("Lantern").GetComponent<LanternScript>().Activate();
-
-        /*foreach (Frog f in lc.GetFrogList())
-        {
-            if (f.frogData.frogSpecies == "crystal")
-                f.canInteract = true;
-        }
-        foreach (Frog f in lc.GetFrogList())
-        {
-            if (f.frogData.frogSpecies == "ancient")
-                f.canInteract = true;
-        }*/
-    }
-
-    private void ActivatePotion()
+        */
+    /*foreach (Frog f in lc.GetFrogList())
     {
-        PlayerPrefs.AvailableActions.Add("breed");
+        if (f.frogData.frogSpecies == "crystal")
+            f.canInteract = true;
     }
-
-    private void ActivateKey()
+    foreach (Frog f in lc.GetFrogList())
     {
-        foreach (Frog f in lc.GetFrogList())
-        {
-            if (f.frogData.frogSpecies == "treasure")
-                f.canInteract = true;
-        }
-        foreach (Frog f in lc.GetFrogList())
-        {
-            if (f.frogData.frogSpecies == "ceramic")
-                f.canInteract = true;
-        }
-    }
+        if (f.frogData.frogSpecies == "ancient")
+            f.canInteract = true;
+    }*/
+    /*}
 
-    public void CheckIfConsumable(string f)
-    {
-        switch (f)
+        private void ActivatePotion()
         {
-            case "seeds":
-                InventoryController.Instance.RemoveItem("Seeds");
-                foreach (Frog fro in lc.GetFrogList())
-                {
-                    if (fro.frogData.frogSpecies == "flower")
-                        fro.canInteract = true;
-                }
-                foreach (Frog fro in lc.GetFrogList())
-                {
-                    if (fro.frogData.frogSpecies == "tomato")
-                        fro.canInteract = true;
-                }
-                break;
-            case "food":
-                InventoryController.Instance.RemoveItem("Food");
-                foreach (Frog fro in lc.GetFrogList())
-                {
-                    if (fro.frogData.frogSpecies == "storm")
-                        fro.canInteract = true;
-                }
-                break;
-            case "blossom":
-                InventoryController.Instance.RemoveItem("Blossom");
-                foreach (Frog fro in lc.GetFrogList())
-                {
-                    if (fro.frogData.frogSpecies == "flying")
-                        fro.canInteract = true;
-                }
-                break;
-            case "potion":
-                InventoryController.Instance.RemoveItem("Potion");
-                break;
-            default:
-                print("non-consumable used");
-                break;
+            PlayerPrefs.AvailableActions.Add("breed");
         }
-    }
+
+        private void ActivateKey()
+        {
+            foreach (Frog f in lc.GetFrogList())
+            {
+                if (f.frogData.frogSpecies == "treasure")
+                    f.canInteract = true;
+            }
+            foreach (Frog f in lc.GetFrogList())
+            {
+                if (f.frogData.frogSpecies == "ceramic")
+                    f.canInteract = true;
+            }
+        }
+
+        */
 }
