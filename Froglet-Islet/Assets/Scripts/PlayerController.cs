@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     Vector3 movement;
     NavMeshAgent agent;
@@ -35,6 +35,13 @@ public class PlayerController : MonoBehaviour
     private Quaternion camRotation;
 
     public GameObject markerPrefab;
+
+    //
+    public GameScreen GameScreen;
+
+    // Song: set interactive object for Dialog
+    public IInteractive InteractiveObject { get; private set; }
+
     //The checkmarker exists for when a new marker may need to be made, but that depends on
     private enum MarkerState{
         NoMarker,
@@ -66,6 +73,11 @@ public class PlayerController : MonoBehaviour
                 UpdateNavMesh();
             CheckForMenuButtons();
             CreateMarker();
+        }
+        //Song: Keep checking the use function.
+        if ((InteractiveObject != null) && (InputController.Use))
+        {
+            InteractiveObject.Use();
         }
     }
 
@@ -115,18 +127,34 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    
     private void CheckForMenuButtons()
     {
         if (Input.GetButton("Pause"))
         {
-            GameController.gameState = GameController.GameStates.Pause;
-            GameController.gameStateChanged.Invoke();
+            //Song: change game states
+            GameController.gameState = GameStates.Pause;
+            //GameController.gameStateChanged.Invoke();
         }
         else if (Input.GetButton("Inventory"))
         {
-            GameController.gameState = GameController.GameStates.Inventory;
-            GameController.gameStateChanged.Invoke();
+            // Song: change game states
+            GameController.gameState = GameStates.Inventory;
+            //GameController.gameStateChanged.Invoke();
         }
+    }
+    // Song: change the trigger for checking interact object
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        InteractiveObject = other.gameObject.GetComponent(typeof(IInteractive)) as IInteractive;
+        if (InteractiveObject != null && InteractiveObject.IsActive == false) InteractiveObject = null;
+        if (InteractiveObject != null && InteractiveObject.Action == InteractiveAction.Show)
+        {
+            GameScreen.timeRemaining = 5;
+        }
+        //Song: active the item
+        
     }
 
     public bool CanInteract(){

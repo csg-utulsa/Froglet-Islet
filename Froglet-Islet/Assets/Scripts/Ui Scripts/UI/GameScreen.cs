@@ -3,53 +3,94 @@ using UnityEngine.UI;
 
 public class GameScreen : Form
 {
-    public Image crosshair;
-    public ItemSlot[] slots;
-    
+
+    //public ItemSlot[] slots;
+    public Text useText;
     public Text errorText;
-    //public Image hitEffect;
-    //public Color hitEffectColor;
+    public Text showMessage;
+    public string Message;
+    public bool DS = false;
+    public float timeRemaining { get; set; }
 
     private float errorShowTime = -1;
 
+    void Start()
+    {
+        showMessage.gameObject.SetActive(false);
+        timeRemaining = 0;
+    }
     void Update()
     {
         if (IsShown == false) return;
-        //PlayerController player = PlayerController.Instance;
+        PlayerController player = PlayerController.Instance;
 
-        //Interactive object
+        //interactive object
+
         /*
-        useText.gameObject.SetActive(player.InteractiveObject != null);
-        if (player.InteractiveObject != null)
+        if (DS == true)
         {
-            if (player.InteractiveObject.Action == InteractiveAction.Use) useText.text = "PRESS E TO USE " + player.InteractiveObject.Name.ToUpper();
-            if (player.InteractiveObject.Action == InteractiveAction.Take) useText.text = "PRESS E TO TAKE " + player.InteractiveObject.Name.ToUpper();
-            if (player.InteractiveObject.Action == InteractiveAction.Read) useText.text = "PRESS E TO READ " + player.InteractiveObject.Name.ToUpper();
+            showMessage.gameObject.SetActive(true);
+            showMessage.text = player.InteractiveObject.Name.ToUpper();
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                showMessage.gameObject.SetActive(false);
+                DS = false;
+            }
+
         }
         */
-
-        // Hit effect
-        /*
-        if (Time.time - PlayerController.Instance.HitTime < 0.5f)
+        if (player.InteractiveObject != null)
         {
-            hitEffect.gameObject.SetActive(true);
-            hitEffectColor.a = Mathf.Lerp(0.5f, 0f, (Time.time - PlayerController.Instance.HitTime)*2);
-            hitEffect.color = hitEffectColor;
+            if (player.InteractiveObject.Action == InteractiveAction.Read)
+            {
+
+                useText.gameObject.SetActive(true);
+                useText.text = "PRESS E TO READ " + player.InteractiveObject.Name.ToUpper();
+            }
+
+            if (player.InteractiveObject.Action == InteractiveAction.Show)
+            {
+
+                showMessage.gameObject.SetActive(true);
+                showMessage.text = player.InteractiveObject.Name.ToUpper();
+            }
+
         }
         else
         {
-            hitEffect.gameObject.SetActive(false);
+            useText.gameObject.SetActive(false);
+            
         }
-        */
+        
+
+        if (timeRemaining > 0)
+        {
+            
+            timeRemaining -= Time.deltaTime;
+        }
+        else
+        {
+
+            showMessage.gameObject.SetActive(false);
+        }
+
+
         if (Time.time - errorShowTime > 0.5f) errorText.gameObject.SetActive(false);
 
         // Slots
+        /*
         foreach (ItemSlot slot in slots)
         {
             slot.SetItem(InventoryController.Instance.Items[slot.id]);
         }
+        */
     }
 
+    
     public void ShowError(string text)
     {
         errorText.gameObject.SetActive(true);

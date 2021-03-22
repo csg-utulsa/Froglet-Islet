@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-public class JournalScreen : Form
+public class DialogScreen : Form
 {
     public Image iconImage;
     public Text nameText;
@@ -17,7 +17,7 @@ public class JournalScreen : Form
             index++;
             if (index >= dialog.dialogItems.Count)
             {
-                GameController.gameState = GameController.GameStates.Game;
+                GameController.Instance.GameState = GameStates.Game;
             }
             else
             {
@@ -30,7 +30,7 @@ public class JournalScreen : Form
     {
         if (dialog == null || dialog.dialogItems.Count == 0)
         {
-            GameController.gameState = GameController.GameStates.Game;
+            GameController.Instance.GameState = GameStates.Game;
             return;
         }
         this.dialog = dialog;
