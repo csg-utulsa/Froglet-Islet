@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7895bd2d6832d3d43b417d78ffd55d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDist: 15
-  mouseSensitivity: 3
+  interactDist: 20
+  clickMovementDist: 30
   markerPrefab: {fileID: 2652674235715389074, guid: 2a40733319aa5b049bf5295d1882899d,
     type: 3}
 --- !u!195 &1474919690230136992
@@ -83,7 +83,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
