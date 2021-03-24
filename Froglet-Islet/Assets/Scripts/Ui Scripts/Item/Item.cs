@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class Item
+public class Item : IInteractable
 {
     public enum ItemTypes
     {
-        Quest = 0, // Quest items
-        Potion = 1,
-        WeaponMelee = 2,
-        Staff = 3,
-        Wearable = 4
+        Frog = 0,
+        Flute = 1,
+        Tool = 2
     }
 
     public string id;
@@ -18,7 +16,7 @@ public class Item
     public Sprite icon;
     public ItemTypes itemType;
 
-    public virtual void Activate() { }
+    public virtual void OnInteract() { }
     public virtual void Deactivate() { }
 
     public Item() { }
