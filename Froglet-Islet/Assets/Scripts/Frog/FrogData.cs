@@ -33,6 +33,6 @@ public class FrogData
     public AudioClip frogCry;
 
     //Stores information about what items the frog can potentially give the player after completion of the Rhythm Githem
-    //public Item[] itemDrop;
+    public Item itemDrop;
 
 }

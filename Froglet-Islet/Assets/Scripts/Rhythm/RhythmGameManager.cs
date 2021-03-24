@@ -167,6 +167,9 @@ public class RhythmGameManager : MonoBehaviour
             else
             {
                 Debug.Log("Completed Frog's name from frogData: " + observedFrog.frogData.frogName);
+
+                //Give the player their rewards based on the frogData
+                InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
             }
         }
         else if (!didCorrect)

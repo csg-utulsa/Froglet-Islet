@@ -16,19 +16,6 @@ public class InventoryController : Singleton<InventoryController>
         items.Add(new Flute());
     }
 
-    void Update()
-    {
-        if (GameController.gameState == GameController.GameStates.Game)
-        {
-            if (InputController.Item1) UseItemBySlot(0);
-            if (InputController.Item2) UseItemBySlot(1);
-            if (InputController.Item3) UseItemBySlot(2);
-            if (InputController.Item4) UseItemBySlot(3);
-            if (InputController.Item5) UseItemBySlot(4);
-            if (InputController.Item6) UseItemBySlot(5);
-        }
-    }
-
     public bool AddItem(Item item)
     {
         foreach (string itemId in itemStacks.Keys)
@@ -40,7 +27,7 @@ public class InventoryController : Singleton<InventoryController>
             }
         }
 
-        int index = items.FindIndex(i => i == null);
+        int index = items.FindIndex(i => i.id == null);
         if (index != -1)
         {
 
@@ -50,13 +37,6 @@ public class InventoryController : Singleton<InventoryController>
         }
 
         return false;
-    }
-
-    public void UseItemBySlot(int slotId)
-    {
-        if (slotId < 0 || slotId > items.Count - 1 || items[slotId] == null) return;
-        Item item = items[slotId];
-        item.OnInteract();
     }
 
     public Item FindItem(string itemId)
@@ -69,7 +49,7 @@ public class InventoryController : Singleton<InventoryController>
         return null;
     }
 
-    public bool FindAndUseItem(string itemId)
+    public bool FindAndRemoveItem(string itemId)
     {
         foreach (string id in itemStacks.Keys)
         {
