@@ -12,13 +12,12 @@ public enum GameStates
     Finish,
     Dialog
 }
+
 public class GameController : Singleton<GameController>
 {
     //public static UnityEvent gameStateChanged = new UnityEvent();
     public static GameStates gameState = GameStates.Game;
     public event System.Action<GameStates> onStateChanged;
-
-    
 
     public GameStates GameState
     {
@@ -30,7 +29,6 @@ public class GameController : Singleton<GameController>
             if (onStateChanged != null) onStateChanged(gameState);
         }
     }
-
     void Awake()
     {
         onStateChanged += OnStateChanged;
@@ -45,6 +43,4 @@ public class GameController : Singleton<GameController>
     {
         Time.timeScale = state == GameStates.Pause || state == GameStates.Inventory ? 0 : 1;
     }
-
-    
 }

@@ -62,9 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EquippedItemScript.cs" />
     <Compile Include="Assets\Lowpoly Style\Tropical Islands\0_Scripts\FlickerLight.cs" />
+    <Compile Include="Assets\Marker.cs" />
     <Compile Include="Assets\Scripts\AudioControllerScript.cs" />
-    <Compile Include="Assets\Scripts\Frog.cs" />
+    <Compile Include="Assets\Scripts\Frog\Frog.cs" />
+    <Compile Include="Assets\Scripts\Frog\FrogData.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\Dialog.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogItem.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogObject.cs" />
+    <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogS.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogsLibrary.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Item\IInteractive.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="Assets\Scripts\Ui Scripts\UI\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\UI\PauseScreen.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\UI\UIController.cs" />
+    <None Include="Assets\Audio\froglet islet credits.txt" />
     <None Include="Assets\Lowpoly Style\Tropical Islands\5_Textures\Third-Party Notice.txt" />
     <None Include="Assets\Lowpoly Style\Tropical Islands\README.txt" />
     <Reference Include="UnityEngine">
@@ -630,37 +635,37 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Git/UI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Git/FUI/Froglet-Islet/Froglet-Islet/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
