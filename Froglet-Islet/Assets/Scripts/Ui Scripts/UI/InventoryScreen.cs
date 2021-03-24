@@ -34,10 +34,6 @@ public class InventoryScreen : Form
     {
         if (IsShown == false) return;
 
-        //wait for player information
-        //PlayerController player = PlayerController.Instance;
-
-
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rootPanel.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
         if (dragIcon.gameObject.activeSelf == true)
@@ -48,7 +44,7 @@ public class InventoryScreen : Form
         
         foreach (ItemSlot slot in slots)
         {
-            slot.SetItem(InventoryController.Instance.Items[slot.id]);
+            slot.SetItem(InventoryController.Instance.items[slot.id]);
         }
     }
 
