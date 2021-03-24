@@ -6,17 +6,26 @@ public class InventoryController : Singleton<InventoryController>
 
     private List<Item> items;
 
-    public int slotsCount = 23;
+    public int slotsCount = 13;
     public List<Item> Items { get { return items; } }
 
     void Awake()
     {
         items = new List<Item>(new Item[slotsCount]);
+        items.Add(new Flute());
     }
 
     void Update()
     {
-        
+        if (GameController.gameState == GameController.GameStates.Game)
+        {
+            if (InputController.Item1) UseItem(0);
+            if (InputController.Item2) UseItem(1);
+            if (InputController.Item3) UseItem(2);
+            if (InputController.Item4) UseItem(3);
+            if (InputController.Item5) UseItem(4);
+            if (InputController.Item6) UseItem(5);
+        }
     }
 
     public bool AddItem(Item item)
@@ -28,5 +37,22 @@ public class InventoryController : Singleton<InventoryController>
     }
 
 
+    public void UseItem(int slotId)
+    {
+        if (slotId < 0 || slotId > items.Count - 1 || items[slotId] == null) return;
+        Item item = items[slotId];
+        item.OnInteract();
+    }
+
+    public bool FindAndUseItem(string itemId)
+    {
+        int index = Items.FindIndex(i => i != null && i.id == itemId);
+        if (index >= 0)
+        {
+            Items[index] = null;
+            return true;
+        }
+        return false;
+    }
 }
 
