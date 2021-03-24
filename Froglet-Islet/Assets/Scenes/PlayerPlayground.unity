@@ -371,6 +371,152 @@ Transform:
   m_Father: {fileID: 1985422175}
   m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &125705169
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 194.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.776
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 191.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.23864602
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97110665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -152.38701
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogName
+      value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogGenus
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cf341de89e96b734cad4f0fa7f1cfc78,
+        type: 3}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogSpecies
+      value: flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.id
+      value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: a586b5366f8a0ee40a0ca41bcdd4b634,
+        type: 3}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.name
+      value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogMelody.rhythm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.description
+      value: A tomato.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917439, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Name
+      value: DemoFrogWithOutline (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f27bf8514f4b18445ade8278a4c3234e, type: 3}
 --- !u!1001 &133195771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2893,6 +3039,15 @@ MonoBehaviour:
         octave: 4
       rhythm: A
     frogCry: {fileID: 0}
+    itemDrop:
+      id: 
+      name: 
+      description: 
+      icon: {fileID: 0}
+      itemType: 0
+      itemFunction:
+        m_PersistentCalls:
+          m_Calls: []
   canInteract: 1
 --- !u!65 &775161240
 BoxCollider:
@@ -9520,6 +9675,78 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogName
+      value: Turf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogGenus
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a586b5366f8a0ee40a0ca41bcdd4b634,
+        type: 3}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogSpecies
+      value: Grassy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.id
+      value: Seeds
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 146761ec35d57f543ba47c1fe6eb536b,
+        type: 3}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.name
+      value: Seeds
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.frogMelody.rhythm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.description
+      value: A bunch of seeds.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6483189543532917439, guid: f27bf8514f4b18445ade8278a4c3234e,
         type: 3}

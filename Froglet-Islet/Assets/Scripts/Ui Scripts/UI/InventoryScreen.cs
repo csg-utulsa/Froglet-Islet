@@ -15,16 +15,11 @@ public class InventoryScreen : Form
 
     void Start()
     {
-        
         hintText.text = "";
 
         dropSlot.onHover += OnSlotHover;
 
         foreach (ItemSlot itemSlot in slots)
-        {
-            itemSlot.onHover += OnSlotHover;
-        }
-        foreach (ItemSlot itemSlot in UIController.Instance.gameScreen.slots)
         {
             itemSlot.onHover += OnSlotHover;
         }

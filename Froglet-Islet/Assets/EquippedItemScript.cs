@@ -7,19 +7,11 @@ public class EquippedItemScript : MonoBehaviour
 
     private string currentItem;
     LevelController lc;
-    ItemsController ic;
 
     // Start is called before the first frame update
     void Start()
     {
         lc = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
-        ic = GameObject.FindGameObjectWithTag("ItemsController").GetComponent<ItemsController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void EquipItem(string ci) // should be called by inventory system
@@ -37,7 +29,7 @@ public class EquippedItemScript : MonoBehaviour
         switch (f)
         {
             case "seeds":
-                InventoryController.Instance.RemoveItem("Seeds");
+                InventoryController.Instance.FindAndRemoveItem("Seeds");
                 foreach (Frog fro in lc.GetFrogList())
                 {
                     if (fro.frogData.frogSpecies == "flower")
@@ -50,7 +42,7 @@ public class EquippedItemScript : MonoBehaviour
                 }
                 break;
             case "food":
-                InventoryController.Instance.RemoveItem("Food");
+                InventoryController.Instance.FindAndRemoveItem("Food");
                 foreach (Frog fro in lc.GetFrogList())
                 {
                     if (fro.frogData.frogSpecies == "storm")
@@ -58,7 +50,7 @@ public class EquippedItemScript : MonoBehaviour
                 }
                 break;
             case "blossom":
-                InventoryController.Instance.RemoveItem("Blossom");
+                InventoryController.Instance.FindAndRemoveItem("Blossom");
                 foreach (Frog fro in lc.GetFrogList())
                 {
                     if (fro.frogData.frogSpecies == "flying")
@@ -66,7 +58,7 @@ public class EquippedItemScript : MonoBehaviour
                 }
                 break;
             case "potion":
-                InventoryController.Instance.RemoveItem("Potion");
+                InventoryController.Instance.FindAndRemoveItem("Potion");
                 break;
             default:
                 print("non-consumable used");
