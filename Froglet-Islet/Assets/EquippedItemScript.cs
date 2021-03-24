@@ -36,7 +36,7 @@ public class EquippedItemScript : MonoBehaviour
     {
         foreach (Frog f in lc.GetFrogList())
         {
-            if (f.frogID == 0)
+            if (f.frogData.frogID == 0)
                 f.gameObject.SetActive(true);
         }
     }

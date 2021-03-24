@@ -18,10 +18,8 @@ public class PlayerController : MonoBehaviour
     NavMeshAgent agent;
 
     private Transform playerCamera = null;
-    [SerializeField]private float interactDist = 3f;
-
-    [SerializeField] float mouseSensitivity = 3.0f;
-
+    [SerializeField]private float interactDist = 20f;
+    [SerializeField]private float clickMovementDist = 30f;
 
     CharacterController controller = null;
     private Vector2 currentDir = Vector2.zero;
@@ -46,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
     private GameObject markerInstance;
     private Vector3 markerPosition;
+
+    private GameObject hoverObject;
+    private bool hasSentHover = false;
 
 
     void Start()
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
             
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, clickMovementDist)) {
                 agent.destination = hit.point;
                 if(markerInstance != null){
                     markerInstance.GetComponent<Marker>().RemoveMarker();
@@ -135,14 +136,32 @@ public class PlayerController : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, interactDist)){
             if(hit.collider.CompareTag("Interactable")){
+                if(hoverObject == null){
+                    hoverObject = hit.collider.gameObject;
+                    hasSentHover = false;
+                } else if(hoverObject != hit.collider.gameObject){
+                    hoverObject.SendMessage("OnHoverExit", SendMessageOptions.DontRequireReceiver);
+                    hoverObject = hit.collider.gameObject;     
+                }
+                if(!hasSentHover){
+                    hoverObject.SendMessage("OnHoverEnter",SendMessageOptions.DontRequireReceiver);
+                    hasSentHover = true;
+                }
                 // Debug.Log("Do you want to interact?");
                 if(Input.GetButtonDown("Fire1")){
-                    hit.collider.gameObject.SendMessage("OnInteract");
+                    hoverObject.SendMessage("OnInteract");
                     return true;
                 }
                 
+            } else if(hoverObject != null){
+                hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+                hoverObject = null;
             }
+        } else if(hoverObject != null){
+            hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+            hoverObject = null;
         }
+        
         return false;
     }
 }
