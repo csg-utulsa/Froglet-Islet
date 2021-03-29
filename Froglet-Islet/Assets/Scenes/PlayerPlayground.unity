@@ -526,9 +526,10 @@ GameObject:
   m_Component:
   - component: {fileID: 129905365}
   - component: {fileID: 129905364}
+  - component: {fileID: 129905366}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: LevelController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,6 +560,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &129905366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129905363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9335b75cb52769c4480014df29ccae18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &133195771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2697,7 +2710,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotsCount: 13
   items: []
-  inventoryScreen: {fileID: 0}
+  inventoryScreen: {fileID: 2024394431}
+  gameScreen: {fileID: 1051950942}
+--- !u!114 &691578947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691578941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61b550cd17e6fb42af34e45f9b5a1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &709402784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8245,9 +8271,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11469364, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: gameScreen
+      value: 
+      objectReference: {fileID: 1051950942}
+    - target: {fileID: 11469364, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
       propertyPath: slots.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 11469364, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: equippedItemScript
+      value: 
+      objectReference: {fileID: 691578947}
     - target: {fileID: 11478096, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
       propertyPath: slotType
       value: 1
@@ -9317,6 +9351,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024394431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11469364, guid: 3b3a791c1fbad6846b20fe23b5c1869c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1813463496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628073b63d2d3bf4f87e76d8950d01e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2036819034
 PrefabInstance:
   m_ObjectHideFlags: 0
