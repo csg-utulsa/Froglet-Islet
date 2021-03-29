@@ -64,6 +64,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             onHover(this, true);
         }
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -72,5 +73,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             onHover(this, false);
         }
+
     }
 }

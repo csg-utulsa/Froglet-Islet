@@ -90,7 +90,12 @@ public class GameScreen : Form
         */
     }
 
-    
+    public void ShowMessage(string input)
+    {
+        timeRemaining = 5;
+        Message = input;
+    }
+
     public void ShowError(string text)
     {
         errorText.gameObject.SetActive(true);
