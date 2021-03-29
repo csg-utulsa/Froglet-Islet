@@ -40,12 +40,26 @@ public class InventoryScreen : Form
         {
             if (item != null)
             {
+                bool isAlreadyInInventory = false;
                 foreach (ItemSlot itemSlot in slots)
                 {
-                    if (itemSlot.slotType == item.itemType)
+                    if (itemSlot.ItemInSlot != null && itemSlot.ItemInSlot.name == item.name)
                     {
                         itemSlot.SetItem(item);
+                        isAlreadyInInventory = true;
                         break;
+                    }
+                }
+
+                if (!isAlreadyInInventory)
+                {
+                    foreach (ItemSlot itemSlot in slots)
+                    {
+                        if (itemSlot.slotType == item.itemType && itemSlot.ItemInSlot == null)
+                        {
+                            itemSlot.SetItem(item);
+                            break;
+                        }
                     }
                 }
             }
