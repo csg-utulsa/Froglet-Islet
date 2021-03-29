@@ -1,24 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+
+public enum ItemTypes
+{
+    Frog = 0,
+    Flute = 1,
+    Tool = 2
+}
 
 [System.Serializable]
 public class Item
 {
-    public enum ItemTypes
-    {
-        Quest = 0, // Quest items
-        Staff = 3,
-    }
-
     public string id;
     public string name;
     public string description;
     public Sprite icon;
     public ItemTypes itemType;
-
-    public virtual void Activate() { }
-    public virtual void Deactivate() { }
-
-    public Item() { }
+    public UnityEvent itemFunction;
 
     public override string ToString()
     {

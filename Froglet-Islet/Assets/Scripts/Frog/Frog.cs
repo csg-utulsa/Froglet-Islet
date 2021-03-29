@@ -9,16 +9,11 @@ using UnityEngine;
 
 public class Frog : MonoBehaviour, IInteractable
 {
-    
-
     public FrogData frogData;
-
-    
 
     public bool canInteract = true;
 
     private RhythmGameManager rhythmGameManager;
-
 
     void Awake()
     {
@@ -31,7 +26,4 @@ public class Frog : MonoBehaviour, IInteractable
             rhythmGameManager.StartRhythmGame(this);
         }
     }
-    void use() {
-    }
-
 }

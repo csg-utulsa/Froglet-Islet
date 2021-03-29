@@ -66,11 +66,15 @@
     <Compile Include="Assets\Lowpoly Style\Tropical Islands\0_Scripts\FlickerLight.cs" />
     <Compile Include="Assets\Marker.cs" />
     <Compile Include="Assets\Scripts\AudioControllerScript.cs" />
+    <Compile Include="Assets\Scripts\Flute.cs" />
+    <Compile Include="Assets\Scripts\FluteLevel2.cs" />
     <Compile Include="Assets\Scripts\Frog\Frog.cs" />
     <Compile Include="Assets\Scripts\Frog\FrogData.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\LanternScript.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
+    <Compile Include="Assets\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\Rhythm.cs" />
@@ -82,8 +86,8 @@
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogS.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Dialogs\DialogsLibrary.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\InputController.cs" />
+    <Compile Include="Assets\Scripts\Ui Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Item\IInteractive.cs" />
-    <Compile Include="Assets\Scripts\Ui Scripts\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Player\InventoryController.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\UI\DialogScreen.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Assets\Scripts\Ui Scripts\UI\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\UI\PauseScreen.cs" />
     <Compile Include="Assets\Scripts\Ui Scripts\UI\UIController.cs" />
+    <None Include="Assets\Shaders\Outline.shader" />
     <None Include="Assets\Audio\froglet islet credits.txt" />
     <None Include="Assets\Lowpoly Style\Tropical Islands\5_Textures\Third-Party Notice.txt" />
     <None Include="Assets\Lowpoly Style\Tropical Islands\README.txt" />
