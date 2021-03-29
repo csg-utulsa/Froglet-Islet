@@ -13,7 +13,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public System.Action<ItemSlot> onDblClick;
     public System.Action<ItemSlot, bool> onHover;
-    public System.Action<ItemSlot, bool> onDrag;
+    //public System.Action<ItemSlot, bool> onDrag;
 
     public Image icon;
     public Text numText;

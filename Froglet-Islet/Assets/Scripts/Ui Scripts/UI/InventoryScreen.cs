@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class InventoryScreen : Form
 {
     public ItemSlot[] slots;
-    public ItemSlot dropSlot;
+    //public ItemSlot dropSlot;
 
     public Text hintText;
     public Image dragIcon;
@@ -17,7 +17,7 @@ public class InventoryScreen : Form
     {
         hintText.text = "";
 
-        dropSlot.onHover += OnSlotHover;
+        //dropSlot.onHover += OnSlotHover;
 
         foreach (ItemSlot itemSlot in slots)
         {

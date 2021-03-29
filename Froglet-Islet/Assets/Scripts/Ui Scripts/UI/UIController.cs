@@ -16,7 +16,7 @@ public class UIController : Singleton<UIController>
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (GameController.Instance.GameState == GameStates.Game)
             {
