@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class InventoryScreen : Form
 {
     public ItemSlot[] slots;
-    //public ItemSlot dropSlot;
+    public EquippedItemScript equippedItemScript;
+    public GameScreen gameScreen;
 
     public Text hintText;
     public Image dragIcon;
@@ -17,11 +18,10 @@ public class InventoryScreen : Form
     {
         hintText.text = "";
 
-        //dropSlot.onHover += OnSlotHover;
-
         foreach (ItemSlot itemSlot in slots)
         {
             itemSlot.onHover += OnSlotHover;
+            itemSlot.onClick += OnSlotClick;
         }
     }
 
@@ -36,10 +36,26 @@ public class InventoryScreen : Form
             dragIcon.transform.parent.GetComponent<RectTransform>().anchoredPosition = localPoint;
         }
 
-        
-        foreach (ItemSlot slot in slots)
+        foreach (Item item in InventoryController.Instance.items)
         {
-            slot.SetItem(InventoryController.Instance.items[slot.id]);
+            if (item != null)
+            {
+                foreach (ItemSlot itemSlot in slots)
+                {
+                    if (itemSlot.slotType == item.itemType)
+                    {
+                        itemSlot.SetItem(item);
+                        break;
+                    }
+                }
+            }
+        }
+        foreach (ItemSlot itemSlot in slots)
+        {
+            if (!InventoryController.Instance.items.Contains(itemSlot.ItemInSlot))
+            {
+                itemSlot.SetItem(null);
+            }
         }
     }
 
@@ -48,6 +64,15 @@ public class InventoryScreen : Form
         base.Show();
         hintText.text = "";
         dragIcon.gameObject.SetActive(false);
+    }
+
+    private void OnSlotClick(ItemSlot slot)
+    {
+        if (slot.ItemInSlot != null)
+        {
+            equippedItemScript.EquipItem(slot.ItemInSlot.name);
+            gameScreen.ShowMessage("Equipped " + slot.ItemInSlot.name);
+        }
     }
 
     private void OnSlotHover(ItemSlot slot, bool state)

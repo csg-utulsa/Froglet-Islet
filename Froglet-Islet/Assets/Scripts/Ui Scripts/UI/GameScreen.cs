@@ -93,7 +93,8 @@ public class GameScreen : Form
     public void ShowMessage(string input)
     {
         timeRemaining = 5;
-        Message = input;
+        showMessage.text = input;
+        showMessage.gameObject.SetActive(true);
     }
 
     public void ShowError(string text)

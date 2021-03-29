@@ -2697,6 +2697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotsCount: 13
   items: []
+  inventoryScreen: {fileID: 0}
 --- !u!1001 &709402784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8235,9 +8236,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11411734, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: slotType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460008, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: slotType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 11469364, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
       propertyPath: slots.Array.size
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478096, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493940, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
+      propertyPath: slotType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22496770, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
       propertyPath: m_Pivot.x
@@ -8322,6 +8339,11 @@ PrefabInstance:
     - target: {fileID: 22496770, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810963252127871739, guid: 3b3a791c1fbad6846b20fe23b5c1869c,
+        type: 3}
+      propertyPath: slotType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3a791c1fbad6846b20fe23b5c1869c, type: 3}
