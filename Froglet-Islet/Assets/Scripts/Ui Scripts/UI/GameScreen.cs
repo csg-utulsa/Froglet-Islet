@@ -3,98 +3,51 @@ using UnityEngine.UI;
 
 public class GameScreen : Form
 {
-
-    //public ItemSlot[] slots;
-    public Text useText;
+    public Image crosshair;
+    public ItemSlot[] slots;
+    
     public Text errorText;
-    public Text showMessage;
-    public string Message;
-    public bool DS = false;
-    public float timeRemaining { get; set; }
+    //public Image hitEffect;
+    //public Color hitEffectColor;
 
     private float errorShowTime = -1;
 
-    void Start()
-    {
-        showMessage.gameObject.SetActive(false);
-        timeRemaining = 0;
-    }
     void Update()
     {
         if (IsShown == false) return;
-        PlayerController player = PlayerController.Instance;
+        //PlayerController player = PlayerController.Instance;
 
-        //interactive object
-
+        //Interactive object
         /*
-        if (DS == true)
-        {
-            showMessage.gameObject.SetActive(true);
-            showMessage.text = player.InteractiveObject.Name.ToUpper();
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-            }
-            else
-            {
-                showMessage.gameObject.SetActive(false);
-                DS = false;
-            }
-
-        }
-        */
+        useText.gameObject.SetActive(player.InteractiveObject != null);
         if (player.InteractiveObject != null)
         {
-            if (player.InteractiveObject.Action == InteractiveAction.Read)
-            {
+            if (player.InteractiveObject.Action == InteractiveAction.Use) useText.text = "PRESS E TO USE " + player.InteractiveObject.Name.ToUpper();
+            if (player.InteractiveObject.Action == InteractiveAction.Take) useText.text = "PRESS E TO TAKE " + player.InteractiveObject.Name.ToUpper();
+            if (player.InteractiveObject.Action == InteractiveAction.Read) useText.text = "PRESS E TO READ " + player.InteractiveObject.Name.ToUpper();
+        }
+        */
 
-                useText.gameObject.SetActive(true);
-                useText.text = "PRESS E TO READ " + player.InteractiveObject.Name.ToUpper();
-            }
-
-            if (player.InteractiveObject.Action == InteractiveAction.Show)
-            {
-
-                showMessage.gameObject.SetActive(true);
-                showMessage.text = player.InteractiveObject.Name.ToUpper();
-            }
-
+        // Hit effect
+        /*
+        if (Time.time - PlayerController.Instance.HitTime < 0.5f)
+        {
+            hitEffect.gameObject.SetActive(true);
+            hitEffectColor.a = Mathf.Lerp(0.5f, 0f, (Time.time - PlayerController.Instance.HitTime)*2);
+            hitEffect.color = hitEffectColor;
         }
         else
         {
-            useText.gameObject.SetActive(false);
-            
+            hitEffect.gameObject.SetActive(false);
         }
-        
-
-        if (timeRemaining > 0)
-        {
-            
-            timeRemaining -= Time.deltaTime;
-        }
-        else
-        {
-
-            showMessage.gameObject.SetActive(false);
-        }
-
-
+        */
         if (Time.time - errorShowTime > 0.5f) errorText.gameObject.SetActive(false);
 
         // Slots
-        /*
         foreach (ItemSlot slot in slots)
         {
             slot.SetItem(InventoryController.Instance.Items[slot.id]);
         }
-        */
-    }
-
-    public void ShowMessage(string input)
-    {
-        timeRemaining = 5;
-        showMessage.text = input;
-        showMessage.gameObject.SetActive(true);
     }
 
     public void ShowError(string text)

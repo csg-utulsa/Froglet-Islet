@@ -3,7 +3,6 @@
     Use,
     Read,
     Take,
-    Show,
 }
 
 // For all objects that can be used by pressing E
@@ -15,4 +14,3 @@ public interface IInteractive
 
     void Use();
 }
-

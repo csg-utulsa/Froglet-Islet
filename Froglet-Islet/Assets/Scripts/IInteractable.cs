@@ -8,11 +8,8 @@
         The object needs to have the "Interactable" tag.
  */
 
-
-
 public interface IInteractable
 {
-    
     void OnInteract(); //Define this method for a specific interactable object.
 
 }

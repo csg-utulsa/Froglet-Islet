@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class InventoryScreen : Form
 {
     public ItemSlot[] slots;
-    public EquippedItemScript equippedItemScript;
-    public GameScreen gameScreen;
+    public ItemSlot dropSlot;
 
     public Text hintText;
     public Image dragIcon;
@@ -16,18 +15,32 @@ public class InventoryScreen : Form
 
     void Start()
     {
+        
         hintText.text = "";
+
+        dropSlot.onHover += OnSlotHover;
 
         foreach (ItemSlot itemSlot in slots)
         {
+            itemSlot.onDblClick += OnSlotDblClick;
             itemSlot.onHover += OnSlotHover;
-            itemSlot.onClick += OnSlotClick;
+            itemSlot.onDrag += OnSlotDrag;
+        }
+        foreach (ItemSlot itemSlot in UIController.Instance.gameScreen.slots)
+        {
+            itemSlot.onDblClick += OnSlotDblClick;
+            itemSlot.onHover += OnSlotHover;
+            itemSlot.onDrag += OnSlotDrag;
         }
     }
 
     void Update()
     {
         if (IsShown == false) return;
+
+        //wait for player information
+        //PlayerController player = PlayerController.Instance;
+
 
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rootPanel.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
@@ -36,40 +49,10 @@ public class InventoryScreen : Form
             dragIcon.transform.parent.GetComponent<RectTransform>().anchoredPosition = localPoint;
         }
 
-        foreach (Item item in InventoryController.Instance.items)
+        
+        foreach (ItemSlot slot in slots)
         {
-            if (item != null)
-            {
-                bool isAlreadyInInventory = false;
-                foreach (ItemSlot itemSlot in slots)
-                {
-                    if (itemSlot.ItemInSlot != null && itemSlot.ItemInSlot.name == item.name)
-                    {
-                        itemSlot.SetItem(item);
-                        isAlreadyInInventory = true;
-                        break;
-                    }
-                }
-
-                if (!isAlreadyInInventory)
-                {
-                    foreach (ItemSlot itemSlot in slots)
-                    {
-                        if (itemSlot.slotType == item.itemType && itemSlot.ItemInSlot == null)
-                        {
-                            itemSlot.SetItem(item);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        foreach (ItemSlot itemSlot in slots)
-        {
-            if (!InventoryController.Instance.items.Contains(itemSlot.ItemInSlot))
-            {
-                itemSlot.SetItem(null);
-            }
+            slot.SetItem(InventoryController.Instance.Items[slot.id]);
         }
     }
 
@@ -80,13 +63,18 @@ public class InventoryScreen : Form
         dragIcon.gameObject.SetActive(false);
     }
 
-    private void OnSlotClick(ItemSlot slot)
+   /*
+    * If we need a button on inventory screen 
+    private void OnClick()
     {
-        if (slot.ItemInSlot != null)
-        {
-            equippedItemScript.EquipItem(slot.ItemInSlot.name);
-            gameScreen.ShowMessage("Equipped " + slot.ItemInSlot.name);
-        }
+
+    }
+    */
+
+    private void OnSlotDblClick(ItemSlot slot)
+    {
+        //if we need to use the consumables
+        //InventoryController.Instance.UseItem(slot.id);
     }
 
     private void OnSlotHover(ItemSlot slot, bool state)
@@ -100,6 +88,29 @@ public class InventoryScreen : Form
         {
             hoveredSlot = null;
             hintText.text = "";
+        }
+    }
+
+    private void OnSlotDrag(ItemSlot slot, bool state)
+    {
+        if (state == true)
+        {
+            if (slot.ItemInSlot != null)
+            {
+                dragIcon.gameObject.SetActive(true);
+                dragIcon.sprite = slot.ItemInSlot.icon;
+            }
+        }
+        else
+        {
+            if (slot.ItemInSlot != null && hoveredSlot != null)
+            {
+                if (hoveredSlot.slotType == ItemSlot.SlotTypes.Backpack)
+                {
+                    InventoryController.Instance.Move(slot.id, hoveredSlot.id);
+                }
+            }
+            dragIcon.gameObject.SetActive(false);
         }
     }
 }
