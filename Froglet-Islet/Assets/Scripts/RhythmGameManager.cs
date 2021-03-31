@@ -1,5 +1,8 @@
 ﻿//made by Sam Locicero
 
+//Last Modified by Logan Edmund on 2/3/21
+//  - Added basic debug functionality to StopRhythmGame
+
 
 using System;
 using System.Collections;
@@ -13,17 +16,20 @@ public class RhythmGameManager : MonoBehaviour
     public AudioSource src;
     public AudioClip debugSound;
     public List<Button> buttonList;
-
-
+    public List<Color> colorList;
+    public List<Sprite> bubbleList;
+    public List<Sprite> noteList;
     public bool gameActive = false;
-    bool listening = false;
-    bool attempting = false;
-    bool didItCorrectly;
+
+    Frog observedFrog;
+
+    Image frogImage, bubbleImage, noteImage, fluteImage;
+    Text infoText;
+    bool listening, attempting, hasFluteOut, didItCorrectly;
     float timePerNote;
     float pitchOffset;
     List<int> parsedRhythm;
     AudioClip sound;
-    Text infoText;
 
     float timeCountUp;
     int index;
@@ -38,7 +44,10 @@ public class RhythmGameManager : MonoBehaviour
 
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
 
-
+        frogImage = rhythmGameCanvas.transform.Find("FrogImage").GetComponent<Image>();
+        fluteImage = rhythmGameCanvas.transform.Find("FluteImage").GetComponent<Image>();
+        bubbleImage = frogImage.transform.Find("BubbleImage").GetComponent<Image>();
+        noteImage = bubbleImage.transform.Find("NoteImage").GetComponent<Image>();
         infoText = rhythmGameCanvas.transform.Find("InfoText").GetComponent<Text>();
     }
 
@@ -47,40 +56,58 @@ public class RhythmGameManager : MonoBehaviour
     {
         if (gameActive)
         {
+            if (hasFluteOut)
+                fluteImage.gameObject.SetActive(true);
             if (listening)
             {
+                foreach (Button b in buttonList)
+                    if (b.interactable) b.interactable = false;
+                infoText.color = Color.white;
                 infoText.text = "Listening";
                 timeCountUp += Time.deltaTime;
                 if (timeCountUp >= timePerNote)
                 {
                     timeCountUp = 0;
-                    PlayNote(parsedRhythm[index]);
-                    index++;
                     if (index >= parsedRhythm.Count)
                     {
                         foreach (Button b in buttonList)
-                            b.interactable = true;
+                            if (!b.interactable) b.interactable = true;
                         listening = false;
                         attempting = true;
                         didItCorrectly = true;
                         infoText.text = "Go!";
                         index = 0;
                     }
+                    else
+                    {
+                        PlayNote(parsedRhythm[index]);
+                        index++;
+                    }
+                    
                 }
             } else if (attempting)
             {
+                bubbleImage.transform.localScale = Vector3.zero;
                 timeCountUp += Time.deltaTime;
-                if (index >= parsedRhythm.Count)
+                if (hasFluteOut)
                 {
-                    foreach (Button b in buttonList)
-                        b.interactable = false;
-                    if (timeCountUp >= timePerNote)
+                    KeyboardHandler();
+                    if (index >= parsedRhythm.Count)
                     {
-                        if (didItCorrectly)
-                            StopRhythmGame();
-                        else
-                            Listen();
+                        foreach (Button b in buttonList)
+                            b.interactable = false;
+                        if (timeCountUp >= timePerNote)
+                        {
+                            if (didItCorrectly)
+                                StopRhythmGame(true);
+                            else
+                                Listen();
+                        }
                     }
+                }
+                if (timeCountUp >= timePerNote * 8)
+                {
+                    Listen();
                 }
             }
         }
@@ -88,6 +115,14 @@ public class RhythmGameManager : MonoBehaviour
 
     void PlayNote(int note)
     {
+        if (listening)
+        {
+            bubbleImage.transform.localScale = Vector3.one;
+            bubbleImage.sprite = bubbleList[UnityEngine.Random.Range(0, bubbleList.Count - 1)];
+            bubbleImage.transform.localEulerAngles = new Vector3(0, 0, UnityEngine.Random.Range(-30f, 10f));
+            noteImage.sprite = noteList[UnityEngine.Random.Range(0, noteList.Count - 1)];
+            noteImage.color = colorList[note];
+        }
         if (note != 0)
         {
             src.volume = 1;
@@ -98,9 +133,17 @@ public class RhythmGameManager : MonoBehaviour
 
     public void StartRhythmGame(Frog f)
     {
+        observedFrog = f;
+
+
+        hasFluteOut = false;
         rhythmGameCanvas.gameObject.SetActive(true);
-        Rhythm r = f.frogMelody;
-        sound = f.frogCry;
+        bubbleImage.transform.localScale = Vector3.zero;
+        SetButtonColors();
+        Rhythm r = observedFrog.frogData.frogMelody;
+        sound = observedFrog.frogData.frogCry;
+        if (observedFrog.frogData.frogSprite !=null)
+            frogImage.sprite = observedFrog.frogData.frogSprite;
         if (sound == null)
             sound = debugSound;
         src.clip = sound;
@@ -108,14 +151,38 @@ public class RhythmGameManager : MonoBehaviour
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))
         {
+            hasFluteOut = true; ////////////////////////////////////THIS IS TEMPORARY!!!    bool should be set when you select from inventory
             gameActive = true;
             Listen();
         }
     }
 
-    public void StopRhythmGame()
+    public void StopRhythmGame(bool didCorrect)
     {
+        if (didCorrect) 
+        {
+            Debug.Log("Rhythm game completed successfully. Sending frogdata to relevant area:");
+            if (observedFrog.frogData == null)
+            {
+                Debug.LogError("ERROR: Frogdata cannot be retreived from observedFrog");
+            }
+            else
+            {
+                Debug.Log("Completed Frog's name from frogData: " + observedFrog.frogData.frogName);
+
+                //Give the player their rewards based on the frogData
+                InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
+            }
+        }
+        else if (!didCorrect)
+        {
+            Debug.Log("You failed, try harder scrub");
+        }
+
+        //Set the observedFrog to null to avoid potential conflicts
+        observedFrog = null;
         rhythmGameCanvas.gameObject.SetActive(false);
+        hasFluteOut = false;
         listening = false;
         attempting = false;
         gameActive = false;
@@ -189,7 +256,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void DebugStart()
     {
-        StopRhythmGame();
+        StopRhythmGame(false);
         StartRhythmGame(GameObject.Find("DebugFrog").GetComponent<Frog>());
     }
 
@@ -219,6 +286,7 @@ public class RhythmGameManager : MonoBehaviour
         }
         if (parsedRhythm[index] != note)
         {
+            infoText.color = Color.red;
             infoText.text = "Wrong Note!";
             return false;
         }
@@ -226,18 +294,74 @@ public class RhythmGameManager : MonoBehaviour
             offBy = 0;
         else
             offBy -= timeCountUp;
-        Debug.Log(offBy);
         if (Mathf.Abs(offBy) > 0.1f)
         {
             if (offBy > 0)
+            {
+                infoText.color = Color.red;
                 infoText.text = "Too Early!";
+            }
             else
+            {
+                infoText.color = Color.red;
                 infoText.text = "Too Late!";
+            }
             return false;
         }
+        infoText.color = Color.white;
         infoText.text = "Good Job!";
         return true;
 
+    }
+
+    void SetButtonColors()
+    {
+        buttonList[0].GetComponent<Image>().color = colorList[1];
+        buttonList[1].GetComponent<Image>().color = colorList[3];
+        buttonList[2].GetComponent<Image>().color = colorList[5];
+        buttonList[3].GetComponent<Image>().color = colorList[6];
+    }
+
+
+    void KeyboardHandler()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ClickNote(1);
+            buttonList[0].interactable = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            ClickNote(3);
+            buttonList[1].interactable = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            ClickNote(5);
+            buttonList[2].interactable = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            ClickNote(6);
+            buttonList[3].interactable = false;
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            buttonList[0].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            buttonList[1].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            buttonList[2].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            buttonList[3].interactable = true;
+        }
     }
 
 }

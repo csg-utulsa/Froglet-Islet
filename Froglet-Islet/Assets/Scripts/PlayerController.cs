@@ -10,24 +10,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
+    Vector3 movement;
+    NavMeshAgent agent;
 
     private Transform playerCamera = null;
-    [SerializeField]private float interactDist = 3f;
+    [SerializeField]private float interactDist = 20f;
+    [SerializeField]private float clickMovementDist = 30f;
 
-    [SerializeField] float mouseSensitivity = 3.0f;
-
-    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
-    [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
-    public float walkSpeed = 6.0f;
-
-    public float pushPower = 2.0f;
-    [SerializeField] float gravity = -13.0f;
-
-    float cameraPitch = 0f;
-    float velocityY = 0.0f;
     CharacterController controller = null;
     private Vector2 currentDir = Vector2.zero;
     private Vector2 currentDirVelocity = Vector2.zero;
@@ -39,14 +32,37 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion camRotation;
 
+    public GameObject markerPrefab;
+
+    //
+    public GameScreen GameScreen;
+
+    // Song: set interactive object for Dialog
+    public IInteractive InteractiveObject { get; private set; }
+
+    //The checkmarker exists for when a new marker may need to be made, but that depends on
+    private enum MarkerState{
+        NoMarker,
+        AddMarker,
+        HasMarker
+    }
+
+    private MarkerState m_markerState;
+
+    private GameObject markerInstance;
+    private Vector3 markerPosition;
+
+    private GameObject hoverObject;
+    private bool hasSentHover = false;
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         playerCamera = Camera.main.transform;
-        camPosition = playerCamera.localPosition;
-        camRotation = playerCamera.localRotation;
         playerCamera.SetParent(gameObject.transform);
+        agent = GetComponent<NavMeshAgent>();
+        m_markerState = MarkerState.NoMarker;
     }
 
     // Update is called once per frame
@@ -54,72 +70,126 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
-            UpdateMouseLook();
-            UpdateMovement();
-            ApplyGravity();
-            CanInteract();
+            if(!CanInteract())
+                UpdateNavMesh();
             CheckForMenuButtons();
+            CreateMarker();
+        }
+        //Song: Keep checking the use function.
+        if ((InteractiveObject != null) && (InputController.Use))
+        {
+            InteractiveObject.Use();
         }
     }
 
+    void CreateMarker(){
+        if(m_markerState == MarkerState.HasMarker){
+            return;
+        } else if(m_markerState == MarkerState.AddMarker){
+            if(markerPosition != agent.destination){
+                markerPosition = agent.destination;
+                markerInstance = Instantiate(markerPrefab,markerPosition,Quaternion.Euler(new Vector3(-90,0,0)));
+                m_markerState = MarkerState.HasMarker;
+            }
+            
+        } else if(markerInstance == null){
+            m_markerState = MarkerState.NoMarker;
+        }
+        
+    }
+
+    //I am putting this in player for now, but we may want to move it.
+
+
+    void UpdateNavMesh() {
+        if (Input.GetMouseButtonDown(0)) {
+            RaycastHit hit;
+            
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, clickMovementDist)) {
+                agent.destination = hit.point;
+                if(markerInstance != null){
+                    markerInstance.GetComponent<Marker>().RemoveMarker();
+                    markerInstance = null;
+                }
+                m_markerState = MarkerState.AddMarker;
+                
+            }
+        }
+    }
+
+
+
+    private bool ArrivedAtPosition(){
+        if(!agent.pathPending){
+            if(agent.remainingDistance <= agent.stoppingDistance){
+                if(!agent.hasPath || agent.velocity.sqrMagnitude == 0f) return true;
+            }
+        }
+        return false;
+    }
+
+    
     private void CheckForMenuButtons()
     {
         if (Input.GetButton("Pause"))
         {
-            GameController.gameState = GameController.GameStates.Pause;
-            GameController.gameStateChanged.Invoke();
+            //Song: change game states
+            GameController.gameState = GameStates.Pause;
+            //GameController.gameStateChanged.Invoke();
         }
         else if (Input.GetButton("Inventory"))
         {
-            GameController.gameState = GameController.GameStates.Inventory;
-            GameController.gameStateChanged.Invoke();
+            // Song: change game states
+            GameController.gameState = GameStates.Inventory;
+            //GameController.gameStateChanged.Invoke();
         }
     }
-
-    void UpdateMouseLook(){
-        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
+    // Song: change the trigger for checking interact object
+    private void OnTriggerEnter(Collider other)
+    {
         
-        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
-
-        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 30f);
-
-        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
-    }
-
-    void UpdateMovement(){
-        Vector2 targetDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        targetDirection.Normalize();
-
-        currentDir = Vector2.SmoothDamp(currentDir, targetDirection, ref currentDirVelocity, moveSmoothTime);
-
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x ) * walkSpeed + Vector3.up * velocityY;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    void ApplyGravity(){
-        if(controller.isGrounded){
-            velocityY = 0.0f;
+        InteractiveObject = other.gameObject.GetComponent(typeof(IInteractive)) as IInteractive;
+        if (InteractiveObject != null && InteractiveObject.IsActive == false) InteractiveObject = null;
+        if (InteractiveObject != null && InteractiveObject.Action == InteractiveAction.Show)
+        {
+            GameScreen.timeRemaining = 5;
         }
-        velocityY += gravity * Time.deltaTime;
-    }   
+        //Song: active the item
+        
+    }
 
-    public void CanInteract(){
+    public bool CanInteract(){
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if(Physics.Raycast(ray, out hit, interactDist)){
             if(hit.collider.CompareTag("Interactable")){
+                if(hoverObject == null){
+                    hoverObject = hit.collider.gameObject;
+                    hasSentHover = false;
+                } else if(hoverObject != hit.collider.gameObject){
+                    hoverObject.SendMessage("OnHoverExit", SendMessageOptions.DontRequireReceiver);
+                    hoverObject = hit.collider.gameObject;     
+                }
+                if(!hasSentHover){
+                    hoverObject.SendMessage("OnHoverEnter",SendMessageOptions.DontRequireReceiver);
+                    hasSentHover = true;
+                }
                 // Debug.Log("Do you want to interact?");
                 if(Input.GetButtonDown("Fire1")){
-                    hit.collider.gameObject.SendMessage("OnInteract");
+                    hoverObject.SendMessage("OnInteract");
+                    return true;
                 }
                 
+            } else if(hoverObject != null){
+                hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+                hoverObject = null;
             }
+        } else if(hoverObject != null){
+            hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+            hoverObject = null;
         }
+        
+        return false;
     }
 }

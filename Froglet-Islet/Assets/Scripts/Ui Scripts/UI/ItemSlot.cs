@@ -2,23 +2,18 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public enum SlotTypes
-    {
-        Backpack = 0,
-        Drop = 2
-    }
 
-    public System.Action<ItemSlot> onDblClick;
+    public System.Action<ItemSlot> onClick;
     public System.Action<ItemSlot, bool> onHover;
-    public System.Action<ItemSlot, bool> onDrag;
+    //public System.Action<ItemSlot, bool> onDrag;
 
     public Image icon;
     public Text numText;
     public int id = 0;
     public bool showHotkeyLabel = false;
-    public SlotTypes slotType = SlotTypes.Backpack;
+    public ItemTypes slotType = ItemTypes.Frog;
 
     public Item ItemInSlot { get; private set; }
 
@@ -51,9 +46,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2 && onDblClick != null)
+        if (onClick != null)
         {
-            onDblClick(this);
+            onClick(this);
         }
     }
 
@@ -71,25 +66,5 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             onHover(this, false);
         }
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (onDrag != null)
-        {
-            onDrag(this, true);
-        }
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (onDrag != null)
-        {
-            onDrag(this, false);
-        }
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
     }
 }
