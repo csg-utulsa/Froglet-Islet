@@ -9,11 +9,16 @@ using UnityEngine;
 
 public class Frog : MonoBehaviour, IInteractable
 {
+    
+
     public FrogData frogData;
+
+    
 
     public bool canInteract = true;
 
     private RhythmGameManager rhythmGameManager;
+
 
     void Awake()
     {
@@ -22,8 +27,30 @@ public class Frog : MonoBehaviour, IInteractable
     }
     
     public void OnInteract(){
-        if(canInteract){
+        if(canInteract)
+        {
+            //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
+            //if (CheckInventoryForItem())
+                //Interact with frog
             rhythmGameManager.StartRhythmGame(this);
         }
     }
+
+    //Checks the player's inventory for items needed to interact with the frog.
+    private bool CheckInventoryForItem()
+    {
+        //Get reference to the player's inventory
+        //for each item in the player's inventory:
+        {
+            //if an item is found that matches the tollItem, the frog can be interacted with
+                //return true;
+        }
+        //If the end of the loop has been reached and the item does not exist, then we cannot interact with the frog.
+            //return false;
+
+
+        //This return true line only exists so the code doesn't have a fit
+        return true;
+    }
+
 }
