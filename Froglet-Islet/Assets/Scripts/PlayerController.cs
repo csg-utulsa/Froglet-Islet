@@ -12,16 +12,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     Vector3 movement;
     NavMeshAgent agent;
 
     private Transform playerCamera = null;
-    [SerializeField]private float interactDist = 3f;
-
-    [SerializeField] float mouseSensitivity = 3.0f;
-
+    [SerializeField]private float interactDist = 20f;
+    [SerializeField]private float clickMovementDist = 30f;
 
     CharacterController controller = null;
     private Vector2 currentDir = Vector2.zero;
@@ -35,6 +33,13 @@ public class PlayerController : MonoBehaviour
     private Quaternion camRotation;
 
     public GameObject markerPrefab;
+
+    //
+    public GameScreen GameScreen;
+
+    // Song: set interactive object for Dialog
+    public IInteractive InteractiveObject { get; private set; }
+
     //The checkmarker exists for when a new marker may need to be made, but that depends on
     private enum MarkerState{
         NoMarker,
@@ -46,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
     private GameObject markerInstance;
     private Vector3 markerPosition;
+
+    private GameObject hoverObject;
+    private bool hasSentHover = false;
 
 
     void Start()
@@ -66,6 +74,11 @@ public class PlayerController : MonoBehaviour
                 UpdateNavMesh();
             CheckForMenuButtons();
             CreateMarker();
+        }
+        //Song: Keep checking the use function.
+        if ((InteractiveObject != null) && (InputController.Use))
+        {
+            InteractiveObject.Use();
         }
     }
 
@@ -92,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
             
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, clickMovementDist)) {
                 agent.destination = hit.point;
                 if(markerInstance != null){
                     markerInstance.GetComponent<Marker>().RemoveMarker();
@@ -115,18 +128,34 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    
     private void CheckForMenuButtons()
     {
         if (Input.GetButton("Pause"))
         {
-            GameController.gameState = GameController.GameStates.Pause;
-            GameController.gameStateChanged.Invoke();
+            //Song: change game states
+            GameController.gameState = GameStates.Pause;
+            //GameController.gameStateChanged.Invoke();
         }
         else if (Input.GetButton("Inventory"))
         {
-            GameController.gameState = GameController.GameStates.Inventory;
-            GameController.gameStateChanged.Invoke();
+            // Song: change game states
+            GameController.gameState = GameStates.Inventory;
+            //GameController.gameStateChanged.Invoke();
         }
+    }
+    // Song: change the trigger for checking interact object
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        InteractiveObject = other.gameObject.GetComponent(typeof(IInteractive)) as IInteractive;
+        if (InteractiveObject != null && InteractiveObject.IsActive == false) InteractiveObject = null;
+        if (InteractiveObject != null && InteractiveObject.Action == InteractiveAction.Show)
+        {
+            GameScreen.timeRemaining = 5;
+        }
+        //Song: active the item
+        
     }
 
     public bool CanInteract(){
@@ -135,14 +164,32 @@ public class PlayerController : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, interactDist)){
             if(hit.collider.CompareTag("Interactable")){
+                if(hoverObject == null){
+                    hoverObject = hit.collider.gameObject;
+                    hasSentHover = false;
+                } else if(hoverObject != hit.collider.gameObject){
+                    hoverObject.SendMessage("OnHoverExit", SendMessageOptions.DontRequireReceiver);
+                    hoverObject = hit.collider.gameObject;     
+                }
+                if(!hasSentHover){
+                    hoverObject.SendMessage("OnHoverEnter",SendMessageOptions.DontRequireReceiver);
+                    hasSentHover = true;
+                }
                 // Debug.Log("Do you want to interact?");
                 if(Input.GetButtonDown("Fire1")){
-                    hit.collider.gameObject.SendMessage("OnInteract");
+                    hoverObject.SendMessage("OnInteract");
                     return true;
                 }
                 
+            } else if(hoverObject != null){
+                hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+                hoverObject = null;
             }
+        } else if(hoverObject != null){
+            hoverObject.SendMessage("OnHoverExit",SendMessageOptions.DontRequireReceiver);
+            hoverObject = null;
         }
+        
         return false;
     }
 }

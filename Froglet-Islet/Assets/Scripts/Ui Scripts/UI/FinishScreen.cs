@@ -5,7 +5,6 @@ public class FinishScreen : Form
     public Text titleText;
     public Text Credits;
     public Button restartButton;
-    public Image deathEffect;
    
     void Awake()
     {
