@@ -9,7 +9,9 @@ public class MainMenuControllerScript : MonoBehaviour
     List<GameObject> mainViewObjects = new List<GameObject>();
     public GameObject creditsViewObjectsParent;
     List<GameObject> creditsViewObjects = new List<GameObject>();
-    
+    public GameObject helpViewObjectsParent;
+    List<GameObject> helpViewObjects = new List<GameObject>();
+
     public CreditsScript creditsS;
 
     private void Awake()
@@ -18,6 +20,8 @@ public class MainMenuControllerScript : MonoBehaviour
             mainViewObjects.Add(t.gameObject);
         foreach (Transform t in creditsViewObjectsParent.GetComponentsInChildren<Transform>())
             creditsViewObjects.Add(t.gameObject);
+        foreach (Transform t in helpViewObjectsParent.GetComponentsInChildren<Transform>())
+            helpViewObjects.Add(t.gameObject);
     }
 
     // Start is called before the first frame update
@@ -50,6 +54,10 @@ public class MainMenuControllerScript : MonoBehaviour
                 {
                         o.SetActive(false);
                 }
+                foreach (GameObject o in helpViewObjects)
+                {
+                    o.SetActive(false);
+                }
                 break;
 
             case 1:
@@ -58,6 +66,25 @@ public class MainMenuControllerScript : MonoBehaviour
                     o.SetActive(false);
                 }
                 foreach (GameObject o in creditsViewObjects)
+                {
+                    o.SetActive(true);
+                }
+                foreach (GameObject o in helpViewObjects)
+                {
+                    o.SetActive(false);
+                }
+                creditsS.RunCredits();
+                break;
+            case 2:
+                foreach (GameObject o in mainViewObjects)
+                {
+                    o.SetActive(false);
+                }
+                foreach (GameObject o in creditsViewObjects)
+                {
+                    o.SetActive(false);
+                }
+                foreach (GameObject o in helpViewObjects)
                 {
                     o.SetActive(true);
                 }
