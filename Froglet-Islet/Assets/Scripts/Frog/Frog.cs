@@ -23,7 +23,7 @@ public class Frog : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
+        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
         {
             //Interact with frog
             rhythmGameManager.StartRhythmGame(this);
