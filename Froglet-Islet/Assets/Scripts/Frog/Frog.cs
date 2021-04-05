@@ -28,14 +28,14 @@ public class Frog : MonoBehaviour, IInteractable
         if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
         {
             //Interact with frog
-            gamescreen.ShowMessage(frogData.tollItem.name + " have been used.");
+            gamescreen.ShowMessage(frogData.tollItem + " have been used.");
 
             rhythmGameManager.StartRhythmGame(this);
         }
         else
         {
             //Display that the player does not have the required item
-            gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem.name + "?" );
+            gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
         }
     }
 }
