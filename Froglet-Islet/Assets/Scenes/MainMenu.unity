@@ -2548,7 +2548,7 @@ GameObject:
   - component: {fileID: 1416531583}
   m_Layer: 0
   m_Name: AudioController
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2567,8 +2567,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1406810344}
   musicSource: {fileID: 59497032}
-  audioClipNames: []
-  audioClips: []
+  audioClipNames:
+  - WhipCrack
+  audioClips:
+  - {fileID: 8300000, guid: ff7746aa716bae048ad4b94237a10e80, type: 3}
 --- !u!4 &1416531584
 Transform:
   m_ObjectHideFlags: 0
