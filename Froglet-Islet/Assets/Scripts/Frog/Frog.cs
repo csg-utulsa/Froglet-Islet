@@ -13,8 +13,6 @@ public class Frog : MonoBehaviour, IInteractable
 
     private RhythmGameManager rhythmGameManager;
 
-    public GameScreen gamescreen;
-
 
     void Awake()
     {
@@ -25,17 +23,10 @@ public class Frog : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
+        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
         {
             //Interact with frog
-            gamescreen.ShowMessage(frogData.tollItem + " have been used.");
-
             rhythmGameManager.StartRhythmGame(this);
-        }
-        else
-        {
-            //Display that the player does not have the required item
-            gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
         }
     }
 }
