@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1474919690230137006}
   - component: {fileID: 1474919690230137007}
   - component: {fileID: 1474919690230136992}
+  - component: {fileID: 691578946}
+  - component: {fileID: 691578947}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -69,6 +71,7 @@ MonoBehaviour:
   clickMovementDist: 30
   markerPrefab: {fileID: 2652674235715389074, guid: 2a40733319aa5b049bf5295d1882899d,
     type: 3}
+  GameScreen: {fileID: 0}
 --- !u!195 &1474919690230136992
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -91,6 +94,34 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &691578946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474919690230137004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699d8c6ebf34d004abb1e2753bed1bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotsCount: 13
+  items: []
+  inventoryScreen: {fileID: 0}
+  gameScreen: {fileID: 0}
+--- !u!114 &691578947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474919690230137004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61b550cd17e6fb42af34e45f9b5a1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1474919690559649753
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d34dbfaaedf70943a5e16ea80618b64, type: 2}
+  - {fileID: 2100000, guid: 44d710893c2fcc04c8c0c09855dd5e16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
