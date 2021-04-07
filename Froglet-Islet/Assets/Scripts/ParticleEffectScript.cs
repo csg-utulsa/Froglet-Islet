@@ -5,7 +5,7 @@ using UnityEngine;
 public class ParticleEffectScript : MonoBehaviour
 {
     public ParticleSystem[] ps;
-    bool rising;
+    bool rising; // NOT for rainbow rise, for green swirl
     const float RISE_SPEED = 0.01f;
     float frameNormalizer;
 
@@ -29,11 +29,23 @@ public class ParticleEffectScript : MonoBehaviour
         }
     }
 
-    public void GreenRiseEffect()
+    public void GreenSwirlEffect()
     {
         ps[0].transform.localPosition = new Vector3(0,-0.5f,0);
         ps[0].Play();
         rising = true;
+    }
+
+    public void RainbowRiseEffect()
+    {
+        ps[1].Play();
+        StartCoroutine("DelayEndEffect");
+    }
+
+    IEnumerator DelayEndEffect()
+    {
+        yield return new WaitForSeconds(0.7f);
+        EndEffect();
     }
 
     private void EndEffect()
