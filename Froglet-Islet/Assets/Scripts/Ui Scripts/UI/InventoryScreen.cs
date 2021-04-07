@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class InventoryScreen : Form
 {
     public ItemSlot[] slots;
-    public ItemSlot dropSlot;
+    public EquippedItemScript equippedItemScript;
+    public GameScreen gameScreen;
 
     public Text hintText;
     public Image dragIcon;
@@ -15,28 +16,18 @@ public class InventoryScreen : Form
 
     void Start()
     {
-        
         hintText.text = "";
-
-        dropSlot.onHover += OnSlotHover;
 
         foreach (ItemSlot itemSlot in slots)
         {
             itemSlot.onHover += OnSlotHover;
-        }
-        foreach (ItemSlot itemSlot in UIController.Instance.gameScreen.slots)
-        {
-            itemSlot.onHover += OnSlotHover;
+            itemSlot.onClick += OnSlotClick;
         }
     }
 
     void Update()
     {
         if (IsShown == false) return;
-
-        //wait for player information
-        //PlayerController player = PlayerController.Instance;
-
 
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rootPanel.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
@@ -45,10 +36,40 @@ public class InventoryScreen : Form
             dragIcon.transform.parent.GetComponent<RectTransform>().anchoredPosition = localPoint;
         }
 
-        
-        foreach (ItemSlot slot in slots)
+        foreach (Item item in InventoryController.Instance.items)
         {
-            slot.SetItem(InventoryController.Instance.Items[slot.id]);
+            if (item != null)
+            {
+                bool isAlreadyInInventory = false;
+                foreach (ItemSlot itemSlot in slots)
+                {
+                    if (itemSlot.ItemInSlot != null && itemSlot.ItemInSlot.name == item.name)
+                    {
+                        itemSlot.SetItem(item);
+                        isAlreadyInInventory = true;
+                        break;
+                    }
+                }
+
+                if (!isAlreadyInInventory)
+                {
+                    foreach (ItemSlot itemSlot in slots)
+                    {
+                        if (itemSlot.slotType == item.itemType && itemSlot.ItemInSlot == null)
+                        {
+                            itemSlot.SetItem(item);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        foreach (ItemSlot itemSlot in slots)
+        {
+            if (!InventoryController.Instance.items.Contains(itemSlot.ItemInSlot))
+            {
+                itemSlot.SetItem(null);
+            }
         }
     }
 
@@ -59,12 +80,21 @@ public class InventoryScreen : Form
         dragIcon.gameObject.SetActive(false);
     }
 
+    private void OnSlotClick(ItemSlot slot)
+    {
+        if (slot.ItemInSlot != null)
+        {
+            equippedItemScript.EquipItem(slot.ItemInSlot.name);
+            gameScreen.ShowMessage("Equipped " + slot.ItemInSlot.name);
+        }
+    }
+
     private void OnSlotHover(ItemSlot slot, bool state)
     {
         if (state == true)
         {
             hoveredSlot = slot;
-            if (slot.ItemInSlot != null) hintText.text = slot.ItemInSlot.name + slot.ItemInSlot.description;
+            if (slot.ItemInSlot != null) hintText.text = slot.ItemInSlot.name + "\n" + slot.ItemInSlot.description;
         }
         else
         {

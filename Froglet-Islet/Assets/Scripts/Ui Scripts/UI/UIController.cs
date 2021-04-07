@@ -5,33 +5,55 @@ public class UIController : Singleton<UIController>
     public PauseScreen pauseScreen;
     public GameScreen gameScreen;
     public FinishScreen finishScreen;
-    public JournalScreen journalScreen;
+    public DialogScreen dialogScreen;
     public InventoryScreen InventoryScreen;
 
     void Awake()
     {
-        //wait for actual game controller
-        GameController.gameStateChanged.AddListener(OnGameStateChanged);
+        //GameController.gameStateChanged.AddListener(OnGameStateChanged);
+        
+        GameController.Instance.onStateChanged += OnGameStateChanged;
+    }
+    void Update()
+    {
+        if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (GameController.Instance.GameState == GameStates.Game)
+                {
+                    GameController.Instance.GameState = GameStates.Pause;
+                }
+                else if (GameController.Instance.GameState == GameStates.Pause)
+                {
+                    GameController.Instance.GameState = GameStates.Game;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                if (GameController.Instance.GameState == GameStates.Game)
+                {
+                    GameController.Instance.GameState = GameStates.Inventory;
+                }
+                else if (GameController.Instance.GameState == GameStates.Inventory)
+                {
+                    GameController.Instance.GameState = GameStates.Game;
+                }
+            }
+        }
+    }
+    void OnGameStateChanged(GameStates state)
+    {
+        
+        pauseScreen.SetState(state == GameStates.Pause);
+        gameScreen.SetState(state == GameStates.Game || state == GameStates.Inventory);
+        finishScreen.SetState(state == GameStates.Finish);
+        dialogScreen.SetState(state == GameStates.Dialog);
+        InventoryScreen.SetState(state == GameStates.Inventory);
     }
 
-    void OnGameStateChanged()
-    {
-        if (GameController.gameState == GameController.GameStates.Game)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        pauseScreen.SetState(GameController.gameState == GameController.GameStates.Pause);
-        gameScreen.SetState(GameController.gameState == GameController.GameStates.Game || GameController.gameState == GameController.GameStates.Inventory);
-        finishScreen.SetState(GameController.gameState == GameController.GameStates.Finish);
-        journalScreen.SetState(GameController.gameState == GameController.GameStates.Dialog);
-        InventoryScreen.SetState(GameController.gameState == GameController.GameStates.Inventory);
-    }
+    
 
     public void ShowError(string error)
     {
