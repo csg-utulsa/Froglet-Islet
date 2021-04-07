@@ -16,30 +16,32 @@ public class UIController : Singleton<UIController>
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (!GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().gameActive)
         {
-            if (GameController.Instance.GameState == GameStates.Game)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                GameController.Instance.GameState = GameStates.Pause;
+                if (GameController.Instance.GameState == GameStates.Game)
+                {
+                    GameController.Instance.GameState = GameStates.Pause;
+                }
+                else if (GameController.Instance.GameState == GameStates.Pause)
+                {
+                    GameController.Instance.GameState = GameStates.Game;
+                }
             }
-            else if (GameController.Instance.GameState == GameStates.Pause)
-            {
-                GameController.Instance.GameState = GameStates.Game;
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (GameController.Instance.GameState == GameStates.Game)
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                GameController.Instance.GameState = GameStates.Inventory;
-            }
-            else if (GameController.Instance.GameState == GameStates.Inventory)
-            {
-                GameController.Instance.GameState = GameStates.Game;
+                if (GameController.Instance.GameState == GameStates.Game)
+                {
+                    GameController.Instance.GameState = GameStates.Inventory;
+                }
+                else if (GameController.Instance.GameState == GameStates.Inventory)
+                {
+                    GameController.Instance.GameState = GameStates.Game;
+                }
             }
         }
-        
     }
     void OnGameStateChanged(GameStates state)
     {

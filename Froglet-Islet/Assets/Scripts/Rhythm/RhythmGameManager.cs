@@ -133,6 +133,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         observedFrog = f;
 
+        if (GameController.Instance.GameState == GameStates.Inventory)
+            GameController.Instance.GameState = GameStates.Game;
 
         hasFluteOut = false;
         rhythmGameCanvas.gameObject.SetActive(true);
