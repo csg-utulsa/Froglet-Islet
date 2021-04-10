@@ -2966,12 +2966,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDist: 3
-  mouseSensitivity: 3
-  moveSmoothTime: 0.3
-  mouseSmoothTime: 0.03
-  walkSpeed: 6
-  pushPower: 2
-  gravity: -13
+  clickMovementDist: 30
+  markerPrefab: {fileID: 0}
+  GameScreen: {fileID: 0}
 --- !u!143 &1040326693
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3893,21 +3890,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f3686c8d5394c47a559a2daff5bcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogName: RealFrog
-  frogSpecies: ActualFrogs
-  frogGenus: FrogusRealitus
-  frogID: 0
-  frogMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
-  frogModel: {fileID: 0}
-  frogCollected: 0
-  frogMelody:
-    tempo: 120
-    subdivision: 0
-    lowestNote:
-      noteOffset: 0
-      octave: 4
-    rhythm: 1313
-  frogCry: {fileID: 8300000, guid: 8ca9a6e8519ff9b4eb5df3723d5edba2, type: 3}
+  frogData:
+    frogName: 
+    frogSpecies: 
+    frogGenus: 
+    frogID: 0
+    frogSprite: {fileID: 0}
+    frogMaterial: {fileID: 0}
+    frogModel: {fileID: 0}
+    frogCollected: 0
+    frogMelody:
+      tempo: 120
+      subdivision: 0
+      lowestNote:
+        noteOffset: 0
+        octave: 4
+      rhythm: 
+    frogCry: {fileID: 0}
+    itemDrop:
+      id: 
+      name: 
+      description: 
+      icon: {fileID: 0}
+      itemType: 0
+      itemFunction:
+        m_PersistentCalls:
+          m_Calls: []
   canInteract: 1
 --- !u!65 &1515386119
 BoxCollider:

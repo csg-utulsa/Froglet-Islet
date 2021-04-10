@@ -4,14 +4,8 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public enum SlotTypes
-    {
-        Frog = 0,
-        Tools = 1,
-        Flute = 2
-    }
 
-    public System.Action<ItemSlot> onDblClick;
+    public System.Action<ItemSlot> onClick;
     public System.Action<ItemSlot, bool> onHover;
     //public System.Action<ItemSlot, bool> onDrag;
 
@@ -19,7 +13,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public Text numText;
     public int id = 0;
     public bool showHotkeyLabel = false;
-    public SlotTypes slotType = SlotTypes.Frog;
+    public ItemTypes slotType = ItemTypes.Frog;
 
     public Item ItemInSlot { get; private set; }
 
@@ -52,9 +46,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2 && onDblClick != null)
+        if (onClick != null)
         {
-            onDblClick(this);
+            onClick(this);
         }
     }
 
@@ -64,7 +58,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             onHover(this, true);
         }
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -73,6 +66,5 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             onHover(this, false);
         }
-
     }
 }
