@@ -98,7 +98,7 @@ public class PlayerController : Singleton<PlayerController>
         
     }
 
-    //I am putting this in player for now, but we may want to move it.
+   
 
 
     void UpdateNavMesh() {

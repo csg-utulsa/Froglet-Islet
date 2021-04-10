@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class UIController : Singleton<UIController>
 {
     public PauseScreen pauseScreen;
@@ -20,6 +21,7 @@ public class UIController : Singleton<UIController>
         {
             if (Input.GetKeyDown(KeyCode.P))
             {
+                SoundFXController.Instance.Play(5);
                 if (GameController.Instance.GameState == GameStates.Game)
                 {
                     GameController.Instance.GameState = GameStates.Pause;
@@ -32,6 +34,7 @@ public class UIController : Singleton<UIController>
 
             if (Input.GetKeyDown(KeyCode.I))
             {
+                SoundFXController.Instance.Play(1);
                 if (GameController.Instance.GameState == GameStates.Game)
                 {
                     GameController.Instance.GameState = GameStates.Inventory;
