@@ -1,7 +1,5 @@
 ﻿//made by Sam Locicero
 
-//Last Modified by Logan Edmund on 2/3/21
-//  - Added basic debug functionality to StopRhythmGame
 
 
 using System;
@@ -135,6 +133,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         observedFrog = f;
 
+        if (GameController.Instance.GameState == GameStates.Inventory)
+            GameController.Instance.GameState = GameStates.Game;
 
         hasFluteOut = false;
         rhythmGameCanvas.gameObject.SetActive(true);
