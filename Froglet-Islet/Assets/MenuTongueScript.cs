@@ -13,9 +13,13 @@ public class MenuTongueScript : MonoBehaviour
 
     float zRotation;
 
+    AudioControllerScript audioS;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioS = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
+
         image = GetComponent<Image>();
         image.enabled = false;
         rectTran = GetComponent<RectTransform>();
@@ -31,6 +35,7 @@ public class MenuTongueScript : MonoBehaviour
     {
         tran2 = t;
 
+        audioS.PlaySound("WhipCrack");
         adjustedTran1 = new Vector2(tran1.anchoredPosition.x + 13f, tran1.anchoredPosition.y + 43f);
         adjustedTran2 = new Vector2(tran2.anchoredPosition.x, tran2.anchoredPosition.y + 334f);
         rectTran.sizeDelta = new Vector2(24f, Vector2.Distance(tran1.anchoredPosition, adjustedTran2));
