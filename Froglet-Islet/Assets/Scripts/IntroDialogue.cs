@@ -36,7 +36,7 @@ public class IntroDialogue : MonoBehaviour
                 sfxPlayer.PlayOneShot(frogSounds, 1f);
                 break;
             case 4:
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("PlayerPlayground");
                 break;
         }
     }
