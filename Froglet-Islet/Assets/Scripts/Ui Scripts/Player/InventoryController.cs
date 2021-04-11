@@ -16,7 +16,7 @@ public class InventoryController : Singleton<InventoryController>
     {
         items = new List<Item>(new Item[slotsCount]);
         itemStacks = new Dictionary<string, int>();
-        AddItem(new Flute());
+        //AddItem(new Flute());
     }
 
     public bool AddItem(Item item)

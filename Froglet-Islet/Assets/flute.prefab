@@ -326,9 +326,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6935253533885212224}
   - component: {fileID: -7056525207942942299}
+  - component: {fileID: 136342093457004435}
   m_Layer: 0
   m_Name: flute
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 7743140165592317178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -588.2208, y: 4.402318, z: 38.434677}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 2370040080189225903}
   - {fileID: 1132581303573537170}
@@ -364,6 +365,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f777c2a0e0e004343832e9747f47eb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barrier: {fileID: 0}
+--- !u!136 &136342093457004435
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743140165592317178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.1}
 --- !u!1 &8506254445897461495
 GameObject:
   m_ObjectHideFlags: 0
