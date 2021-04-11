@@ -7,18 +7,26 @@ public class CollectableFluteScript : MonoBehaviour, IInteractable
 {
 
     public NavMeshObstacle barrier;
-    //GameScreen gameScreenS;
+    GameScreen gameScreenS;
     MeshRenderer[] allMR;
     Collider collider;
     InventoryController icS;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider>();
         allMR = GetComponentsInChildren<MeshRenderer>();
-        //gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
+        gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
         icS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InventoryController>();
+        StartCoroutine("DelayPickupFluteHint");
+    }
+
+    IEnumerator DelayPickupFluteHint()
+    {
+        yield return new WaitForSeconds(0.01f);
+        gameScreenS.ShowMessage("Pick up the flute. You'll need it to collect frogs!");
     }
 
     // Update is called once per frame
@@ -30,7 +38,6 @@ public class CollectableFluteScript : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         barrier.enabled = false;
-        //gameScreenS.ShowMessage("Collected flute!");
         icS.AddItem(new Flute());
         foreach (MeshRenderer mr in allMR)
             mr.enabled = false;

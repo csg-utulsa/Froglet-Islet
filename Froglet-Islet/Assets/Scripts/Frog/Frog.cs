@@ -12,21 +12,32 @@ public class Frog : MonoBehaviour, IInteractable
     public FrogData frogData;
 
     private RhythmGameManager rhythmGameManager;
+    InventoryController icS;
+    GameScreen gameScreenS;
 
 
     void Awake()
     {
+        gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
+        icS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InventoryController>();
         rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
         gameObject.GetComponent<MeshRenderer>().material = frogData.frogMaterial;
     }
     
     public void OnInteract()
     {
-        //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
+        if (icS.FindItem("FluteBase") != null)
         {
-            //Interact with frog
-            rhythmGameManager.StartRhythmGame(this);
+            //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
+            if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
+            {
+                //Interact with frog
+                rhythmGameManager.StartRhythmGame(this);
+            }
+        }
+        else
+        {
+            gameScreenS.ShowMessage("Missing flute!");
         }
     }
 }
