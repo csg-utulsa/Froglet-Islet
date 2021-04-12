@@ -46,6 +46,15 @@ public class InventoryScreen : Form
                     if (itemSlot.ItemInSlot != null && itemSlot.ItemInSlot.name == item.name)
                     {
                         itemSlot.SetItem(item);
+                        if (InventoryController.Instance.itemStacks[item.name] > 1)
+                        {
+                            itemSlot.numText.gameObject.SetActive(true);
+                            itemSlot.numText.text = InventoryController.Instance.itemStacks[item.name].ToString();
+                        }
+                        else
+                        {
+                            itemSlot.numText.gameObject.SetActive(false);
+                        }
                         isAlreadyInInventory = true;
                         break;
                     }
@@ -58,6 +67,15 @@ public class InventoryScreen : Form
                         if (itemSlot.slotType == item.itemType && itemSlot.ItemInSlot == null)
                         {
                             itemSlot.SetItem(item);
+                            if (InventoryController.Instance.itemStacks[item.name] > 1)
+                            {
+                                itemSlot.numText.gameObject.SetActive(true);
+                                itemSlot.numText.text = InventoryController.Instance.itemStacks[item.name].ToString();
+                            }
+                            else
+                            {
+                                itemSlot.numText.gameObject.SetActive(false);
+                            }
                             break;
                         }
                     }
@@ -69,6 +87,7 @@ public class InventoryScreen : Form
             if (!InventoryController.Instance.items.Contains(itemSlot.ItemInSlot))
             {
                 itemSlot.SetItem(null);
+                itemSlot.numText.gameObject.SetActive(false);
             }
         }
     }
