@@ -18,6 +18,7 @@ public class GameScreen : Form
     {
         showMessage.gameObject.SetActive(false);
         timeRemaining = 0;
+        useText.gameObject.SetActive(false);
     }
     void Update()
     {

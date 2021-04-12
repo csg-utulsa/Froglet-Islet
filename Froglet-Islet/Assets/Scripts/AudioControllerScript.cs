@@ -42,9 +42,10 @@ public class AudioControllerScript : MonoBehaviour
 			{
 				sfxSource.PlayOneShot(audioClips[i]);
 				audioClipPlayed[i] = true;
+				found = true;
 				break;
 			}
-			found = true;
+			
 		}
 		if (!found)
 			Debug.Log("ERROR! INVALID STRING FOR PLAYSOUND()!!!");
@@ -65,9 +66,10 @@ public class AudioControllerScript : MonoBehaviour
 			{
 				aSource.volume = sfxVolume;
 				aSource.PlayOneShot(audioClips[i]);
+				found = true;
 				break;
 			}
-			found = true;
+			
 		}
 		if (!found)
 			Debug.Log("ERROR! INVALID STRING FOR PLAYSOUNDCUSTOM()!!!");
