@@ -16,8 +16,11 @@ public class Frog : MonoBehaviour, IInteractable
     GameScreen gameScreenS;
     Animator animator;
 
+    ParticleEffectScript particleEffectS;
+
     void Awake()
     {
+        particleEffectS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleEffectScript>();
         animator = GetComponentInChildren<Animator>();
         gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
         icS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InventoryController>();
@@ -37,6 +40,8 @@ public class Frog : MonoBehaviour, IInteractable
             //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
             if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
             {
+                if(frogData.tollItem.name != "")
+                    particleEffectS.RainbowRiseEffect();
                 //Interact with frog
                 rhythmGameManager.StartRhythmGame(this);
             }
