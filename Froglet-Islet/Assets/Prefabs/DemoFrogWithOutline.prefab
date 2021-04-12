@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6483189543532917434}
   - component: {fileID: 6483189543532917437}
   - component: {fileID: 6483189543532917436}
-  - component: {fileID: 6483189543532917414}
+  - component: {fileID: 3536766502347848148}
   m_Layer: 0
   m_Name: DemoFrogWithOutline
   m_TagString: Interactable
@@ -114,15 +114,8 @@ MonoBehaviour:
     frogSpecies: 
     frogGenus: 
     frogID: 0
-    tollItem:
-      id: 
-      name: 
-      description: 
-      icon: {fileID: 0}
-      itemType: 0
-      itemFunction:
-        m_PersistentCalls:
-          m_Calls: []
+    tollItem: 
+    consumeTollItem: 0
     frogSprite: {fileID: 0}
     frogMaterial: {fileID: 0}
     frogModel: {fileID: 0}
@@ -144,6 +137,7 @@ MonoBehaviour:
       itemFunction:
         m_PersistentCalls:
           m_Calls: []
+  gamescreen: {fileID: 0}
 --- !u!208 &6483189543532917436
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -160,7 +154,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &6483189543532917414
+--- !u!114 &3536766502347848148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,11 +163,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6483189543532917439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3dc04759391a5244a3c45800ffc2397, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ba002d17ada21f47ba934e5c7d9b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shownOutlineWidth: 0.001
-  outlineColor: {r: 1, g: 0.51563454, b: 0.023584902, a: 1}
+  shownOutlineWidth: 0.01
+  outlineColor: {r: 1, g: 0.23529412, b: 0, a: 1}
   showOutlineForChildren: 1
   outlineIsOn: 0
 --- !u!95 &1036284658130358704
