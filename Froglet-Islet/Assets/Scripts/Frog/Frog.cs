@@ -14,16 +14,22 @@ public class Frog : MonoBehaviour, IInteractable
     private RhythmGameManager rhythmGameManager;
     InventoryController icS;
     GameScreen gameScreenS;
-
+    Animator animator;
 
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
         icS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InventoryController>();
         rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
         gameObject.GetComponent<MeshRenderer>().material = frogData.frogMaterial;
     }
-    
+
+    void Start()
+    {
+        
+    }
+
     public void OnInteract()
     {
         if (icS.FindItem("FluteBase") != null)
@@ -39,5 +45,17 @@ public class Frog : MonoBehaviour, IInteractable
         {
             gameScreenS.ShowMessage("Missing flute!");
         }
+    }
+
+    public void JumpAnimation()
+    {
+        animator.SetBool("jumping", true);
+        StartCoroutine("DelayEndJumpingState");
+    }
+
+    IEnumerator DelayEndJumpingState()
+    {
+        yield return new WaitForSeconds(0.01f);
+        animator.SetBool("jumping", false);
     }
 }
