@@ -16,7 +16,10 @@ public class Frog : MonoBehaviour, IInteractable
     GameScreen gameScreenS;
     Animator animator;
 
+    public GameScreen gamescreen;
+
     ParticleEffectScript particleEffectS;
+
 
     void Awake()
     {
@@ -37,18 +40,23 @@ public class Frog : MonoBehaviour, IInteractable
     {
         if (icS.FindItem("FluteBase") != null)
         {
-            //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-            if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem.name) || frogData.tollItem.name == "")
+        //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
+            if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
             {
-                if(frogData.tollItem.name != "")
+                if(frogData.tollItem != "")
                     particleEffectS.RainbowRiseEffect();
                 //Interact with frog
-                rhythmGameManager.StartRhythmGame(this);
+                
+                    //gamescreen.ShowMessage(frogData.tollItem + " have been used.");
+
+                    rhythmGameManager.StartRhythmGame(this);
             }
         }
         else
         {
+            //Display that the player does not have the required item
             gameScreenS.ShowMessage("Missing flute!");
+            //gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
         }
     }
 

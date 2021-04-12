@@ -113,7 +113,7 @@ public class InventoryScreen : Form
         if (state == true)
         {
             hoveredSlot = slot;
-            if (slot.ItemInSlot != null) hintText.text = slot.ItemInSlot.name + slot.ItemInSlot.description;
+            if (slot.ItemInSlot != null) hintText.text = slot.ItemInSlot.name + "\n" + slot.ItemInSlot.description;
         }
         else
         {
