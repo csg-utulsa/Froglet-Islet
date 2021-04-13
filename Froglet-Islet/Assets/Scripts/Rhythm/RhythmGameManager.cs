@@ -34,9 +34,13 @@ public class RhythmGameManager : MonoBehaviour
 
     AudioControllerScript audioController;
 
+    ParticleEffectScript particleEffectS;
+
     // Start is called before the first frame update
     void Start()
     {
+        particleEffectS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleEffectScript>();
+
         if(src == null)
             src = GetComponent<AudioSource>();
 
@@ -171,6 +175,7 @@ public class RhythmGameManager : MonoBehaviour
                 Debug.Log("Completed Frog's name from frogData: " + observedFrog.frogData.frogName);
 
                 //Give the player their rewards based on the frogData
+                particleEffectS.GreenSwirlEffect();
                 InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
             }
         }

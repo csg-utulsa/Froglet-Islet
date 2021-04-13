@@ -12,30 +12,63 @@ public class Frog : MonoBehaviour, IInteractable
     public FrogData frogData;
 
     private RhythmGameManager rhythmGameManager;
+    InventoryController icS;
+    GameScreen gameScreenS;
+    Animator animator;
 
     public GameScreen gamescreen;
+
+    ParticleEffectScript particleEffectS;
 
 
     void Awake()
     {
+        particleEffectS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleEffectScript>();
+        animator = GetComponentInChildren<Animator>();
+        gameScreenS = GameObject.Find("UI").GetComponentInChildren<GameScreen>();
+        icS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InventoryController>();
         rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
         gameObject.GetComponent<MeshRenderer>().material = frogData.frogMaterial;
     }
-    
+
+    void Start()
+    {
+        
+    }
+
     public void OnInteract()
     {
-        //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-        if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
+        if (icS.FindItem("FluteBase") != null)
         {
-            //Interact with frog
-            gamescreen.ShowMessage(frogData.tollItem + " have been used.");
+        //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
+            if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
+            {
+                if(frogData.tollItem != "")
+                    particleEffectS.RainbowRiseEffect();
+                //Interact with frog
+                
+                    //gamescreen.ShowMessage(frogData.tollItem + " have been used.");
 
-            rhythmGameManager.StartRhythmGame(this);
+                    rhythmGameManager.StartRhythmGame(this);
+            }
         }
         else
         {
             //Display that the player does not have the required item
-            gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
+            gameScreenS.ShowMessage("Missing flute!");
+            //gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
         }
+    }
+
+    public void JumpAnimation()
+    {
+        animator.SetBool("jumping", true);
+        StartCoroutine("DelayEndJumpingState");
+    }
+
+    IEnumerator DelayEndJumpingState()
+    {
+        yield return new WaitForSeconds(0.01f);
+        animator.SetBool("jumping", false);
     }
 }
