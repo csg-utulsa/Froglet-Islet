@@ -34,6 +34,7 @@ public class ParticleEffectScript : MonoBehaviour
         ps[0].transform.localPosition = new Vector3(0,-0.5f,0);
         ps[0].Play();
         rising = true;
+        Invoke("EndEffect",2);
     }
 
     public void RainbowRiseEffect()
