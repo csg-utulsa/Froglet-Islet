@@ -25,7 +25,7 @@ public class EquippedItemScript : MonoBehaviour
     }
 
     public void CheckConsumable(string f)
-    {
+    {/*
         switch (f)
         {
             case "seeds":
@@ -63,7 +63,7 @@ public class EquippedItemScript : MonoBehaviour
             default:
                 print("non-consumable used");
                 break;
-        }
+        }*/
     }
 
     /*

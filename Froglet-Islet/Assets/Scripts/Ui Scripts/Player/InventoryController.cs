@@ -16,7 +16,7 @@ public class InventoryController : Singleton<InventoryController>
     {
         items = new List<Item>(new Item[slotsCount]);
         itemStacks = new Dictionary<string, int>();
-        AddItem(new Flute());
+        //AddItem(new Flute());
     }
 
     public bool AddItem(Item item)
@@ -44,6 +44,9 @@ public class InventoryController : Singleton<InventoryController>
         return false;
     }
 
+    /*
+     * Find and return an item and its information in the inventory.
+     */
     public Item FindItem(string itemId)
     {
         int index = items.FindIndex(i => i != null && i.id == itemId);
@@ -54,6 +57,22 @@ public class InventoryController : Singleton<InventoryController>
         return null;
     }
 
+    /*
+     * Check if an item is in the inventory.
+     */
+    public bool CheckForItem(string itemId)
+    {
+        int index = items.FindIndex(i => i != null && i.id == itemId);
+        if (index >= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /*
+     * Check if an item is in the inventory and consume it if it is.
+     */
     public bool FindAndRemoveItem(string itemId)
     {
         foreach (string id in itemStacks.Keys)
