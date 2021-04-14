@@ -13,6 +13,8 @@ public class FrogData
 {
     //Standard name for the Frog - what the player will see during normal gameplay
     public string frogName;
+    //Description for the Frog - what the player will see in their journal
+    public string frogDescription;
     //Species handles the specific offshoot of frog
     public string frogSpecies;
     //Genus handles the overall frog type -- handles what model and behaviors the frog will have
