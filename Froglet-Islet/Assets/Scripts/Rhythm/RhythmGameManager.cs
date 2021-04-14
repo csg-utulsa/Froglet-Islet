@@ -2,6 +2,7 @@
 
 
 
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -176,6 +177,12 @@ public class RhythmGameManager : MonoBehaviour
 
                 //Give the player their rewards based on the frogData
                 particleEffectS.GreenSwirlEffect();
+                Item frogItem = new Item();
+                frogItem.name = observedFrog.frogData.frogName;
+                frogItem.description = observedFrog.frogData.frogDescription;
+                frogItem.itemType = ItemTypes.Frog;
+                frogItem.icon = observedFrog.frogData.frogSprite;
+                InventoryController.Instance.AddItem(frogItem);
                 InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
             }
         }
