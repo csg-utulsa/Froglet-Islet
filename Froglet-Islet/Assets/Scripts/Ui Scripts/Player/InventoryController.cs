@@ -27,6 +27,7 @@ public class InventoryController : Singleton<InventoryController>
             {
                 itemStacks[item.id]++;
                 gameScreen.ShowMessage("Additional " + item.name + " obtained!");
+                SoundFXController.Instance.Play(1);
                 return true;
             }
         }
@@ -38,6 +39,7 @@ public class InventoryController : Singleton<InventoryController>
             items[index] = item;
             itemStacks.Add(item.id, 1);
             gameScreen.ShowMessage(item.name + " obtained!");
+            SoundFXController.Instance.Play(1);
             return true;
         }
 
