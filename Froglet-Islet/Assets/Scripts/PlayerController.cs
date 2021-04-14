@@ -20,6 +20,7 @@ public class PlayerController : Singleton<PlayerController>
     private Transform playerCamera = null;
     [SerializeField]private float interactDist = 20f;
     [SerializeField]private float clickMovementDist = 30f;
+    [SerializeField]Animator anim;
 
     CharacterController controller = null;
     private Vector2 currentDir = Vector2.zero;
@@ -80,6 +81,10 @@ public class PlayerController : Singleton<PlayerController>
         {
             InteractiveObject.Use();
         }
+        if (ArrivedAtPosition())
+            anim.SetBool("isWalking", false);  
+        else
+            anim.SetBool("isWalking", true); 
     }
 
     void CreateMarker(){
@@ -104,7 +109,6 @@ public class PlayerController : Singleton<PlayerController>
     void UpdateNavMesh() {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
-            
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, clickMovementDist)) {
                 agent.destination = hit.point;
                 if(markerInstance != null){
@@ -120,11 +124,11 @@ public class PlayerController : Singleton<PlayerController>
 
 
     private bool ArrivedAtPosition(){
-        if(!agent.pathPending){
+        if(!agent.pathPending){ 
             if(agent.remainingDistance <= agent.stoppingDistance){
                 if(!agent.hasPath || agent.velocity.sqrMagnitude == 0f) return true;
             }
-        }
+        }  
         return false;
     }
 
