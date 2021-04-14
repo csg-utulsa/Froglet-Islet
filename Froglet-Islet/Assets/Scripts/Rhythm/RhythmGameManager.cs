@@ -182,6 +182,7 @@ public class RhythmGameManager : MonoBehaviour
                 frogItem.description = observedFrog.frogData.frogDescription;
                 frogItem.itemType = ItemTypes.Frog;
                 frogItem.icon = observedFrog.frogData.frogSprite;
+                frogItem.id = observedFrog.frogData.frogName;
                 InventoryController.Instance.AddItem(frogItem);
                 InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
             }

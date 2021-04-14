@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699d8c6ebf34d004abb1e2753bed1bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotsCount: 13
+  slotsCount: 24
   items: []
   inventoryScreen: {fileID: 0}
   gameScreen: {fileID: 0}

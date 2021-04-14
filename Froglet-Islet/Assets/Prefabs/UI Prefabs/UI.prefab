@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -397,6 +397,12 @@ MonoBehaviour:
   - {fileID: 11493940}
   - {fileID: 11460008}
   - {fileID: 11411734}
+  - {fileID: 3810963252127871739}
+  - {fileID: 735628697214855472}
+  - {fileID: 1780789799352250022}
+  - {fileID: 7451464176252772302}
+  - {fileID: 4152867581422677209}
+  - {fileID: 3427247221983725432}
   - {fileID: 11463952}
   - {fileID: 11496554}
   - {fileID: 11486324}
@@ -405,10 +411,16 @@ MonoBehaviour:
   - {fileID: 11486724}
   - {fileID: 11488718}
   - {fileID: 11405586}
+  - {fileID: 6993758268579032582}
+  - {fileID: 6802261774556357922}
+  - {fileID: 34412480699647503}
+  - {fileID: 1566121424648680596}
+  - {fileID: 1868151178991019181}
+  - {fileID: 1895630731600724985}
   equippedItemScript: {fileID: 0}
   gameScreen: {fileID: 0}
   hintText: {fileID: 11435268}
-  dragIcon: {fileID: 11471890}
+  largeItemIcon: {fileID: 0}
   defaultTextColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   highlightTextColor: {r: 0, g: 0.72794116, b: 0, a: 1}
 --- !u!1 &107028
@@ -644,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -737,7 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1293,7 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2041,7 +2053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2700,7 +2712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3914,7 +3926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.4986515, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7796,7 +7808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14705884, g: 1, b: 0.25882366, a: 1}
+  m_Color: {r: 0.6901961, g: 0.8313726, b: 0.4039216, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

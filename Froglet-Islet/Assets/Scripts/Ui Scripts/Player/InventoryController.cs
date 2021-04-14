@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryController : Singleton<InventoryController>
 {
 
-    public int slotsCount = 13;
+    public int slotsCount = 24;
     public List<Item> items;
     public Dictionary<string, int> itemStacks;
     public InventoryScreen inventoryScreen;
@@ -32,10 +32,17 @@ public class InventoryController : Singleton<InventoryController>
             }
         }
 
-        int index = items.FindIndex(i => i == null);
+        int index = -1;
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == null)
+            {
+                index = i;
+                break;
+            }
+        }
         if (index != -1)
         {
-
             items[index] = item;
             itemStacks.Add(item.id, 1);
             gameScreen.ShowMessage(item.name + " obtained!");

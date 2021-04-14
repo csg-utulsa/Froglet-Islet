@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Flute : Item
 {
-    public Flute()
+    public Flute(Sprite sprite)
     {
         id = "FluteBase";
         name = "Flute";
         description = "The starter flute.";
-        //icon = GET SPRITE FOR FLUTE HERE!
+        icon = sprite;
         itemType = ItemTypes.Flute;
     }
 }
