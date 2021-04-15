@@ -32,8 +32,9 @@ GameObject:
   - component: {fileID: 8538800746820932594}
   - component: {fileID: 8538800746820932595}
   - component: {fileID: 8538800746820932596}
-  - component: {fileID: 8538800746820932597}
   - component: {fileID: 2202857143112423581}
+  - component: {fileID: 7686058629087083466}
+  - component: {fileID: 6863964787499514134}
   m_Layer: 0
   m_Name: Tomato Frog
   m_TagString: Interactable
@@ -141,12 +142,12 @@ MonoBehaviour:
     frogModel: {fileID: 0}
     frogCollected: 0
     frogMelody:
-      tempo: 120
+      tempo: 135
       subdivision: 0
       lowestNote:
         noteOffset: 0
         octave: 4
-      rhythm: 111
+      rhythm: 13356
     frogCry: {fileID: 0}
     itemDrop:
       id: Food
@@ -158,22 +159,6 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
   gamescreen: {fileID: 0}
---- !u!208 &8538800746820932597
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8538800746820932598}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1, y: 0.5, z: 0.75}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &2202857143112423581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +175,68 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0.23529412, b: 0, a: 1}
   showOutlineForChildren: 1
   outlineIsOn: 0
+--- !u!195 &7686058629087083466
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538800746820932598}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.50000006
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 8
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6863964787499514134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538800746820932598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: 793d995c9ef1e544aaec695da297f36b, type: 2}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: 
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1001 &5987537718461067340
 PrefabInstance:
   m_ObjectHideFlags: 0

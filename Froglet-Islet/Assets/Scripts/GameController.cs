@@ -36,7 +36,7 @@ public class GameController : Singleton<GameController>
 
     void Start()
     {
-        GameState = GameStates.Pause;
+        GameState = GameStates.Game;
     }
 
     private void OnStateChanged(GameStates state)
