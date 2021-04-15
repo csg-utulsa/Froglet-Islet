@@ -8,7 +8,7 @@ public class InventoryScreen : Form
     public GameScreen gameScreen;
 
     public Text hintText;
-    public Image dragIcon;
+    public Image largeItemIcon;
     public Color defaultTextColor = Color.grey;
     public Color highlightTextColor = Color.green;
 
@@ -31,10 +31,6 @@ public class InventoryScreen : Form
 
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rootPanel.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
-        if (dragIcon.gameObject.activeSelf == true)
-        {
-            dragIcon.transform.parent.GetComponent<RectTransform>().anchoredPosition = localPoint;
-        }
 
         foreach (Item item in InventoryController.Instance.items)
         {
@@ -46,10 +42,10 @@ public class InventoryScreen : Form
                     if (itemSlot.ItemInSlot != null && itemSlot.ItemInSlot.name == item.name)
                     {
                         itemSlot.SetItem(item);
-                        if (InventoryController.Instance.itemStacks[item.name] > 1)
+                        if (InventoryController.Instance.itemStacks[item.id] > 1)
                         {
                             itemSlot.numText.gameObject.SetActive(true);
-                            itemSlot.numText.text = InventoryController.Instance.itemStacks[item.name].ToString();
+                            itemSlot.numText.text = InventoryController.Instance.itemStacks[item.id].ToString();
                         }
                         else
                         {
@@ -67,10 +63,10 @@ public class InventoryScreen : Form
                         if (itemSlot.slotType == item.itemType && itemSlot.ItemInSlot == null)
                         {
                             itemSlot.SetItem(item);
-                            if (InventoryController.Instance.itemStacks[item.name] > 1)
+                            if (InventoryController.Instance.itemStacks[item.id] > 1)
                             {
                                 itemSlot.numText.gameObject.SetActive(true);
-                                itemSlot.numText.text = InventoryController.Instance.itemStacks[item.name].ToString();
+                                itemSlot.numText.text = InventoryController.Instance.itemStacks[item.id].ToString();
                             }
                             else
                             {
@@ -96,7 +92,8 @@ public class InventoryScreen : Form
     {
         base.Show();
         hintText.text = "";
-        dragIcon.gameObject.SetActive(false);
+        largeItemIcon.sprite = null;
+        largeItemIcon.color = new Color(255, 255, 255, 0);
     }
 
     private void OnSlotClick(ItemSlot slot)
@@ -113,12 +110,19 @@ public class InventoryScreen : Form
         if (state == true)
         {
             hoveredSlot = slot;
-            if (slot.ItemInSlot != null) hintText.text = slot.ItemInSlot.name + "\n" + slot.ItemInSlot.description;
+            if (slot.ItemInSlot != null)
+            {
+                hintText.text = slot.ItemInSlot.name + "\n" + slot.ItemInSlot.description;
+                largeItemIcon.sprite = slot.ItemInSlot.icon;
+                largeItemIcon.color = new Color(255, 255, 255, 255);
+            }
         }
         else
         {
             hoveredSlot = null;
             hintText.text = "";
+            largeItemIcon.sprite = null;
+            largeItemIcon.color = new Color(255,255,255,0);
         }
     }
 }

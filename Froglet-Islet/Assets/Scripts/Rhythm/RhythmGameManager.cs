@@ -2,6 +2,7 @@
 
 
 
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -175,8 +176,18 @@ public class RhythmGameManager : MonoBehaviour
                 Debug.Log("Completed Frog's name from frogData: " + observedFrog.frogData.frogName);
 
                 //Give the player their rewards based on the frogData
-                particleEffectS.GreenSwirlEffect();
+                particleEffectS.RainbowRiseEffect();
+                Item frogItem = new Item();
+                frogItem.name = observedFrog.frogData.frogName;
+                frogItem.description = observedFrog.frogData.frogDescription;
+                frogItem.itemType = ItemTypes.Frog;
+                frogItem.icon = observedFrog.frogData.frogSprite;
+                frogItem.id = observedFrog.frogData.frogName;
+                InventoryController.Instance.AddItem(frogItem);
                 InventoryController.Instance.AddItem(observedFrog.frogData.itemDrop);
+                if(InventoryController.Instance.CheckForItem("Igneous")){
+                    GameController.Instance.GameState = GameStates.Finish;
+                }
             }
         }
         else if (!didCorrect)

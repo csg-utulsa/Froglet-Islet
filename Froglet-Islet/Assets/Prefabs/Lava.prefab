@@ -59,7 +59,7 @@ AudioSource:
   MinDistance: 50
   MaxDistance: 180
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -67,85 +67,31 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.002
+      time: 0.2777778
       value: 1
-      inSlope: -500.20065
-      outSlope: -500.20065
+      inSlope: -3.6014557
+      outSlope: -3.6014557
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.0056217583
-      value: 0.49212027
-      inSlope: -2.5661366
-      outSlope: -2.5661366
+      time: 0.5555556
+      value: 0.5
+      inSlope: -0.9003639
+      outSlope: -0.9003639
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.6713827
-    - serializedVersion: 3
-      time: 0.037264287
-      value: 0.34057617
-      inSlope: -1.0794938
-      outSlope: -1.0794938
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.11420524
-      value: 0.21899414
-      inSlope: -1.0087342
-      outSlope: -1.0087342
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.1754143
-      value: 0.17056274
-      inSlope: -0.609449
-      outSlope: -0.609449
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.25077224
-      value: 0.127594
-      inSlope: -0.58276033
-      outSlope: -0.58276033
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.3741412
-      value: 0.06945801
-      inSlope: -0.29817376
-      outSlope: -0.29817376
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.7848692
-    - serializedVersion: 3
-      time: 0.49388784
-      value: 0.034423828
-      inSlope: -0.32129207
-      outSlope: -0.32129207
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.690229
-    - serializedVersion: 3
-      time: 0.7137146
+      time: 1
       value: 0
-      inSlope: 0.023040103
-      outSlope: 0.023040103
+      inSlope: -0.27788877
+      outSlope: -0.27788877
       tangentMode: 0
       weightedMode: 0
-      inWeight: 1
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

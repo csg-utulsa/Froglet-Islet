@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f777c2a0e0e004343832e9747f47eb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fluteSprite: {fileID: 21300000, guid: f7582eb4c8bcca0428987424b342ec35, type: 3}
   barrier: {fileID: 0}
 --- !u!136 &136342093457004435
 CapsuleCollider:

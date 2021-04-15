@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class CollectableFluteScript : MonoBehaviour, IInteractable
 {
-
+    public Sprite fluteSprite;
     public NavMeshObstacle barrier;
     GameScreen gameScreenS;
     MeshRenderer[] allMR;
@@ -38,7 +38,7 @@ public class CollectableFluteScript : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         barrier.enabled = false;
-        icS.AddItem(new Flute());
+        icS.AddItem(new Flute(fluteSprite));
         foreach (MeshRenderer mr in allMR)
             mr.enabled = false;
         collider.enabled = false;

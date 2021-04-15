@@ -46,9 +46,9 @@ public class Frog : MonoBehaviour, IInteractable
                 if(frogData.tollItem != "")
                     particleEffectS.RainbowRiseEffect();
                 //Interact with frog
-                
-                    //gamescreen.ShowMessage(frogData.tollItem + " have been used.");
 
+                //gamescreen.ShowMessage(frogData.tollItem + " have been used.");
+                SoundFXController.Instance.Play(0);
                     rhythmGameManager.StartRhythmGame(this);
             }
         }
@@ -56,6 +56,7 @@ public class Frog : MonoBehaviour, IInteractable
         {
             //Display that the player does not have the required item
             gameScreenS.ShowMessage("Missing flute!");
+            SoundFXController.Instance.Play(4);
             //gamescreen.ShowMessage("This frog isn't interested...maybe I need some " + frogData.tollItem + "?" );
         }
     }
