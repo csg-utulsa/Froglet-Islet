@@ -14794,12 +14794,12 @@ PrefabInstance:
     - target: {fileID: 1474919690559649754, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000017881393
+      value: -0.00000016018748
       objectReference: {fileID: 0}
     - target: {fileID: 1474919690559649754, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000074505806
+      value: 0.00000006798655
       objectReference: {fileID: 0}
     - target: {fileID: 1474919690804895512, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
@@ -14859,12 +14859,12 @@ PrefabInstance:
     - target: {fileID: 6193869981052751409, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000017881393
+      value: -0.00000016018748
       objectReference: {fileID: 0}
     - target: {fileID: 6193869981052751409, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000074505806
+      value: 0.00000006798655
       objectReference: {fileID: 0}
     - target: {fileID: 6828012379192095736, guid: d896d786de6d79d4b92b4ccab0e79ed4,
         type: 3}
@@ -15044,6 +15044,16 @@ PrefabInstance:
       propertyPath: gamescreen
       value: 
       objectReference: {fileID: 1051950942}
+    - target: {fileID: 5012174077988969140, guid: c2959a5a2a66c404ab9bb8ff6454e60a,
+        type: 3}
+      propertyPath: frogData.tollItem
+      value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012174077988969140, guid: c2959a5a2a66c404ab9bb8ff6454e60a,
+        type: 3}
+      propertyPath: frogData.consumeTollItem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5012174077988969140, guid: c2959a5a2a66c404ab9bb8ff6454e60a,
         type: 3}
       propertyPath: frogData.frogMelody.tempo
