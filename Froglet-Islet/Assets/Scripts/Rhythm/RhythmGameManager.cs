@@ -12,8 +12,8 @@ using UnityEngine.UI;
 public class RhythmGameManager : MonoBehaviour
 {
     public Canvas rhythmGameCanvas;
-    public AudioSource src;
-    public AudioClip debugSound;
+    public AudioSource frogSrc, fluteSrc;
+    public AudioClip debugSound, fluteSound;
     public List<Button> buttonList;
     public List<Color> colorList;
     public List<Sprite> bubbleList;
@@ -42,13 +42,10 @@ public class RhythmGameManager : MonoBehaviour
     {
         particleEffectS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleEffectScript>();
 
-        if(src == null)
-            src = GetComponent<AudioSource>();
-
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
 
         frogImage = rhythmGameCanvas.transform.Find("FrogImage").GetComponent<Image>();
-        fluteImage = rhythmGameCanvas.transform.Find("FluteImage").GetComponent<Image>();
+        fluteImage = rhythmGameCanvas.transform.Find("FluteLevel1").GetComponent<Image>();
         bubbleImage = frogImage.transform.Find("BubbleImage").GetComponent<Image>();
         noteImage = bubbleImage.transform.Find("NoteImage").GetComponent<Image>();
         infoText = rhythmGameCanvas.transform.Find("InfoText").GetComponent<Text>();
@@ -83,7 +80,7 @@ public class RhythmGameManager : MonoBehaviour
                     }
                     else
                     {
-                        PlayNote(parsedRhythm[index]);
+                        PlayNote(parsedRhythm[index],frogSrc);
                         index++;
                     }
                     
@@ -116,7 +113,7 @@ public class RhythmGameManager : MonoBehaviour
         }
     }
 
-    void PlayNote(int note)
+    void PlayNote(int note, AudioSource src)
     {
         if (listening)
         {
@@ -145,13 +142,19 @@ public class RhythmGameManager : MonoBehaviour
         rhythmGameCanvas.gameObject.SetActive(true);
         bubbleImage.transform.localScale = Vector3.zero;
         SetButtonColors();
+        if (!observedFrog.frogData.frogMelody.hasBeenGenerated) 
+        {
+            observedFrog.frogData.frogMelody = new Rhythm(GetComponent<RhythmGenerator>().Generate(observedFrog.frogData.frogMelody.rhythmDifficulty));
+            observedFrog.frogData.frogMelody.hasBeenGenerated = true;
+        }
         Rhythm r = observedFrog.frogData.frogMelody;
         sound = observedFrog.frogData.frogCry;
         if (observedFrog.frogData.frogSprite !=null)
             frogImage.sprite = observedFrog.frogData.frogSprite;
         if (sound == null)
             sound = debugSound;
-        src.clip = sound;
+        frogSrc.clip = sound;
+        fluteSrc.clip = fluteSound;
         timePerNote = ConvertTempo(r.tempo, r.subdivision);
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))
@@ -285,7 +288,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void ClickNote(int note)
     {
-        PlayNote(note);
+        PlayNote(note, fluteSrc);
         if (!CheckIfCorrect(note))
             didItCorrectly = false;
         timeCountUp = 0;

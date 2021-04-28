@@ -199,6 +199,8 @@ GameObject:
   - component: {fileID: 687616365757132787}
   - component: {fileID: 687616365757132786}
   - component: {fileID: 687616365757132785}
+  - component: {fileID: 4201738946824509298}
+  - component: {fileID: 1892200705512229328}
   m_Layer: 0
   m_Name: RhythmController
   m_TagString: Untagged
@@ -231,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ca9a6e8519ff9b4eb5df3723d5edba2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5e731ead423753a40aa700f1ed55613a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -330,8 +332,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rhythmGameCanvas: {fileID: 7462710488337843416}
-  src: {fileID: 687616365757132786}
-  debugSound: {fileID: 8300000, guid: 8ca9a6e8519ff9b4eb5df3723d5edba2, type: 3}
+  frogSrc: {fileID: 687616365757132786}
+  fluteSrc: {fileID: 1892200705512229328}
+  debugSound: {fileID: 8300000, guid: 5e731ead423753a40aa700f1ed55613a, type: 3}
+  fluteSound: {fileID: 8300000, guid: bc9ab77418e6668438470ea2cb1a5ed0, type: 3}
   buttonList:
   - {fileID: 3046022683761986824}
   - {fileID: 8721321647182354325}
@@ -341,7 +345,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9215687, g: 0.4431373, b: 0.882353, a: 1}
   - {r: 0.78823537, g: 0.77647066, b: 0.14509805, a: 1}
-  - {r: 0.68235296, g: 0.4431373, b: 0.9215687, a: 1}
+  - {r: 0.78823537, g: 0.77647066, b: 0.14509805, a: 1}
   - {r: 0.26666668, g: 0.92549026, b: 0.92549026, a: 1}
   - {r: 0.3137255, g: 0.5568628, b: 0.8313726, a: 1}
   - {r: 1, g: 0.7137255, b: 0.34509805, a: 1}
@@ -367,6 +371,209 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 723cdd79d9288064eb32acec935aa5a2, type: 3}
   - {fileID: 21300000, guid: f57104c5ce2355c46a33296747adf4bc, type: 3}
   gameActive: 0
+--- !u!114 &4201738946824509298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687616365757132784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e296e322e079940952fad06041293b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialRhythms:
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 3
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 5
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 6
+  easyRhythms:
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 131
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 335
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1331
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 5633
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 3135
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 6531
+  normalRhythms:
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 103315
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 5030135
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1131035
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 65053031
+  - tempo: 120
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1315161
+  hardRhythms: []
+  expertRhythms: []
+--- !u!82 &1892200705512229328
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687616365757132784}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bc9ab77418e6668438470ea2cb1a5ed0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1417667525851800005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1267,7 @@ GameObject:
   - component: {fileID: 297157188443927148}
   - component: {fileID: 8011126870922453405}
   m_Layer: 5
-  m_Name: FluteImage
+  m_Name: FluteLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
