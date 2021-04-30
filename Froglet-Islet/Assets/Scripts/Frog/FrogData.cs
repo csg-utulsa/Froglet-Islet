@@ -37,7 +37,8 @@ public class FrogData
     public Rhythm frogMelody;
     //Sound that the frog makes at some point lol I dunno
     public AudioClip frogCry;
-
+    //Location to spawn in by FrogSpawnerScript
+    public Vector3 spawnLocation;
     //Stores information about what items the frog can potentially give the player after completion of the Rhythm Githem
     public Item itemDrop;
 
