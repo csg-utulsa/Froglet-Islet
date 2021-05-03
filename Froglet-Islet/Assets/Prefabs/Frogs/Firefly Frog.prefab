@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 7686058629087083466}
   - component: {fileID: 6863964787499514134}
   m_Layer: 0
-  m_Name: Tomato Frog
+  m_Name: Firefly Frog
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,14 +130,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frogData:
-    frogName: Tomato
-    frogDescription: Smells of Ketchup.
-    frogSpecies: Tomato
-    frogGenus: Plant
-    frogID: 1
-    tollItem: Seeds
-    consumeTollItem: 1
-    frogSprite: {fileID: 21300000, guid: cf341de89e96b734cad4f0fa7f1cfc78, type: 3}
+    frogName: Firefly
+    frogDescription: Flickers with luminecence at night.
+    frogSpecies: Firefly
+    frogGenus: Anomalous
+    frogID: 8
+    tollItem: Flute 2
+    consumeTollItem: 0
+    frogSprite: {fileID: 21300000, guid: bdbd145928da59f4b8b6546feaf4c591, type: 3}
     frogMaterial: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
     frogModel: {fileID: 0}
     frogCollected: 0
@@ -150,10 +150,10 @@ MonoBehaviour:
       rhythm: 13356
     frogCry: {fileID: 0}
     itemDrop:
-      id: Food
-      name: Food
-      description: A tomato.
-      icon: {fileID: 21300000, guid: 7f472bc9ee0480846ac6d2c02c53a3fc, type: 3}
+      id: Lantern
+      name: Lantern
+      description: It glows with the light of a Firefly Frog.
+      icon: {fileID: 21300000, guid: d45fc7f5a7d3b044da1484cb0cb4bcca, type: 3}
       itemType: 2
       itemFunction:
         m_PersistentCalls:

@@ -21,7 +21,7 @@ public class InventoryScreen : Form
         foreach (ItemSlot itemSlot in slots)
         {
             itemSlot.onHover += OnSlotHover;
-            itemSlot.onClick += OnSlotClick;
+            //itemSlot.onClick += OnSlotClick;
         }
     }
 
