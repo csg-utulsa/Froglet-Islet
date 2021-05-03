@@ -137,11 +137,13 @@ MonoBehaviour:
     frogID: 12
     tollItem: Key
     consumeTollItem: 0
-    frogSprite: {fileID: 21300000, guid: 85692b151e04ca2408262f4ab9f6fdd2, type: 3}
+    frogSprite: {fileID: 21300000, guid: c24ae64573153f64193e735b6ef2b925, type: 3}
     frogMaterial: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
     frogModel: {fileID: 0}
     frogCollected: 0
     frogMelody:
+      rhythmDifficulty: 0
+      hasBeenGenerated: 0
       tempo: 135
       subdivision: 0
       lowestNote:
@@ -149,6 +151,7 @@ MonoBehaviour:
         octave: 4
       rhythm: 13356
     frogCry: {fileID: 0}
+    spawnLocation: {x: 0, y: 0, z: 0}
     itemDrop:
       id: Food
       name: Food

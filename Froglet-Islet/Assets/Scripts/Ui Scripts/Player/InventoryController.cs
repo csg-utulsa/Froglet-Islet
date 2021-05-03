@@ -13,6 +13,7 @@ public class InventoryController : Singleton<InventoryController>
     public GameScreen gameScreen;
 
     private bool inventoryTutorialShown = false;
+    private bool equipTutorialShown = false;
 
     void Awake()
     {
@@ -50,6 +51,11 @@ public class InventoryController : Singleton<InventoryController>
             if (inventoryTutorialShown)
             {
                 gameScreen.ShowMessage(item.name + " obtained!");
+            }
+            else if (item.name == "Lantern" && !equipTutorialShown)
+            {
+                gameScreen.ShowMessage(item.name + " obtained!\nYou can equip the lantern by\nclicking on it in your inventory.");
+                equipTutorialShown = true;
             }
             else
             {
