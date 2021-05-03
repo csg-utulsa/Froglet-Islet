@@ -7,16 +7,28 @@ public class EquippedItemScript : MonoBehaviour
 
     private string currentItem;
     LevelController lc;
+    CaveBarrierScript caveBarrierS;
 
     // Start is called before the first frame update
     void Start()
     {
         lc = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+        caveBarrierS = GameObject.Find("CaveBarrier").GetComponent<CaveBarrierScript>();
     }
 
     public void EquipItem(string ci) // should be called by inventory system
     {
         currentItem = ci;
+
+        switch (ci)
+        {
+            case "Lantern":
+                caveBarrierS.EnableBarrier();
+                break;
+            default:
+                caveBarrierS.DisableBarrier();
+                break;
+        }
     }
 
     public string GetEquippedItem()
