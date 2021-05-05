@@ -12,6 +12,9 @@ public class InventoryController : Singleton<InventoryController>
     public InventoryScreen inventoryScreen;
     public GameScreen gameScreen;
 
+    private bool inventoryTutorialShown = false;
+    private bool equipTutorialShown = false;
+
     void Awake()
     {
         items = new List<Item>(new Item[slotsCount]);
@@ -45,7 +48,20 @@ public class InventoryController : Singleton<InventoryController>
         {
             items[index] = item;
             itemStacks.Add(item.id, 1);
-            gameScreen.ShowMessage(item.name + " obtained!");
+            if (inventoryTutorialShown)
+            {
+                gameScreen.ShowMessage(item.name + " obtained!");
+            }
+            else if (item.name == "Lantern" && !equipTutorialShown)
+            {
+                gameScreen.ShowMessage(item.name + " obtained!\nYou can equip the lantern by\nclicking on it in your inventory.");
+                equipTutorialShown = true;
+            }
+            else
+            {
+                gameScreen.ShowMessage(item.name + " obtained!\nPress I to open your inventory\nto see info on your tools and frogs.");
+                inventoryTutorialShown = true;
+            }
             SoundFXController.Instance.Play(1);
             return true;
         }

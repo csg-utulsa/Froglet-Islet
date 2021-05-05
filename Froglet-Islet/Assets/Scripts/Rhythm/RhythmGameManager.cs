@@ -12,13 +12,14 @@ using UnityEngine.UI;
 public class RhythmGameManager : MonoBehaviour
 {
     public Canvas rhythmGameCanvas;
-    public AudioSource src;
-    public AudioClip debugSound;
-    public List<Button> buttonList;
+    public AudioSource frogSrc, fluteSrc;
+    public AudioClip debugSound, fluteSound;
+    public List<Button> buttonList1, buttonList2;
     public List<Color> colorList;
     public List<Sprite> bubbleList;
     public List<Sprite> noteList;
     public bool gameActive = false;
+    List<Button> buttonList;
 
     Frog observedFrog;
 
@@ -33,6 +34,8 @@ public class RhythmGameManager : MonoBehaviour
     float timeCountUp;
     int index;
 
+    public bool hasUpgrade;
+
     AudioControllerScript audioController;
 
     ParticleEffectScript particleEffectS;
@@ -42,16 +45,23 @@ public class RhythmGameManager : MonoBehaviour
     {
         particleEffectS = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleEffectScript>();
 
-        if(src == null)
-            src = GetComponent<AudioSource>();
-
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>();
 
         frogImage = rhythmGameCanvas.transform.Find("FrogImage").GetComponent<Image>();
-        fluteImage = rhythmGameCanvas.transform.Find("FluteImage").GetComponent<Image>();
         bubbleImage = frogImage.transform.Find("BubbleImage").GetComponent<Image>();
         noteImage = bubbleImage.transform.Find("NoteImage").GetComponent<Image>();
         infoText = rhythmGameCanvas.transform.Find("InfoText").GetComponent<Text>();
+
+        if (!hasUpgrade)
+        {
+            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel1").GetComponent<Image>();
+            buttonList = buttonList1;
+        }
+        else
+        {
+            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel2").GetComponent<Image>();
+            buttonList = buttonList2;
+        }
     }
 
     // Update is called once per frame
@@ -83,7 +93,7 @@ public class RhythmGameManager : MonoBehaviour
                     }
                     else
                     {
-                        PlayNote(parsedRhythm[index]);
+                        PlayNote(parsedRhythm[index],frogSrc);
                         index++;
                     }
                     
@@ -116,7 +126,7 @@ public class RhythmGameManager : MonoBehaviour
         }
     }
 
-    void PlayNote(int note)
+    void PlayNote(int note, AudioSource src)
     {
         if (listening)
         {
@@ -145,13 +155,19 @@ public class RhythmGameManager : MonoBehaviour
         rhythmGameCanvas.gameObject.SetActive(true);
         bubbleImage.transform.localScale = Vector3.zero;
         SetButtonColors();
+        if (!observedFrog.frogData.frogMelody.hasBeenGenerated) 
+        {
+            observedFrog.frogData.frogMelody = new Rhythm(GetComponent<RhythmGenerator>().Generate(observedFrog.frogData.frogMelody.rhythmDifficulty));
+            observedFrog.frogData.frogMelody.hasBeenGenerated = true;
+        }
         Rhythm r = observedFrog.frogData.frogMelody;
         sound = observedFrog.frogData.frogCry;
         if (observedFrog.frogData.frogSprite !=null)
             frogImage.sprite = observedFrog.frogData.frogSprite;
         if (sound == null)
             sound = debugSound;
-        src.clip = sound;
+        frogSrc.clip = sound;
+        fluteSrc.clip = fluteSound;
         timePerNote = ConvertTempo(r.tempo, r.subdivision);
         pitchOffset = CalcLowestNote(r.lowestNote);
         if (ParseRhythm(r.rhythm))
@@ -285,7 +301,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void ClickNote(int note)
     {
-        PlayNote(note);
+        PlayNote(note, fluteSrc);
         if (!CheckIfCorrect(note))
             didItCorrectly = false;
         timeCountUp = 0;
@@ -336,6 +352,12 @@ public class RhythmGameManager : MonoBehaviour
         buttonList[1].GetComponent<Image>().color = colorList[3];
         buttonList[2].GetComponent<Image>().color = colorList[5];
         buttonList[3].GetComponent<Image>().color = colorList[6];
+        if (hasUpgrade)
+        {
+            buttonList[4].GetComponent<Image>().color = colorList[8];
+            buttonList[5].GetComponent<Image>().color = colorList[10];
+            buttonList[6].GetComponent<Image>().color = colorList[12];
+        }
     }
 
 
@@ -362,6 +384,22 @@ public class RhythmGameManager : MonoBehaviour
             ClickNote(6);
             buttonList[3].interactable = false;
         }
+        else if (Input.GetKeyDown(KeyCode.A) && hasUpgrade)
+        {
+            ClickNote(8);
+            buttonList[4].interactable = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && hasUpgrade)
+        {
+            ClickNote(10);
+            buttonList[5].interactable = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && hasUpgrade)
+        {
+            ClickNote(12);
+            buttonList[6].interactable = false;
+        }
+
         if (Input.GetKeyUp(KeyCode.Q))
         {
             buttonList[0].interactable = true;
@@ -377,6 +415,18 @@ public class RhythmGameManager : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.R))
         {
             buttonList[3].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.A) && hasUpgrade)
+        {
+            buttonList[4].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.S) && hasUpgrade)
+        {
+            buttonList[5].interactable = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.D) && hasUpgrade)
+        {
+            buttonList[6].interactable = true;
         }
     }
 

@@ -147,3 +147,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9646fdd0a1ef76f428c35db785a4e809, type: 3}
   - {fileID: 8300000, guid: de32db4f5f0831b47a989e156bf5b956, type: 3}
   - {fileID: 8300000, guid: d6912f535f49b9046abe1b029808651e, type: 3}
+  walking: {fileID: 8300000, guid: a89fe615b4afbe449a6b8fa5ec521c8b, type: 3}
