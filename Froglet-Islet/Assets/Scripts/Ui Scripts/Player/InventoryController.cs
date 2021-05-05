@@ -58,9 +58,6 @@ public class InventoryController : Singleton<InventoryController>
         {
             items[index] = item;
             itemStacks.Add(item.id, 1);
-<<<<<<< Updated upstream
-            gameScreen.ShowMessage(item.name + " obtained!");
-=======
             if (item.itemType == ItemTypes.Tool)
             {
                 if (inventoryTutorialShown)
@@ -101,7 +98,6 @@ public class InventoryController : Singleton<InventoryController>
                 }
                 gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
             }
->>>>>>> Stashed changes
             SoundFXController.Instance.Play(1);
             return true;
         }
