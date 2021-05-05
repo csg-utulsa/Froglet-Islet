@@ -132,7 +132,7 @@ MonoBehaviour:
   frogData:
     frogName: Tomato
     frogDescription: Smells of Ketchup.
-    frogSpecies: flower
+    frogSpecies: Tomato
     frogGenus: Plant
     frogID: 1
     tollItem: Seeds
@@ -235,8 +235,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!1001 &5987537718461067340
 PrefabInstance:
   m_ObjectHideFlags: 0
