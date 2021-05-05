@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class FrogPen : MonoBehaviour
 {
-    List<GameObject> frogsSpawned = new List<GameObject>();
+    public List<GameObject> frogPrefabs = new List<GameObject>();
+    Dictionary<string, int> frogs = new Dictionary<string, int>();
 
-    public void SpawnFrog(Frog frog)
+    private void Awake()
     {
-        if (frog.frogData.frogModel != null)
+        for (int i = 0; i < frogPrefabs.Count; i++)
         {
-            frogsSpawned.Add(Instantiate(frog.frogData.frogModel));
-        }    
+            Frog frog = frogPrefabs[i].GetComponent<Frog>();
+            if (frog != null)
+            {
+                frogs.Add(frog.frogData.frogName, i);
+            }
+        }
+    }
+
+    public bool SpawnFrog(string frog)
+    {
+        int index = -1;
+        bool canSpawnFrog = frogs.TryGetValue(frog, out index);
+        if (canSpawnFrog)
+        {
+            Instantiate(frogPrefabs[index]);
+        }
+        return canSpawnFrog;
     }
 }
