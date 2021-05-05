@@ -14,6 +14,9 @@ public class InventoryController : Singleton<InventoryController>
     public GameScreen gameScreen;
     public List<FrogPen> frogPens;
 
+    private bool inventoryTutorialShown = false;
+    private bool equipTutorialShown = false;
+
     void Awake()
     {
         items = new List<Item>(new Item[slotsCount]);

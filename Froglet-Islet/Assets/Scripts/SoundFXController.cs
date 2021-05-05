@@ -6,6 +6,7 @@ public class SoundFXController : Singleton<SoundFXController> {
     public List<AudioClip> soundFX = new List<AudioClip>();
     public List<AudioClip> sounds { get { return soundFX; } }
     AudioSource playSong;
+    public AudioClip walking;
 
     public AudioClip GetItemByID(int i)
     {
@@ -17,6 +18,22 @@ public class SoundFXController : Singleton<SoundFXController> {
         return soundFX[i];
 
 
+    }
+
+    public void isWalking(bool i)
+    {
+        playSong.clip = walking;
+        if (i)
+        {
+            if (!playSong.isPlaying)
+                playSong.Play();
+            playSong.pitch = 0.5f;
+        }
+        else
+        {
+            playSong.pitch = 1.0f;
+        }
+        playSong.loop = i;
     }
 
     public void Play(int i)

@@ -98,10 +98,21 @@ public class InventoryScreen : Form
 
     private void OnSlotClick(ItemSlot slot)
     {
-        if (slot.ItemInSlot != null)
+        if (slot.ItemInSlot != null && slot.ItemInSlot.name == "Lantern")
         {
-            equippedItemScript.EquipItem(slot.ItemInSlot.name);
-            gameScreen.ShowMessage("Equipped " + slot.ItemInSlot.name);
+            if (equippedItemScript.name != null)
+            {
+                if (equippedItemScript.name == slot.ItemInSlot.name)
+                {
+                    equippedItemScript.EquipItem(null);
+                    gameScreen.ShowMessage("Stopped holding " + slot.ItemInSlot.name);
+                }
+                else
+                {
+                    equippedItemScript.EquipItem(slot.ItemInSlot.name);
+                    gameScreen.ShowMessage("Equipped " + slot.ItemInSlot.name);
+                }
+            }
         }
     }
 
