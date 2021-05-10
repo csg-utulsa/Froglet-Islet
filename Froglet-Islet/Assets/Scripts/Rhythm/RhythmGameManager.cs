@@ -52,16 +52,7 @@ public class RhythmGameManager : MonoBehaviour
         noteImage = bubbleImage.transform.Find("NoteImage").GetComponent<Image>();
         infoText = rhythmGameCanvas.transform.Find("InfoText").GetComponent<Text>();
 
-        if (!hasUpgrade)
-        {
-            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel1").GetComponent<Image>();
-            buttonList = buttonList1;
-        }
-        else
-        {
-            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel2").GetComponent<Image>();
-            buttonList = buttonList2;
-        }
+        
     }
 
     // Update is called once per frame
@@ -69,6 +60,7 @@ public class RhythmGameManager : MonoBehaviour
     {
         if (gameActive)
         {
+           
             if (hasFluteOut)
                 fluteImage.gameObject.SetActive(true);
             if (listening)
@@ -148,6 +140,17 @@ public class RhythmGameManager : MonoBehaviour
     {
         observedFrog = f;
 
+        if (!hasUpgrade)
+        {
+            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel1").GetComponent<Image>();
+            buttonList = buttonList1;
+        }
+        else
+        {
+            fluteImage = rhythmGameCanvas.transform.Find("FluteLevel2").GetComponent<Image>();
+            buttonList = buttonList2;
+        }
+
         if (GameController.Instance.GameState == GameStates.Inventory)
             GameController.Instance.GameState = GameStates.Game;
 
@@ -213,6 +216,7 @@ public class RhythmGameManager : MonoBehaviour
 
         //Set the observedFrog to null to avoid potential conflicts
         observedFrog = null;
+        fluteImage.gameObject.SetActive(false);
         rhythmGameCanvas.gameObject.SetActive(false);
         hasFluteOut = false;
         listening = false;
@@ -355,8 +359,8 @@ public class RhythmGameManager : MonoBehaviour
         if (hasUpgrade)
         {
             buttonList[4].GetComponent<Image>().color = colorList[8];
-            buttonList[5].GetComponent<Image>().color = colorList[10];
-            buttonList[6].GetComponent<Image>().color = colorList[12];
+            buttonList[5].GetComponent<Image>().color = colorList[10]; //A
+            buttonList[6].GetComponent<Image>().color = colorList[12]; //C
         }
     }
 
