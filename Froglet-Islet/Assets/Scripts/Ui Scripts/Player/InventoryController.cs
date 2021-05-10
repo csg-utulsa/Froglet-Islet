@@ -99,7 +99,14 @@ public class InventoryController : Singleton<InventoryController>
                         break;
                     }
                 }
-                gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
+                if (item.id == "FluteBase")
+                {
+                    gameScreen.ShowMessage("Flute obtained, you may now attempt to\nbefriend frogs by clicking on them!");
+                }
+                else
+                {
+                    gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
+                }
             }
             SoundFXController.Instance.Play(1);
             return true;
