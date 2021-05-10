@@ -92,7 +92,7 @@ public class InventoryController : Singleton<InventoryController>
             {
                 foreach (Item inventoryItem in items)
                 {
-                    if (inventoryItem.itemType == ItemTypes.Flute && inventoryItem.id != item.id)
+                    if (inventoryItem != null && inventoryItem.itemType == ItemTypes.Flute && inventoryItem.id != item.id)
                     {
                         items.Remove(item);
                         itemStacks.Remove(inventoryItem.id);
