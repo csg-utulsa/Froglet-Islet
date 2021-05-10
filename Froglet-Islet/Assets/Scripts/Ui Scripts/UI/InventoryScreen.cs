@@ -102,7 +102,7 @@ public class InventoryScreen : Form
         {
             if (equippedItemScript.name != null)
             {
-                if (equippedItemScript.name == slot.ItemInSlot.name)
+                if (equippedItemScript.GetEquippedItem() == slot.ItemInSlot.name)
                 {
                     equippedItemScript.EquipItem(null);
                     gameScreen.ShowMessage("Stopped holding " + slot.ItemInSlot.name);

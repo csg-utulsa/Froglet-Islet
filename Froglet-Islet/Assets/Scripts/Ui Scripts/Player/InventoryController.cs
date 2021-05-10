@@ -92,14 +92,21 @@ public class InventoryController : Singleton<InventoryController>
             {
                 foreach (Item inventoryItem in items)
                 {
-                    if (inventoryItem.itemType == ItemTypes.Flute && inventoryItem.id != item.id)
+                    if (inventoryItem != null && inventoryItem.itemType == ItemTypes.Flute && inventoryItem.id != item.id)
                     {
                         items.Remove(item);
                         itemStacks.Remove(inventoryItem.id);
                         break;
                     }
                 }
-                gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
+                if (item.id == "FluteBase")
+                {
+                    gameScreen.ShowMessage("Flute obtained, you may now attempt to\nbefriend frogs by clicking on them!");
+                }
+                else
+                {
+                    gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
+                }
             }
             SoundFXController.Instance.Play(1);
             return true;
