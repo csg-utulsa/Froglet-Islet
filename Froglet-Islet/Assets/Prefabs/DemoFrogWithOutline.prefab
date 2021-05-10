@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 200.63, y: 11.776, z: 191.03}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
-  - {fileID: 8869197532399859438}
+  - {fileID: 8897245798688189637}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -152.38701, z: 0}
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frogData:
     frogName: 
+    frogDescription: 
     frogSpecies: 
     frogGenus: 
     frogID: 0
@@ -121,6 +122,8 @@ MonoBehaviour:
     frogModel: {fileID: 0}
     frogCollected: 0
     frogMelody:
+      rhythmDifficulty: 0
+      hasBeenGenerated: 0
       tempo: 120
       subdivision: 0
       lowestNote:
@@ -128,6 +131,7 @@ MonoBehaviour:
         octave: 4
       rhythm: A
     frogCry: {fileID: 0}
+    spawnLocation: {x: 0, y: 0, z: 0}
     itemDrop:
       id: 
       name: 
@@ -170,26 +174,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0.23529412, b: 0, a: 1}
   showOutlineForChildren: 1
   outlineIsOn: 0
---- !u!95 &1036284658130358704
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8097024107809778772}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 576e4b7df3dbc464a8d1d2787d937e60, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &8979897656646799621
+--- !u!1001 &9003791419123960622
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -251,11 +236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -985542389825260074, guid: 3381bcfc1f5969548ac974654a06337e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 104f0e656bdcf7846a4e498d6f03a4fb, type: 2}
     - target: {fileID: 919132149155446097, guid: 3381bcfc1f5969548ac974654a06337e,
         type: 3}
       propertyPath: m_Name
@@ -263,15 +243,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3381bcfc1f5969548ac974654a06337e, type: 3}
---- !u!1 &8097024107809778772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3381bcfc1f5969548ac974654a06337e,
-    type: 3}
-  m_PrefabInstance: {fileID: 8979897656646799621}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8869197532399859438 stripped
+--- !u!4 &8897245798688189637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3381bcfc1f5969548ac974654a06337e,
     type: 3}
-  m_PrefabInstance: {fileID: 8979897656646799621}
+  m_PrefabInstance: {fileID: 9003791419123960622}
   m_PrefabAsset: {fileID: 0}

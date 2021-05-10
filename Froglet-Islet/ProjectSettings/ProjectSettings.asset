@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: TU CSG Spring 2021
   productName: Froglet-Islet
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -269,7 +269,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: cbdf3d789cc9d4d3cad37930814c8761, type: 3}
+      m_Icon: {fileID: 2800000, guid: 6d498cf1125dc184e9552203107ea9eb, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
