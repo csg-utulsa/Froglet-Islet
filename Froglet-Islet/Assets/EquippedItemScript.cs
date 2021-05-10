@@ -20,7 +20,7 @@ public class EquippedItemScript : MonoBehaviour
     public void EquipItem(string ci) // should be called by inventory system
     {
         currentItem = ci;
-
+        
         switch (ci)
         {
             case "Lantern":
