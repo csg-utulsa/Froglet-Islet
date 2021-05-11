@@ -62,25 +62,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
---- !u!95 &8950024545826543247
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5992858698561564771}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 576e4b7df3dbc464a8d1d2787d937e60, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2528881668203873820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +75,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
     - target: {fileID: 1066692564249978067, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
+    - target: {fileID: 2825457853818784859, guid: f27bf8514f4b18445ade8278a4c3234e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -272,12 +258,6 @@ PrefabInstance:
 --- !u!1 &8854234032368809123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6483189543532917439, guid: f27bf8514f4b18445ade8278a4c3234e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2528881668203873820}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5992858698561564771 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8084679615363495551, guid: f27bf8514f4b18445ade8278a4c3234e,
     type: 3}
   m_PrefabInstance: {fileID: 2528881668203873820}
   m_PrefabAsset: {fileID: 0}
