@@ -82,9 +82,16 @@ public class PlayerController : Singleton<PlayerController>
             InteractiveObject.Use();
         }
         if (ArrivedAtPosition())
-            anim.SetBool("isWalking", false);  
+        {
+            anim.SetBool("isWalking", false);
+            SoundFXController.Instance.isWalking(false);
+        }
+
         else
-            anim.SetBool("isWalking", true); 
+        {
+            anim.SetBool("isWalking", true);
+            SoundFXController.Instance.isWalking(true);
+        }
     }
 
     void CreateMarker(){

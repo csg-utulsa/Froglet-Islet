@@ -533,7 +533,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687616365757132784}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -670,16 +670,16 @@ MonoBehaviour:
   colorList:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9215687, g: 0.4431373, b: 0.882353, a: 1}
-  - {r: 0.78823537, g: 0.77647066, b: 0.14509805, a: 1}
-  - {r: 0.78823537, g: 0.77647066, b: 0.14509805, a: 1}
-  - {r: 0.26666668, g: 0.92549026, b: 0.92549026, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.87527066, g: 0.9245283, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0.3137255, g: 0.5568628, b: 0.8313726, a: 1}
   - {r: 1, g: 0.7137255, b: 0.34509805, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0.40784317, g: 0.63529414, b: 0.39607847, a: 1}
-  - {r: 0.5529412, g: 0.41960788, b: 0.3372549, a: 1}
-  - {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
-  - {r: 0.2627451, g: 0.76470596, b: 0.8980393, a: 1}
-  - {r: 1, g: 0.27058825, b: 0.94117653, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.5801887, g: 0.91189146, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0.49803925, g: 0.18039216, b: 0.8313726, a: 1}
   bubbleList:
   - {fileID: 21300000, guid: ad6177e94833dcd439b0306f83014dc9, type: 3}
@@ -741,7 +741,7 @@ MonoBehaviour:
     lowestNote:
       noteOffset: 0
       octave: 4
-    rhythm: 131
+    rhythm: 13
   - tempo: 120
     subdivision: 0
     lowestNote:
@@ -759,19 +759,19 @@ MonoBehaviour:
     lowestNote:
       noteOffset: 0
       octave: 4
-    rhythm: 5633
+    rhythm: 563
   - tempo: 120
     subdivision: 0
     lowestNote:
       noteOffset: 0
       octave: 4
-    rhythm: 3135
+    rhythm: 315
   - tempo: 120
     subdivision: 0
     lowestNote:
       noteOffset: 0
       octave: 4
-    rhythm: 6531
+    rhythm: 653
   normalRhythms:
   - tempo: 120
     subdivision: 0
@@ -803,8 +803,68 @@ MonoBehaviour:
       noteOffset: 0
       octave: 4
     rhythm: 1315161
-  hardRhythms: []
-  expertRhythms: []
+  hardRhythms:
+  - tempo: 140
+    subdivision: 1
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 8008A0C01
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 8858A85
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: C8A6851
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 8865311C1
+  - tempo: 140
+    subdivision: 1
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: C0A08030CCAA8
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1560368056A08
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: A868A86565656
+  expertRhythms:
+  - tempo: 140
+    subdivision: 1
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 333AAAA88881333
+  - tempo: 70
+    subdivision: 3
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 1003005158006005351
+  - tempo: 140
+    subdivision: 0
+    lowestNote:
+      noteOffset: 0
+      octave: 4
+    rhythm: 8000A8008606000080068
 --- !u!82 &1892200705512229328
 AudioSource:
   m_ObjectHideFlags: 0
