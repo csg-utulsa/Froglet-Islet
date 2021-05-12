@@ -154,9 +154,9 @@ MonoBehaviour:
     spawnLocation: {x: 0, y: 0, z: 0}
     itemDrop:
       id: Flute 2
-      name: Flute
+      name: Upgraded Flute
       description: A flute with additional notes unblocked.
-      icon: {fileID: 21300000, guid: f7582eb4c8bcca0428987424b342ec35, type: 3}
+      icon: {fileID: 21300000, guid: e01ec9ce863d38e478cca7d6c0faa8b5, type: 3}
       itemType: 1
       itemFunction:
         m_PersistentCalls:

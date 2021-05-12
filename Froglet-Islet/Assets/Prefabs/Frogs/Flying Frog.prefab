@@ -233,6 +233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
         type: 3}
+      propertyPath: frogData.frogMelody.rhythmDifficulty
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483189543532917437, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
       propertyPath: frogData.itemDrop.itemFunction.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}

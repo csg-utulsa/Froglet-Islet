@@ -135,14 +135,14 @@ MonoBehaviour:
     frogSpecies: Slime
     frogGenus: Water
     frogID: 9
-    tollItem: Seeds
+    tollItem: Bottle
     consumeTollItem: 1
     frogSprite: {fileID: 21300000, guid: 3db9a83f309678143872e0486b0264a6, type: 3}
     frogMaterial: {fileID: 2100000, guid: 37d38d986156168419045f22927eec76, type: 2}
     frogModel: {fileID: 0}
     frogCollected: 0
     frogMelody:
-      rhythmDifficulty: 0
+      rhythmDifficulty: 3
       hasBeenGenerated: 0
       tempo: 135
       subdivision: 0

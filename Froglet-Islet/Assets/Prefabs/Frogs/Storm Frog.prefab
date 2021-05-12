@@ -142,7 +142,7 @@ MonoBehaviour:
     frogModel: {fileID: 0}
     frogCollected: 0
     frogMelody:
-      rhythmDifficulty: 0
+      rhythmDifficulty: 2
       hasBeenGenerated: 0
       tempo: 135
       subdivision: 0
