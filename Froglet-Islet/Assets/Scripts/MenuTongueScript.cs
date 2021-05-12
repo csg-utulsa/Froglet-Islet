@@ -36,14 +36,15 @@ public class MenuTongueScript : MonoBehaviour
         tran2 = t;
 
         audioS.PlaySound("WhipCrack");
-        adjustedTran1 = new Vector2(tran1.anchoredPosition.x + 13f, tran1.anchoredPosition.y + 43f);
-        adjustedTran2 = new Vector2(tran2.anchoredPosition.x, tran2.anchoredPosition.y + 334f);
+        adjustedTran1 = new Vector2(tran1.anchoredPosition.x, tran1.anchoredPosition.y);
+        adjustedTran2 = new Vector2(tran2.anchoredPosition.x, tran2.anchoredPosition.y);
         rectTran.sizeDelta = new Vector2(24f, Vector2.Distance(tran1.anchoredPosition, adjustedTran2));
-        rectTran.anchoredPosition = adjustedTran1 + (adjustedTran2 - adjustedTran1) / 2f;
+        //rectTran.anchoredPosition = adjustedTran1 + (adjustedTran2 - adjustedTran1) / 2f;
         rectTran.transform.rotation = Quaternion.identity;
         zRotation = Mathf.Atan((adjustedTran2.y - adjustedTran1.y) / (adjustedTran2.x - adjustedTran1.x)) * Mathf.Rad2Deg + 90f;
         rectTran.Rotate(new Vector3(0, 0, zRotation));
-
+        if (t.gameObject.name == "StartButton" || t.gameObject.name == "QuitButton" || t.gameObject.name == "CreditsBackButton")
+            rectTran.localEulerAngles += Vector3.forward * 180;
         image.enabled = true;
     }
 
