@@ -69,6 +69,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1054197439893356280, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
+    - target: {fileID: 1066692564249978067, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
+    - target: {fileID: 2825457853818784859, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
     - target: {fileID: 6483189543532917433, guid: f27bf8514f4b18445ade8278a4c3234e,
         type: 3}
       propertyPath: m_RootOrder
@@ -226,6 +241,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turf Frog
       objectReference: {fileID: 0}
+    - target: {fileID: 8445231712300380281, guid: f27bf8514f4b18445ade8278a4c3234e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c22e7d23edb4842ab124812cd514c1, type: 2}
     - target: {fileID: 8869197532399859438, guid: f27bf8514f4b18445ade8278a4c3234e,
         type: 3}
       propertyPath: m_RootOrder
