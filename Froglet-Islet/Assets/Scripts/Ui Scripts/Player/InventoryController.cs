@@ -37,7 +37,7 @@ public class InventoryController : Singleton<InventoryController>
             }
             else if (item.itemType == ItemTypes.Frog && item.id == itemId)
             {
-                foreach(FrogPen pen in frogPens)
+                foreach (FrogPen pen in frogPens)
                 {
                     if (pen.SpawnFrog(item.name))
                     {
@@ -46,12 +46,14 @@ public class InventoryController : Singleton<InventoryController>
                 }
                 return false;
             }
+            else if (item.itemType == ItemTypes.Flute && item.id == itemId)
+                return false;
         }
 
         int index = -1;
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i] == null)
+            if (items[i] == null || items[i].id == null)
             {
                 index = i;
                 break;
@@ -94,7 +96,7 @@ public class InventoryController : Singleton<InventoryController>
                 {
                     if (inventoryItem != null && inventoryItem.itemType == ItemTypes.Flute && inventoryItem.id != item.id)
                     {
-                        items.Remove(item);
+                        items.Remove(inventoryItem);
                         itemStacks.Remove(inventoryItem.id);
                         break;
                     }
@@ -105,6 +107,7 @@ public class InventoryController : Singleton<InventoryController>
                 }
                 else
                 {
+                    GameObject.Find("RhythmController").GetComponent<RhythmGameManager>().hasUpgrade = true;
                     gameScreen.ShowMessage("Flute upgraded!\nNew Musical Notes are now available!");
                 }
             }

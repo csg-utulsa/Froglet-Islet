@@ -34,7 +34,7 @@ public class InventoryScreen : Form
 
         foreach (Item item in InventoryController.Instance.items)
         {
-            if (item != null)
+            if (item != null && item.id != null)
             {
                 bool isAlreadyInInventory = false;
                 foreach (ItemSlot itemSlot in slots)

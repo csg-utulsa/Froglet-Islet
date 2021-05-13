@@ -38,10 +38,11 @@ public class Frog : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (icS.FindItem("FluteBase") != null)
+        if (icS.FindItem("FluteBase") != null || icS.FindItem("Flute 2") != null)
         {
         //If the frog has an item requirement that needs to be met, item must be found in player's inventory.
-            if (InventoryController.Instance.FindAndRemoveItem(frogData.tollItem) || frogData.tollItem == "")
+            if ((frogData.consumeTollItem && InventoryController.Instance.FindAndRemoveItem(frogData.tollItem)) ||
+                (!frogData.consumeTollItem && InventoryController.Instance.CheckForItem(frogData.tollItem)) || frogData.tollItem == "")
             {
                 if(frogData.tollItem != "")
                     particleEffectS.RainbowRiseEffect();
