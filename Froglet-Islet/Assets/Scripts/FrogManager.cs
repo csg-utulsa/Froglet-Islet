@@ -10,7 +10,12 @@ public class FrogManager : MonoBehaviour
     private bool agentsPaused = false;
 
     [SerializeField]
-    List<GameObject> frogs = new List<GameObject>();
+    List<GameObject> enabledFrogs = new List<GameObject>();
+
+    List<GameObject> allFrogs = new List<GameObject>();
+
+    [SerializeField]
+    float enableDistance = 300f;
 
     void Awake(){
         rhythmGameManager = GameObject.Find("RhythmController").GetComponent<RhythmGameManager>();
@@ -20,7 +25,12 @@ public class FrogManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Frog[] frogComponents = GameObject.FindObjectsOfType<Frog>();
+        foreach(Frog frog in frogComponents){
+            allFrogs.Add(frog.gameObject);        
+        }
+
+        InvokeRepeating("ManageActiveFrogs",0f,5f);
     }
 
     // Update is called once per frame
@@ -40,7 +50,7 @@ public class FrogManager : MonoBehaviour
     }
 
     void PauseAllFrogs(){
-        foreach(var frogObject in frogs){
+        foreach(var frogObject in enabledFrogs){
             if(!frogObject.GetComponent<NavMeshAgent>()) continue;
             frogObject.GetComponent<NavMeshAgent>().isStopped = true;
             // print("Pause " + frogObject.GetComponent<NavMeshAgent>().isStopped);
@@ -49,10 +59,26 @@ public class FrogManager : MonoBehaviour
     }
 
     void ResumeAllFrogs(){
-        foreach(var frogObject in frogs){
+        foreach(var frogObject in enabledFrogs){
             if(!frogObject.GetComponent<NavMeshAgent>()) continue;
             frogObject.GetComponent<NavMeshAgent>().isStopped = false;
             // print("Resume " + frogObject.GetComponent<NavMeshAgent>().isStopped);
         }
+    }
+
+    void ManageActiveFrogs(){
+        if(agentsPaused) return;
+        enabledFrogs.Clear();
+        foreach(GameObject frogObject in allFrogs){
+            if(Vector3.Distance(PlayerController.Instance.transform.position, frogObject.transform.position) <= enableDistance){
+                enabledFrogs.Add(frogObject);
+                frogObject.SetActive(true);
+            }else{
+                frogObject.gameObject.SetActive(false);
+                // disabledFrogs.Add(frogObject.gameObject);
+            }
+        }
+
+
     }
 }

@@ -139,7 +139,8 @@ public class RhythmGameManager : MonoBehaviour
     public void StartRhythmGame(Frog f)
     {
         observedFrog = f;
-
+        if (InventoryController.Instance.CheckForItem(observedFrog.frogData.frogName))
+            observedFrog.frogData.frogCollected = true;
         if (!hasUpgrade)
         {
             fluteImage = rhythmGameCanvas.transform.Find("FluteLevel1").GetComponent<Image>();

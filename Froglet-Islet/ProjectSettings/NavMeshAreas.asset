@@ -13,19 +13,19 @@ NavMeshProjectSettings:
     cost: 2
   - name: Grassland
     cost: 1
-  - name: 
+  - name: AreaForGiant
     cost: 1
-  - name: 
+  - name: Forest
     cost: 1
-  - name: 
+  - name: '-'
     cost: 1
-  - name: 
+  - name: SirenBeach
     cost: 1
-  - name: 
+  - name: '-'
     cost: 1
-  - name: 
+  - name: BubbleBeach
     cost: 1
-  - name: 
+  - name: Cave
     cost: 1
   - name: 
     cost: 1
